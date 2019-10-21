@@ -1,5 +1,6 @@
 <?php
 
+use App\Batiment;
 use Illuminate\Database\Seeder;
 
 class BatimentsTableSeeder extends Seeder
@@ -12,29 +13,33 @@ class BatimentsTableSeeder extends Seeder
     public function run()
     {
         //
-        $batiment = new batiment();
-        $batiment ->nom = "B";
-        $batiment ->etage = "4";
-        $batiment ->adresse = "Bien moins prest";
-        $batiment ->save();
+        $bat = new Batiment();
+         $bat ->nom = "A";
+        $bat ->numero = "4";
+        $bat ->etage = "4";
+        $bat ->adresse = "Bien moins prest";
+        $bat ->save();
 
-        $batiment = new batiment();
-        $batiment ->nom = "C";
-        $batiment ->etage = "4";
-        $batiment ->adresse = "Cour vite";
-        $batiment ->save();
+        $bat = new Batiment();
+         $bat ->nom = "B";
+        $bat ->numero = "9";
+        $bat ->etage = "4";
+        $bat ->adresse = "Cour vite";
+        $bat ->save();
 
-        $batiment = new batiment();
-        $batiment ->nom = "R";
-        $batiment ->etage = "4";
-        $batiment ->adresse = "pas loins de moi";
-        $batiment ->save();
+        $bat = new Batiment();
+         $bat ->nom = "G";
+        $bat ->numero = "5";
+        $bat ->etage = "4";
+        $bat ->adresse = "pas loins de moi";
+        $bat ->save();
 
-         $batiment = new batiment();
-        $batiment ->nom = "F";
-        $batiment ->etage = "5";
-        $batiment ->adresse = "loins derrier toi ";
-        $batiment ->save();
+         $bat = new Batiment();
+         $bat ->nom = "G";
+         $bat ->numero = "7";
+        $bat ->etage = "5";
+        $bat ->adresse = "loins derrier toi ";
+        $bat ->save();
 
     }
 }

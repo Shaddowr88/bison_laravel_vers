@@ -15,10 +15,10 @@ class CreateBatimentsTable extends Migration
     {
         Schema::create('batiments', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->text("nom");
             $table->float("numero");
             $table->float("etage");
             $table->text("adresse");
-            $table->float("numero");
             $table->timestamps();
         });
     }
