@@ -8,7 +8,6 @@
          @guest
          <ul class="navbar-nav ml-auto">
 
-
         @endguest
          </ul>
       </div>
