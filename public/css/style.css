@@ -53,6 +53,9 @@
     #password{border: none;}
 
     #login {border: none;}
+    #email {border: none;}
+    #name {border: none;}
+    #password-confirm {border: none;}
 
     #panel {
       position: relative;
