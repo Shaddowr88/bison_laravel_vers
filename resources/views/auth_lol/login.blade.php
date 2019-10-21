@@ -3,9 +3,11 @@
                 <h1>Identifiez-vous !</h1>
                 <a>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br><br></a>
 
-                <form action="../controllers/login.php" method="post">
+                <form action="../controllers/login.php" method="post" action="{{ route('login_bison') }}">
+                @csrf
+
                  <div class="form-group">
-                    <label for="login"><br></label>
+                    <label for="login"><br>{{ __('E-Mail Address') }}</label>
                     <input type="text" name="login" id="login" class="form-control" placeholder="login" >
                     <hr>
                    </div>

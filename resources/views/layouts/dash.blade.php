@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -279,9 +282,25 @@
 
     <!-- User Information -->
                 <li class="nav-item dropdown no-arrow">
-                  <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                    <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                  <ul>
+                  <li class="nav-item dropdown">
+                                                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                                      {{ Auth::user()->name }} <span class="caret"></span>
+                                                  </a>
+
+                                                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                                      <a class="dropdown-item" href="{{ route('logout') }}"
+                                                         onclick="event.preventDefault();
+                                                                       document.getElementById('logout-form').submit();">
+                                                          {{ __('Logout') }}
+                                                      </a>
+
+                                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                          @csrf
+                                                      </form>
+                                                  </div>
+                                              </li>
+                                              </ul>
                   </a>
                   <!-- Dropdown - User Information -->
                   <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

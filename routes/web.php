@@ -13,17 +13,22 @@
 
 
 Route::get('/', function () {return view('bison');});
+//Login
 
-Route::get('/login', function () {
-    return view('auth/login');
-});
+Route::get('/login','Auth\LoginController@loginBison')->name('login_bison');
+Route::post('/login','Auth\LoginController@loginBison')->name('login_bison');
+//Route::post('/login', function () {return view('auth/login'));
 
-Route::get('/register', function () {
-    return view('auth/register');
-});
+
+//Route::get('/register','Auth\LoginController@loginBison')->name('login_bison');
+//Route::post('/register','Auth\LoginController@loginBison')->name('login_bison');
+Route::get('/register', function () {return view('auth/register');});
 
 Route::get('/dash',"Dash\MainController@index")->name("dashbord_index");
 
-Route::get('/message', function () {
-    return view('backend/message');
-});
+Route::get('/message', function () {return view('backend/message');});
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

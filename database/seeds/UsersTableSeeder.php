@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -19,5 +20,20 @@ class UsersTableSeeder extends Seeder
         $user-> password = Hash::make('AZERTYUIOP');
         $user->save();
 
+
+        $user = new User();
+        $user->name ="usher";
+        $user->email = "usher@gmail.com";
+        $user-> password = Hash::make('AZERTYUIOP');
+        $user->save();
+
+        $user = new User();
+        $user->name ="piere";
+        $user->email = "pierre@gmail.com";
+        $user-> password = Hash::make('AZERTYUIOP');
+        $user->save();
+
     }
 }
+
+
