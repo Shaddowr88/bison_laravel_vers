@@ -19,6 +19,7 @@ class UsersTableSeeder extends Seeder
         $user->email = "louis@gmail.com";
         $user-> password = Hash::make('AZERTYUIOP');
         $user->save();
+        $user->roles()->attach(2);
 
 
         $user = new User();
@@ -26,12 +27,7 @@ class UsersTableSeeder extends Seeder
         $user->email = "usher@gmail.com";
         $user-> password = Hash::make('AZERTYUIOP');
         $user->save();
-
-        $user = new User();
-        $user->name ="piere";
-        $user->email = "pierre@gmail.com";
-        $user-> password = Hash::make('AZERTYUIOP');
-        $user->save();
+        $user->roles()->attach(1);
 
     }
 }

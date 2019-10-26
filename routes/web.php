@@ -12,7 +12,7 @@
 */
 
 
-Route::get('/', function () {return view('bison');});
+Route::get('/acceuil', function () {return view('bison');});
 //Login
 
 Route::get('/login','Auth\LoginController@loginBison')->name('login_bison');
@@ -31,4 +31,14 @@ Route::get('/message', function () {return view('backend/message');});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('dash');
+
+
+Route::middleware('auth.admin')->group(function (){
+    Route::get('/backend','Backend\ProduitController@index')->name('backend_homepage');
+
+
+
+
+
+});
