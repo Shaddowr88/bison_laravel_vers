@@ -1,4 +1,4 @@
-@extends('layouts/dash')
+@extends('layouts/dashAdmin')
 @section('dash')
 <!-- EMPLACEMENT PICT + CALLENDIER -->
             <div class="col-xl-3 col-md-6 mb-4">

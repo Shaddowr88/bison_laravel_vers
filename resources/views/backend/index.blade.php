@@ -1,37 +1,35 @@
 @extends('layouts/dash')
 @section('dash')
 <!-- EMPLACEMENT PICT + CALLENDIER -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="">
-              <input type="text" name="date" id="dateField" value="" />
+            <div class="col-xl-3 col-md-6 mb-4 mt-7">
+              <div class="mt-6">
+
+
                 <div id="calMain"> </div>
               <div>
               <p>Sed ut tum ad senem senex de senectute, sic hoc libro ad amicum amicissimus scripsi de amicitia.
               Tum est Cato locutus, quo erat nemo fere senior temporibus illis, nemo prudentior.</p>
               </div>
               <div class="col-xl-3 col-md-6 mb-4"> </div>
-              <div class="card  shadow h-25 py-2">
-                <div class="card-body"><input type="button" id="calToogle" value="Calendrier" onclick="calToogle();" />
-                </div>
-             <div id="calendarWrap">
-               <ul>
-                 <li>
-                   <input type="button" value="«" onclick="calYearNav('-1');" />
-                 </li>
-                 <li>
-                   <input type="button" value="‹" onclick="calMonthNav('-1');" />
-                 </li>
-                 <li id="calendarTitle"> </li>
-                 <li>
-                   <input type="button" value="›" onclick="calMonthNav('+1');" />
-                 </li>
-                 <li>
-                   <input type="button" value="»" onclick="calYearNav('+1');" />
-                 </li>
-               </ul>
-               <div id="calendar"></div>
-             </div>
-           </div>
+<tr>
+              <div class="row row-striped">
+              			<div class="col-1 text-right mr-3 ">
+              				<h1 class=""><span class="badge badge-secondary">23</span></h1>
+              				<h2>OCT</h2>
+              			</div>
+              			<div class="col-10 ">
+
+              				<ul class=>
+              				<a class="text-uppercase"><strong>Ice Cream Social</strong></a>
+              				    <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i> Monday</li>
+              					<li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i> 12:30 PM - 2:00 PM</li>
+              					<li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i> Cafe</li>
+              				</ul>
+
+              			</div>
+              			<p>Lorem ipsum dolsit amet, consectetur adipiscing elit,
+                                            				sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              		</div>
            </div>
              <div class="col-xl-3 col-md-6 mb-4"> </div>
          </div>

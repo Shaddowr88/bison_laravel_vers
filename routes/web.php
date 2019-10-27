@@ -12,7 +12,9 @@
 */
 
 
-Route::get('/acceuil', function () {return view('bison');});
+//Route::get('/acceuil', function () {return view('bison');});
+Route::get('/', 'HomeController@index')->name('homepage');
+
 //Login
 
 Route::get('/login','Auth\LoginController@loginBison')->name('login_bison');
@@ -33,11 +35,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('dash');
 
-Route::get('/backend','Lot\MainController@index')->name('backend_homepage');
-Route::get('/edit','Lot\MainController@edit')->name('backend_edit');
-Route::post('/backend/ilot/update','lot\MainController@update')->name('backend_ilot_update');
-Route::middleware('auth.admin')->group(function (){
 
+Route::middleware('auth.admin')->group(function (){
+    Route::get('/backend','Lot\MainController@index')->name('backend_homepage');
+    Route::get('/edit','Lot\MainController@edit')->name('backend_edit');
+    Route::post('/backend/ilot/update','lot\MainController@update')->name('backend_ilot_update');
+    Route::get('/appartement','Lot\AppartementController@index')->name('backend_appartement');
 
 
 

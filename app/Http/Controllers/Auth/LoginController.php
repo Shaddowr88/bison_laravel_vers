@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Composer\DependencyResolver\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -39,19 +40,6 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-//    public function loginBison(Request $request)
-//    {
-//        $email = $request->email;
-//        $password = $request->password;
-//        $user = User::all(['email'=>$email,'password'=>$password]);{
-//            return $user();
-//        };
-////        dd($user);
-//    }
-//
-
-
-
 
   public function loginBison(Request $request)
   {
@@ -60,12 +48,12 @@ class LoginController extends Controller
       if(Auth::attempt(['email'=>$email,'password'=>$password])){
 //           Reccuperer l'utilisateur connecté'
           $user = Auth::user();
-//        dd($user);
+//       dd($user);
           if($user->hasRole('Administrateur')) {
-//            return route(redirect('backend_homepage'));
+
               return redirect()->route('backend_homepage');
           } else {
-              return redirect()->route('homepage');
+              return redirect()->route('login_bison');
           }
       }else{
           return redirect()->route('login')->with('messages','impossible de vous identifier');
