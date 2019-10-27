@@ -33,9 +33,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('dash');
 
-
+Route::get('/backend','Lot\MainController@index')->name('backend_homepage');
+Route::get('/edit','Lot\MainController@edit')->name('backend_edit');
+Route::post('/backend/ilot/update','lot\MainController@update')->name('backend_ilot_update');
 Route::middleware('auth.admin')->group(function (){
-    Route::get('/backend','Backend\ProduitController@index')->name('backend_homepage');
+
 
 
 
