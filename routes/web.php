@@ -38,6 +38,7 @@ Route::get('/home', 'HomeController@index')->name('dash');
 
 Route::middleware('auth.admin')->group(function (){
     Route::get('/backend','Lot\MainController@index')->name('backend_homepage');
+    Route::get('/add','Lot\MainController@add')->name('backend_add');
     Route::get('/edit','Lot\MainController@edit')->name('backend_edit');
     Route::post('/backend/ilot/update','lot\MainController@update')->name('backend_ilot_update');
     Route::get('/appartement','Lot\AppartementController@index')->name('backend_appartement');

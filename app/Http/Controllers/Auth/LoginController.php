@@ -40,20 +40,15 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-
-  public function loginBison(Request $request)
-  {
+  public function loginBison(Request $request){
       $email = $request->email;
       $password = $request->password;
       if(Auth::attempt(['email'=>$email,'password'=>$password])){
-//           Reccuperer l'utilisateur connecté'
           $user = Auth::user();
-//       dd($user);
           if($user->hasRole('Administrateur')) {
-
               return redirect()->route('backend_homepage');
           } else {
-              return redirect()->route('login_bison');
+              return redirect()->route('dashbord_index');
           }
       }else{
           return redirect()->route('login')->with('messages','impossible de vous identifier');
