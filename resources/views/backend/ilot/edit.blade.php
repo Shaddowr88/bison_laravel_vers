@@ -27,7 +27,7 @@
             @endif
             <div class="form-row">
                 <div class="form-group col-md-8">
-                    <label for="nom">Nom du produit</label>
+                    <label for="nom">Nom du batiment</label>
 {{--               F.Edite     appel de la variable en préremplissage : value='{{#}}'--}}
                     <input type="text" class="form-control" id="nom" name="nom" value="{{$batiment->nom}}}">
                 </div>

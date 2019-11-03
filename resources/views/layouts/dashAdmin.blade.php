@@ -71,9 +71,9 @@
                   </a>
                   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                      <h6 class="collapse-header">Custom Components:</h6>
-                      <a class="collapse-item" href="{{route('backend_add')}}">Ilots</a>
-                      <a class="collapse-item" href="cards.html">Cards</a>
+                      <h6 class="collapse-header">Gestion des batiments :</h6>
+                      <a class="collapse-item" href="{{route('backend_add')}}">Ajouter</a>
+                      <a class="collapse-item" href="cards.html">Edité</a>
                     </div>
                   </div>
                 </li>
@@ -90,12 +90,10 @@
 
                   <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                      <h6 class="collapse-header">Custom Utilities:</h6>
+                      <h6 class="collapse-header">Gestion des echanges:</h6>
                       <a class="collapse-item" href="utilities-animation.html">Message</a>
                       <a class="collapse-item" href="utilities-color.html">Demandes</a>
                       <a class="collapse-item" href="utilities-border.html">Annonces</a>
-
-                      <a class="collapse-item" href="utilities-other.html">Other</a>
                     </div>
                   </div>
                 </li>
@@ -109,7 +107,7 @@
                   </a>
                   <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                      <h6 class="collapse-header">:</h6>
+                      <h6 class="collapse-header">Gestion des contacts</h6>
                       <a class="collapse-item" href="login.html">Sav</a>
                       <a class="collapse-item" href="register.html">Syndic</a>
                       <a class="collapse-item" href="forgot-password.html">Proprietaire</a>
@@ -330,8 +328,8 @@
 
 <!-- Page entete -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-              <h1 class="h3 mb-0 text-gray-800">Dashboard  </h1>
-              <div><br><br><br><br></div>
+              <h1 class="h3 mb-0 text-gray-800"></h1>
+              <div><br><br></div>
             </div>
 
 <!-- Contenue Generale-->
