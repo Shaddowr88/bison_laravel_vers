@@ -33,6 +33,7 @@ Route::get('/home', 'HomeController@index')->name('dash');
 //Message
 Route::get('/message02','Dash\MainController@declaration')->name ('Users_message02');
 
+//Route administrateur
 Route::middleware('auth.admin')->group(function (){
 
     Route::get('/backend','Lot\MainController@index')->name('backend_homepage');

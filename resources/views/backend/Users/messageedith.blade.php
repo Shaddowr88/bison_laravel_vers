@@ -1,3 +1,6 @@
+@extends('layouts/dash')
+@section('dash')
+
 <form>
   <div class="form-group row">
     <label for="#" class="col-sm-2 col-form-label">user</label>
@@ -58,3 +61,4 @@
     </div>
   </div>
 </form>
+@endsection
