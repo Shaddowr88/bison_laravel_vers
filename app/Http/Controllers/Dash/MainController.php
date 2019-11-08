@@ -14,7 +14,7 @@ class MainController extends Controller
     //
 
     public function index(){
-        $batiments = Batiment::all();
+//        $batiments = Batiment::all();
         return view('backend/index');
     }
 

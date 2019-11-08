@@ -1,5 +1,6 @@
 @extends('layouts/dash')
 @section('dash')
+<script src="{{asset('js/zingchart.min.js')}}"></script>
 <!-- EMPLACEMENT PICT + CALLENDIER -->
 <div class="col-xl-3 col-md-6 mb-4 mt-7">
     <div class="mt-6">
@@ -20,13 +21,13 @@
             <h2>OCT</h2>
         </div>
       <div class="col-10 ">
-
-        <ul>
-            <a class="text-uppercase"><strong>Ice Cream Social</strong></a>
-            <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i> Monday</li>
-            <li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i> 12:30 PM - 2:00 PM</li>
-            <li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i> Cafe</li>
-        </ul>
+            <div id='myChart'> </div>
+       <!-- <ul>
+       <!--     <a class="text-uppercase"><strong>Ice Cream Social</strong></a> -->
+       <!--     <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i> Monday</li> -->
+       <!--     <li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i> 12:30 PM - 2:00 PM</li> -->
+       <!--     <li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i> Cafe</li> -->
+       <!-- </ul> -->
     </div>
 
 
@@ -37,86 +38,74 @@
 
 
 <!--Menus deroulant message-->
-<div class=" col-11 card  shadow ml-2 mb-2 bg-primary">
-    <ul class="navbar-nav " id="accordionSidebar">
-        <li class="nav-item">
-            <a class="nav-link collapsed text-center " href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench "></i>
-                <span>Messages</span>
-            </a>
+<div class="accordion col-11" id="accordion">
 
-            <div id="collapseUtilities" class="collapse " aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded p-3 mb-2 ">
-                    <h6 class="collapse-header">Custom Utilities</h6>
-                    <ul class="nav-item">
-                    <li><a class="collapse-item" href="utilities-color.html">Colors</a></li>
-                    <li><a class="collapse-item" href="utilities-border.html">Borders</a></li>
-                    <li><a class="collapse-item" href="utilities-animation.html">Animations</a></li>
-                    <li><a class="collapse-item" href="utilities-other.html">Other</a></li>
-                    </ul>
-                </div>
-            </div>
-        </li>
-    </ul>
-</div>
 
-<!--Menus deroulant Annuaire-->
-<div class=" col-11 card  shadow ml-2 mb-2 bg-primary">
-    <ul class="navbar-nav " id="accordionSidebar">
-        <li class="nav-item">
-            <a class="nav-link collapsed text-center" href="#" data-toggle="collapse" data-target="#collapseContacts"
-            aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Annuaire</span>
-            </a>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Contacts
+            </button>
+          </h2>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
 
-            <div id="collapseContacts" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded p-3 mb-2">
-                        <h6 class="collapse-header">Custom Utilities</h6>
-                     <ul class="nav-item">
+
+          <div class="card-body">
+            <ul class="nav-item">
                        <li> <a class="collapse-item" href="utilities-color.html">Syndic</a></li>
                        <li> <a class="collapse-item" href="utilities-border.html">prestataire</a></li>
                        <li> <a class="collapse-item" href="utilities-animation.html">numero utiles</a></li>
                      </ul>
-                    </div>
-            </div>
-        </li>
-    </ul>
-</div>
+          </div>
+        </div>
+      </div>
 
-<!--Menu déroulant documents-->
-<div class=" col-11 card  shadow ml-2 mb-2 bg-primary">
-    <ul class="navbar-nav " id="accordionSidebar">
-        <li class="nav-item">
-            <a class="nav-link collapsed text-center " href="#" data-toggle="collapse" data-target="#collapseDocs"
-            aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Documents</span>
-            </a>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Documents
+            </button>
+          </h2>
+        </div>
 
-            <div id="collapseDocs" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded p-3 mb-2">
-                        <h6 class="collapse-header">Custom Utilities</h6>
-                        <ul class="nav-item">
+
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+          <div class="card-body">
+             <ul class="nav-item">
                         <li><a class="collapse-item" href="utilities-color.html">Relevés de charges</a></li>
                         <li><a class="collapse-item" href="utilities-border.html">Assemblée générale</a></li>
                         <li><a class="collapse-item" href="utilities-animation.html">Règlementations</a></li>
                         </ul>
-                    </div>
-            </div>
-        </li>
-    </ul>
-</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" id="headingFour">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              Comment effacer mon compte ?
+            </button>
+          </h2>
+        </div>
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+          <div class="card-body">
+            Un bouton est proposé dans ce but dans les paramètres de votre profil, une fois connecté.
+          </div>
+        </div>
+      </div>
+      </div>
 
 </div>
 </div>
-<div class="col-xl-3 col-md-6 mb-4"> </div>
 </div>
 
 <!-- EMPLACEMENT TAB -->
 
-<div class=" card  shadow col-xl-8 col-md-6 mb-4">
+<div class=" col-xl-8 col-md-6 mb-4" height="100">
     <div class="py-3">
     <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
 </div>
@@ -130,10 +119,10 @@
               <p></p> </div>
           </li>
 
-          <div class="col-xl-8">
+          <div class="col-xl-10" >
               <tr>
 
-                <td class="title-dark" width="100">Emeteur</td>
+                <td class="title-dark" width="100"  >Emeteur</td>
 
               </tr>
 
@@ -159,3 +148,7 @@
 </div>
 
 @endsection
+
+
+<script src="{{asset('js/calendar.js')}}"></script>
+

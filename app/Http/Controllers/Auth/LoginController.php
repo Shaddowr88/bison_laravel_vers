@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
-use Composer\DependencyResolver\Request;
+
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Request;
 
 class LoginController extends Controller
 {
@@ -28,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/backend';
 
     /**
      * Create a new controller instance.
@@ -45,9 +46,12 @@ class LoginController extends Controller
       $password = $request->password;
       if(Auth::attempt(['email'=>$email,'password'=>$password])){
           $user = Auth::user();
+
           if($user->hasRole('Administrateur')) {
+
               return redirect()->route('backend_homepage');
           } else {
+
               return redirect()->route('dashbord_index');
           }
       }else{

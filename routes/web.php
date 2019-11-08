@@ -18,8 +18,8 @@ Route::get('/', 'HomeController@index')->name('homepage');
 
 //Login
 
-Route::get('/login','Auth\LoginController@loginBison')->name('login_bison');
-Route::post('/login','Auth\LoginController@loginBison')->name('login_bison');
+//Route::get('/login','Auth\LoginController@loginBison')->name('login_bison');
+Route::post('/login/bison','Auth\LoginController@loginBison')->name('login_bison');
 //Route::post('/login', function () {return view('auth/login'));
 
 Route::get('/register', function () {return view('auth/register');});
