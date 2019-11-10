@@ -13,9 +13,9 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin </title>
+  <title>Bison </title>
 
-  <!-- Custom fonts for this template-->
+
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
@@ -24,10 +24,10 @@
 
 </head>
 
-<body id="page-top">
+<body >
 
 <!-- Content Wrapper -->
-             <div id="content-wrapper" class="d-flex flex-column">
+             <div >
 
 <!-- Main Content -->
              <div id="content">
@@ -50,6 +50,15 @@
                     </form>
                   </div>
                 </li>
+
+                  <li class="nav-item dropdown no-arrow mx-1">
+                      <a class="nav-link dropdown-toggle" href="{{route('dashbord_index')}}" id="messagesDropdown" role="button">
+                          <i class="fas fa-envelope fa-fw"></i>
+                          <!-- Counter - Messages -->
+                          <span class="badge badge-danger badge-counter">Home</span>
+                      </a>
+                  </li>
+
 
     <!--  Menus  Alerts -->
                 <li class="nav-item dropdown no-arrow mx-1">
@@ -208,53 +217,97 @@
             </nav>
 
 
-<!-- Contenue Generale -->
-            <div class="container-fluid">
+<!-- menus -->
 
-<!-- Page entete -->
-            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-              <h1 class="h3 mb-0 text-gray-800">Bienvenue <br> {{ Auth::user()->name }}  </h1>
-              <div><br><br><br><br></div>
-            </div>
+                <div class="container-fluid">
 
-<!-- Contenue Generale-->
-                         <div class="row">
-@yield('dash')
+                    <div class="col-sm">
+
+                    <div class="row align-items-center">
+                        <div class="col-md-4 mb-4"><h1 class="h3 mb-0 text-gray-800">Bienvenue <br> {{ Auth::user()->name }}  </h1></div>
+                        </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="row no-gutters rounded overflow-hidden flex-md-row mb-4 h-md-250 position-relative">
+                                <h1 class=""><span class="badge badge-secondary">2394</span></h1>
+                                <div class="col pl-3 d-flex flex-column position-static">
+                                    <a class="text-uppercase ">Adresse rue user </a>
+                                    <a class="text-uppercase ">Adresse rue user </a>
+                                </div>
                             </div>
+                        </div>
 
-<!-- Carte bas de pagee -->
-<!-- Approach
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                </div>
-                <div class="card-body">
-                  <p>SB use
-                  of Bootstrap 4 utility classes in order to reduce CSS bloat and poor page performance.
-                  Custom CSS classes are used to create custom components and custom utility classes.</p>
-                  <p class="mb-0">Before working with this theme, you should become familiar with the Bootstrap
-                  framework, especially the utility classes.</p>
-                </div>
-              </div>
-            -->
+                    </div>
 
-      <!-- Footer
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
-          </div>
-        </div>
-      </footer>
-     End of Footer -->
+                    <div class="row h-50 ">
+                        <div class="col-md-4 mb-5 ">
+                            <div class="accordion col-11" id="accordion">
 
-    </div>
-    <!-- End of Content Wrapper -->
 
+                                <div class="card mb-2">
+                                    <div class="card-header" id="headingTwo">
+                                        <h2 class="mb-0">
+                                            <button class="btn collapsed" type="button" data-toggle="collapse"
+                                                    data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                <a class="alert">Ma Co-pro</a>
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <ul class="nav-item">
+                                                <li> <a class="collapse-item" href="{{route('my_index')}}"</a>Evenement</a></li>
+                                                <li> <a class="collapse-item" href="{{route('signal')}}"</a>Signalé</a></li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-2">
+                                    <div class="card-header " id="headingThree">
+                                        <h2 class="mb-0">
+                                            <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
+                                                    aria-expanded="false" aria-controls="collapseThree"><a class="alert">Contacts</a></button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <ul class="nav-item">
+                                                <li><a class="collapse-item" href="{{route('contact_syndic')}}">Syndic</a></li>
+                                                <li><a class="collapse-item" href="{{route('contact_prestataire')}}">prestataire</a></li>
+                                                <li><a class="collapse-item" href="{{route('contact_utility')}}">numero utiles</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card ">
+                                    <div class="card-header " id="headingFour">
+                                        <h2 class="mb-0">
+                                            <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseFour"
+                                                    aria-expanded="false" aria-controls="collapseFour"><a class="alert">Documents</a></button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <ul class="nav-item">
+                                                <li><a class="collapse-item" href="{{route('Documents')}}">Relevés de charges</a></li>
+                                                <li><a class="collapse-item" href="{{route('dating')}}">Assemblée générale</a></li>
+                                                <li><a class="collapse-item" href="{{route('settlement')}}">Règlementations</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                        </div>
+                    </div>
+
+                    </div>
+    <!-- Yield -->
+                        <div class="col-md-8" height="100%">@yield('dash')</div>
            </div>
 
   <!-- Scroll to Top Button-->
-             <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
 <!-- menus Logout -->
             <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
