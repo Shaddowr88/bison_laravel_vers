@@ -51,11 +51,23 @@ Route::get('/doc_settlement', "Dash\MainController@settlement")->name("settlemen
 //Route administrateur
 Route::middleware('auth.admin')->group(function (){
 
+//acceuille securisé admin
     Route::get('/backend','Lot\MainController@index')->name('backend_homepage');
+
+//    gestion des appartement
+    Route::get('/appartement','Lot\AppartementController@index')->name('backend_appartement');
     Route::get('/add','Lot\MainController@add')->name('backend_add');
     Route::post('/backend/ilot/store','lot\MainController@store')->name('backend_ilot_store');
     Route::post('/backend/ilot/update','lot\MainController@update')->name('backend_ilot_update');
     Route::get('/edit','Lot\MainController@edit')->name('backend_edit');
-    Route::get('/appartement','Lot\AppartementController@index')->name('backend_appartement');
+
+//   Gestions des messages
+    Route::get('/message','Lot\MessagesController@index')->name('messages_ask');
+
+//   gestion de l'annuaire
+    Route::get('/book','Lot\BooksController@index')->name('Books_index');
+    Route::get('/book_syndic','Lot\BooksController@syndic')->name('Books_syndic');
+    Route::get('/book_Presta','Lot\BooksController@prestataire')->name('Books_prestataire');
+    Route::get('/book_other','Lot\BooksController@other')->name('Books_other');
 
 });
