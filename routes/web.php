@@ -33,14 +33,17 @@ Route::get('/home', 'HomeController@index')->name('dash');
 //Message
 Route::get('/message02','Dash\MainController@declaration')->name ('Users_message02');
 
-
 // fonction utilisateur
-
+//menus annuaire
 Route::get('/contact_syndic', "Dash\MainController@contact_syndic")->name("contact_syndic");
 Route::get('/contact_utile', "Dash\MainController@contact_prestataire")->name("contact_prestataire");
 Route::get('/contact_prestataire', "Dash\MainController@contact_utility")->name("contact_utility");
+
+//menus signalement
 Route::get('/my_index', "Dash\MainController@Mine")->name("my_index");
 Route::get('/my_signal', "Dash\MainController@signal")->name("signal");
+
+//menus Documents
 Route::get('/document', "Dash\MainController@Documents")->name("Documents");
 Route::get('/doc_dating', "Dash\MainController@dating")->name("dating");
 Route::get('/doc_settlement', "Dash\MainController@settlement")->name("settlement");
@@ -58,8 +61,9 @@ Route::middleware('auth.admin')->group(function (){
     Route::get('/appartement','Lot\AppartementController@index')->name('backend_appartement');
     Route::get('/add','Lot\MainController@add')->name('backend_add');
     Route::post('/backend/ilot/store','lot\MainController@store')->name('backend_ilot_store');
-    Route::post('/backend/ilot/update','lot\MainController@update')->name('backend_ilot_update');
+
     Route::get('/edit','Lot\MainController@edit')->name('backend_edit');
+    Route::post('/backend/ilot/update','lot\MainController@update')->name('backend_ilot_update');
 
 //   Gestions des messages
     Route::get('/message','Lot\MessagesController@index')->name('messages_ask');

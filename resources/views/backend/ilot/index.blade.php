@@ -10,6 +10,13 @@
                             <h5 class="card-category">Total fond</h5>
                             <h2 class="card-title">Performance</h2>
                         </div>
+                        @if ($errors->any())
+                            <div class="alert-danger">
+                                @foreach($errors->all() as $error)
+                                    <p> {{$error}} </p>
+                                @endforeach
+                            </div>
+                        @endif
                         <div class="col-sm-6">
                             <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
                                 {{--                                <label class="btn btn-sm btn-primary btn-simple active" id="0">--}}
@@ -42,7 +49,7 @@
                         <thead class="table-dark">
                         <tr>
 
-                            <th>ID</th>
+
                             <th>Batiment</th>
                             <th>Etage</th>
                             <th>Adresse</th>
@@ -54,14 +61,13 @@
                         <tbody>
                         @foreach($batiments as $batiment)
                             <tr>
-                                <td>{{$batiment->id}}</td>
                                 <td>{{$batiment->nom}}</td>
-                                <td>{{$batiment->etage}}</td>
+                                <td>06</td>
                                 <td>{{$batiment->adresse}}</td>
                                 <td></td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-primary">Voir / Modifier</a>
-                                    <a href="#" class="btn btn-sm btn-outline-primary">gérer les tailles</a>
+                                    <a href="{{route('backend_edit',['batiment'=>$batiment->nom])}}" class="btn btn-sm btn-primary">Voir / Modifier</a>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">propriétaires</a>
 
                                 </td>
                             </tr>
@@ -70,9 +76,11 @@
                     </table>
                 </div>
                 </ul>
+                {{$batiments->links()}}
                     </div>
                 </div>
             </div>
+
         </div>
         <div class="col-lg-3 col-md-6 mb-3">
             <div class="card card-stats">

@@ -74,7 +74,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                       <h6 class="collapse-header">Gestion des batiments :</h6>
                       <a class="collapse-item" href="{{route('backend_add')}}">Ajouter</a>
-                      <a class="collapse-item" href="cards.html">Edité</a>
+                      <a class="collapse-item" href="#">Edité</a>
                     </div>
                   </div>
                 </li>
