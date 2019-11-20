@@ -69,8 +69,7 @@ class MainController extends Controller
 //    {
 //      $batiment = Batiment::find($request->id);
 //dd($batiment);
-//
-//
+
 //    }
 
     public function update (Request $request){
