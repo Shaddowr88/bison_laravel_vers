@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\MessageBag;
 
 class MainController extends Controller
 {
@@ -60,7 +61,7 @@ class MainController extends Controller
     public function edit (Request $request){
       $batiment = Batiment::find($request->id);
 //    dd($batiment);
-        dd($request->id);
+//        dd($request->id);
         return view('backend.ilot.edit', ['batiment' => $batiment]);
 
     }
@@ -73,22 +74,25 @@ class MainController extends Controller
 //    }
 
     public function update (Request $request){
-        $batiments = Batiment::find($request->id);
+        $batiment = Batiment::find($request->id);
 
         $request->validate([
-            'nom' => 'required|max:255',
-            'users',
-            'etages',
-            'batiment',
-        ]);
+            'nom',
+            'numero',
+            'adresse',
+            ]);
+        dd($request);
+        $batiment->numero = $request->nom;
+        $batiment->numero = $request->numero;
+        $batiment->adresse = $request->adresse;
+        $batiment->save();
 
-        $batiments->nom = $request->nom;
-        $batiments->user = $request->user;
-        $batiments->save();
-        $batiments->users()->sync($request->users);
+
+
+//        $batiment->users()->sync($request->users);
 
         return redirect()->route('backend_homepage')
-            ->with('notice',' Batiment  <strong>'.$batiments->nom. "</strong> a bien été modifié");
+            ->with('notice',' Batiment  <strong>'.$batiment->nom. "</strong> a bien été modifié");
     }
 
 }

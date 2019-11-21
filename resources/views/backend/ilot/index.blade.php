@@ -66,7 +66,7 @@
                                 <td>{{$batiment->adresse}}</td>
                                 <td></td>
                                 <td>
-                                    <a href="{{route('backend_edit',['batiment'=>$batiment->nom])}}" class="btn btn-sm btn-primary">Voir / Modifier</a>
+                                    <a href="{{route('backend_edit',['id'=>$batiment->id])}}" class="btn btn-sm btn-primary">Voir / Modifier</a>
                                     <a href="#" class="btn btn-sm btn-outline-primary">propriétaires</a>
 
                                 </td>

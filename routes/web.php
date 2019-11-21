@@ -22,6 +22,9 @@ Route::get('/', 'HomeController@index')->name('homepage');
 Route::post('/login/bison','Auth\LoginController@loginBison')->name('login_bison');
 //Route::post('/login', function () {return view('auth/login'));
 
+//Login
+
+
 Route::get('/register', function () {return view('auth/register');});
 Route::get('/dash',"Dash\MainController@index")->name("dashbord_index");
 Route::get('/message', function () {return view('backend/message');});
@@ -62,7 +65,7 @@ Route::middleware('auth.admin')->group(function (){
     Route::get('/add','Lot\MainController@add')->name('backend_add');
     Route::post('/backend/ilot/store','lot\MainController@store')->name('backend_ilot_store');
 
-    Route::get('/edit','Lot\MainController@edit')->name('backend_edit');
+    Route::get('/edit/{id}','Lot\MainController@edit')->name('backend_edit');
     Route::post('/backend/ilot/update','lot\MainController@update')->name('backend_ilot_update');
 
 //   Gestions des messages
