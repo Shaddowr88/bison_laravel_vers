@@ -257,8 +257,8 @@
                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                                         <div class="card-body">
                                             <ul class="nav-item">
-                                                <li> <a class="collapse-item" href="{{route('my_index')}}"</a>Evenement</a></li>
-                                                <li> <a class="collapse-item" href="{{route('signal')}}"</a>Signalé</a></li>
+                                                <li> <a class="collapse-item" href="{{route('my_index')}}">Evenement</a></li>
+                                                <li> <a class="collapse-item" href="{{route('signal')}}">Signalé</a></li>
 
                                             </ul>
                                         </div>

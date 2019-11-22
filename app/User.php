@@ -50,11 +50,9 @@ class User extends Authenticatable
         return false;
     }
 
-
-
     public function appartements()
     {
-        return $this->belongsToMany("App\Appartement")->withTimestamps();
+        return $this->hasMany("App\Appartement")->withTimestamps();
     }
 
 }

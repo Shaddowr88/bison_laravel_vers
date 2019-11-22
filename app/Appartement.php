@@ -12,6 +12,11 @@ class Appartement extends Model
         return $this->hasOne("App\batiment")->withTimestamps();
     }
 
+    public function user()
+    {
+        return $this->hasOne("App\user")->withTimestamps();
+    }
+
     public function hasBatiment($batiment)
     {
         if ($this->batiments()->where('nom', "=", $batiment)->first()) {

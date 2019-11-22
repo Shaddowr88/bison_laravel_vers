@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\MessageBag;
+//use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MainController extends Controller
 {
@@ -29,7 +29,6 @@ class MainController extends Controller
         $batiments = Batiment::all();
         $appartements = Appartement::all();
         $comun_parts = Comun_Part::all();
-        $etages = etage::all();
 
         return view('backend.ilot.add', ['batiments' => $batiments, 'appartements' => $appartements,
             'comun_parts' => $comun_parts, '$etages' => $etages]);
@@ -38,7 +37,6 @@ class MainController extends Controller
 //    sauvegarde BD nouveaux batiments
     public function store(Request $request)
     {
-
         $request->validate([
                 'nom' => 'required|max:25',
                 'numero','etage','adresse',
@@ -47,15 +45,20 @@ class MainController extends Controller
         $batiment->nom = $request->nom;
         $batiment->numero = $request->numero;
         $batiment->adresse = $request->adresse;
-
-        $comun_part = new Comun_Part();
-        $comun_part->nom = $request->nom;
-//        ddd(['batiments'=> $batiments, 'comun_parts'=>$comun_part]);
         $batiment->save();
-        $comun_part->save();
+        if($request->comun_parts) {
+            foreach ($request->comun_parts as $id) {
+                $batiment->comun_parts()->attach($id);
+            }
+        }
+
+//        $comun_part = new Comun_Part();
+//        $comun_part->nom = $request->nom;
+//        ddd(['batiments'=> $batiments, 'comun_parts'=>$comun_part]);
+//        $comun_part->save();
+
         return redirect()->route('backend_add')
             ->with('notice', 'le Batiment <strong>'.$batiment->nom.'</strong> a bien été ajouté');
-
     }
 
     public function edit (Request $request){
@@ -74,25 +77,27 @@ class MainController extends Controller
 //    }
 
     public function update (Request $request){
-        $batiment = Batiment::find($request->id);
-
         $request->validate([
-            'nom',
-            'numero',
-            'adresse',
+            'nom','numero','adresse',
             ]);
-        dd($request);
-        $batiment->numero = $request->nom;
+        $batiment = Batiment::find($request->id);
+//dd($request->numerom);
+        $batiment->nom = $request->nom;
         $batiment->numero = $request->numero;
         $batiment->adresse = $request->adresse;
         $batiment->save();
-
-
-
-//        $batiment->users()->sync($request->users);
-
         return redirect()->route('backend_homepage')
-            ->with('notice',' Batiment  <strong>'.$batiment->nom. "</strong> a bien été modifié");
+        ->with('notice',' Batiment  <strong>'.$batiment->nom. "</strong> a bien été modifié");
     }
 
-}
+    public function delete(Request $request){
+        $batiment = Batiment::find($request->id);
+        $batiment->delete ();
+        return redirect()->route('backend_homepage')
+            ->with('notice','le batiment<trong>'.$batiment->nom.'</trong> a été supprimé');
+    }
+
+
+
+
+    }

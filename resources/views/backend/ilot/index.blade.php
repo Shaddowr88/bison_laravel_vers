@@ -68,6 +68,7 @@
                                 <td>
                                     <a href="{{route('backend_edit',['id'=>$batiment->id])}}" class="btn btn-sm btn-primary">Voir / Modifier</a>
                                     <a href="#" class="btn btn-sm btn-outline-primary">propriétaires</a>
+                                    <a onclick="return(confirm('sans regret ? '))" href="{{route('backend_ilot_delete',['id'=>$batiment->id]) }}" class="btn btn-sm btn-danger">Supprimer</a>
 
                                 </td>
                             </tr>

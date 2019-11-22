@@ -64,9 +64,11 @@ Route::middleware('auth.admin')->group(function (){
     Route::get('/appartement','Lot\AppartementController@index')->name('backend_appartement');
     Route::get('/add','Lot\MainController@add')->name('backend_add');
     Route::post('/backend/ilot/store','lot\MainController@store')->name('backend_ilot_store');
-
     Route::get('/edit/{id}','Lot\MainController@edit')->name('backend_edit');
     Route::post('/backend/ilot/update','lot\MainController@update')->name('backend_ilot_update');
+    Route::get('/backend/ilot/delete','lot\MainController@delete')->name('backend_ilot_delete');
+
+
 
 //   Gestions des messages
     Route::get('/message','Lot\MessagesController@index')->name('messages_ask');

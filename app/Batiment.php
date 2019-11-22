@@ -3,12 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+//use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Batiment extends Model
 {
     //
 
-
+//    use SoftDeletes;
 //    public function etage()
 //    {
 //        return number_format($this->$etage->integerValue());

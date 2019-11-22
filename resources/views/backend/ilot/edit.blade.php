@@ -14,7 +14,7 @@
                 </a>
             </div>
         </div>
-        <form action="{{route('backend_ilot_update')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('backend_ilot_update',['id'=>$batiment->id])}}" method="POST" enctype="multipart/form-data">
             @csrf
             @if ($errors->any())
                 <div class="alert-danger">
