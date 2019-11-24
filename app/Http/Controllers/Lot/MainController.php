@@ -31,7 +31,7 @@ class MainController extends Controller
         $comun_parts = Comun_Part::all();
 
         return view('backend.ilot.add', ['batiments' => $batiments, 'appartements' => $appartements,
-            'comun_parts' => $comun_parts, '$etages' => $etages]);
+            'comun_parts' => $comun_parts]);
     }
 
 //    sauvegarde BD nouveaux batiments
@@ -45,13 +45,14 @@ class MainController extends Controller
         $batiment->nom = $request->nom;
         $batiment->numero = $request->numero;
         $batiment->adresse = $request->adresse;
-        $batiment->save();
-        if($request->comun_parts) {
-            foreach ($request->comun_parts as $id) {
-                $batiment->comun_parts()->attach($id);
-            }
-        }
+//        $batiment->comun_part = $request->comun_part;
+       if($request->comun_parts) {
+           foreach ($request->comun__parts as $id) {
+               $batiment->comun__parts()->attach($id);
+           }
+           $batiment->save();
 
+       }
 //        $comun_part = new Comun_Part();
 //        $comun_part->nom = $request->nom;
 //        ddd(['batiments'=> $batiments, 'comun_parts'=>$comun_part]);

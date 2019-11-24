@@ -7,17 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Batiment extends Model
 {
-    //
+    // use SoftDeletes;
 
-//    use SoftDeletes;
-//    public function etage()
-//    {
-//        return number_format($this->$etage->integerValue());
-//    }
-
+//Les parties commune qui appartiennent au batiments.
     public function comun_part(){
-        return $this->belongsTo('App\Comun_part');
+        return $this->belongsToMany('App\Comun__parts', 'bat_communpartt', 'batiments_id',
+            'comun__parts_id');
     }
+
 
     public function appartement(){
         return $this->belongsToMany('App\Appartement')->withTimestamps();
