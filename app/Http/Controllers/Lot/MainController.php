@@ -15,69 +15,54 @@ use Illuminate\Support\Facades\DB;
 
 class MainController extends Controller
 {
-    public function index()
-    {
-//        $batiments = Batiment::all();
+    public function index(){
         $batiment = DB::table('batiments')
             ->orderBy('created_at','desc')->paginate(8);
         return view('backend.ilot.index', ['batiments'=>$batiment]);
     }
 
 //    Cree de nouveaux batiments
-    public function add()
-    {
+    public function add() {
         $batiments = Batiment::all();
         $appartements = Appartement::all();
         $comun_parts = Comun_Part::all();
-
         return view('backend.ilot.add', ['batiments' => $batiments, 'appartements' => $appartements,
             'comun_parts' => $comun_parts]);
     }
 
 //    sauvegarde BD nouveaux batiments
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $request->validate([
                 'nom' => 'required|max:25',
                 'numero','etage','adresse',
                 'description','batiment_id',]);
+
         $batiment = new Batiment();
         $batiment->nom = $request->nom;
         $batiment->numero = $request->numero;
         $batiment->adresse = $request->adresse;
-//        $batiment->comun_part = $request->comun_part;
-       if($request->comun_parts) {
-            foreach ($request->comun__parts as $id) {
-                $batiment->comun__parts()->attach($id);}
+
+//      $batiment->comun__part = $request->comun__part;
+
         $batiment->save();
-
-}
-
-        return redirect()->route('backend_add')
+       if($request->comun__parts) {
+            foreach ($request->comun__parts as $id) {
+                $batiment->comun__parts()->attach($id);
+            }
+    } return redirect()->route('backend_add')
             ->with('notice', 'le Batiment <strong>'.$batiment->nom.'</strong> a bien été ajouté');
     }
 
+
     public function edit (Request $request){
       $batiment = Batiment::find($request->id);
-//    dd($batiment);
-//        dd($request->id);
         return view('backend.ilot.edit', ['batiment' => $batiment]);
-
     }
 
-//    public function edit(Request $request)
-//    {
-//      $batiment = Batiment::find($request->id);
-//dd($batiment);
-
-//    }
 
     public function update (Request $request){
-        $request->validate([
-            'nom','numero','adresse',
-            ]);
+        $request->validate(['nom','numero','adresse']);
         $batiment = Batiment::find($request->id);
-//dd($request->numerom);
         $batiment->nom = $request->nom;
         $batiment->numero = $request->numero;
         $batiment->adresse = $request->adresse;
@@ -85,6 +70,7 @@ class MainController extends Controller
         return redirect()->route('backend_homepage')
         ->with('notice',' Batiment  <strong>'.$batiment->nom. "</strong> a bien été modifié");
     }
+
 
     public function delete(Request $request){
         $batiment = Batiment::find($request->id);
