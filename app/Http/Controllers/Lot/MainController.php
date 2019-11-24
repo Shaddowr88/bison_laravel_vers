@@ -47,16 +47,11 @@ class MainController extends Controller
         $batiment->adresse = $request->adresse;
 //        $batiment->comun_part = $request->comun_part;
        if($request->comun_parts) {
-           foreach ($request->comun__parts as $id) {
-               $batiment->comun__parts()->attach($id);
-           }
-           $batiment->save();
+            foreach ($request->comun__parts as $id) {
+                $batiment->comun__parts()->attach($id);}
+        $batiment->save();
 
-       }
-//        $comun_part = new Comun_Part();
-//        $comun_part->nom = $request->nom;
-//        ddd(['batiments'=> $batiments, 'comun_parts'=>$comun_part]);
-//        $comun_part->save();
+}
 
         return redirect()->route('backend_add')
             ->with('notice', 'le Batiment <strong>'.$batiment->nom.'</strong> a bien été ajouté');
