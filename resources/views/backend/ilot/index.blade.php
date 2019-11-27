@@ -1,92 +1,166 @@
 @extends('layouts/dashAdmin')
 @section('dash')
-<!-- EMPLACEMENT PICT + CALLENDIER -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="">
-              <input type="text" name="date" id="dateField" value="" />
-                <div id="calMain"> </div>
-              <div>
-              <p>Sed ut tum ad senem senex de senectute, sic hoc libro ad amicum amicissimus scripsi de amicitia.
-              Tum est Cato locutus, quo erat nemo fere senior temporibus illis, nemo prudentior.</p>
-              </div>
-              <div class="col-xl-3 col-md-6 mb-4"> </div>
-              <div class="card  shadow h-25 py-2">
-                <div class="card-body"><input type="button" id="calToogle" value="Calendrier" onclick="calToogle();" />
+    <div class="col-xl-12 col-md-6 mb-4">
+    <div class="row">
+        <div class="col-12 mb-2 ">
+            <div class="card card-chart">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-6 text-left">
+                            <h5 class="card-category">Total fond</h5>
+                            <h2 class="card-title">Performance</h2>
+                        </div>
+                        @if ($errors->any())
+                            <div class="alert-danger">
+                                @foreach($errors->all() as $error)
+                                    <p> {{$error}} </p>
+                                @endforeach
+                            </div>
+                        @endif
+                        <div class="col-sm-6">
+                            <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+                                {{--                                <label class="btn btn-sm btn-primary btn-simple active" id="0">--}}
+                                {{--                                    <input type="radio" name="options" checked="">--}}
+                                {{--                                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Accounts</span>--}}
+                                {{--                                    <span class="d-block d-sm-none">--}}
+                                {{--                          <i class="tim-icons icon-single-02"></i>--}}
+                                {{--                        </span>--}}
+                                {{--                                </label>--}}
+                                {{--                                <label class="btn btn-sm btn-primary btn-simple" id="1">--}}
+                                {{--                                    <input type="radio" class="d-none d-sm-none" name="options">--}}
+                                {{--                                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Purchases</span>--}}
+                                {{--                                    <span class="d-block d-sm-none">--}}
+                                {{--                          <i class="tim-icons icon-gift-2"></i>--}}
+                                {{--                        </span>--}}
+                                {{--                                </label>--}}
+                                {{--                                <label class="btn btn-sm btn-primary btn-simple" id="2">--}}
+                                {{--                                    <input type="radio" class="d-none" name="options">--}}
+                                {{--                                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Sessions</span>--}}
+                                {{--                                    <span class="d-block d-sm-none">--}}
+                                {{--                          <i class="tim-icons icon-tap-02"></i>--}}
+                                {{--                        </span>--}}
+                                {{--                                </label>--}}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-             <div id="calendarWrap">
-               <ul>
-                 <li>
-                   <input type="button" value="«" onclick="calYearNav('-1');" />
-                 </li>
-                 <li>
-                   <input type="button" value="‹" onclick="calMonthNav('-1');" />
-                 </li>
-                 <li id="calendarTitle"> </li>
-                 <li>
-                   <input type="button" value="›" onclick="calMonthNav('+1');" />
-                 </li>
-                 <li>
-                   <input type="button" value="»" onclick="calYearNav('+1');" />
-                 </li>
-               </ul>
-               <div id="calendar"></div>
-             </div>
-           </div>
-           </div>
-             <div class="col-xl-3 col-md-6 mb-4"> </div>
-         </div>
+                <div class="card-body">
+                    <table class="table table-striped table-sm ">
+                        <thead class="table-dark">
+                        <tr>
 
-<!-- EMPLACEMENT TAB -->
 
-        <div class=" card  shadow col-xl-8 col-md-6 mb-4">
-        <div class="py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Ilot</h6>
-        </div>
+                            <th>Batiment</th>
+                            <th>Etage</th>
+                            <th>Adresse</th>
+                            <th></th>
+                            <th>Actions</th>
 
-        <div class="card-body">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                  <a class= id="home-tab" data-toggle="tab" href="#home"
-                  role="tab" aria-controls="home">Home</a>
-                   <p></p> </div>
-                </li>
-                <div class="col-xl-12 text-align-center">
-                <table class="table table-striped table-sm ">
-                                        <thead class="table-dark">
-                                        <tr>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($batiments as $batiment)
+                            <tr>
+                                <td>{{$batiment->nom}}</td>
+                                <td>06</td>
+                                <td>{{$batiment->adresse}}</td>
+                                <td></td>
+                                <td>
+                                    <a href="{{route('backend_edit',['id'=>$batiment->id])}}" class="btn btn-sm btn-primary">Voir / Modifier</a>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">propriétaires</a>
+                                    <a onclick="return(confirm('sans regret ? '))" href="{{route('backend_ilot_delete',['id'=>$batiment->id]) }}" class="btn btn-sm btn-danger">Supprimer</a>
 
-                                            <th>ID</th>
-                                            <th>Batiment</th>
-                                            <th>Etage</th>
-                                            <th>Adresse</th>
-                                            <th></th>
-                                            <th>Actions</th>
-
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($batiments as $batiment)
-                                            <tr>
-                                            <td>{{$batiment->id}}</td>
-                                            <td>{{$batiment->nom}}</td>
-                                            <td>{{$batiment->etage}}</td>
-                                            <td>{{$batiment->adresse}}</td>
-<td></td>
-                                            <td>
-                                                <a href="#" class="btn btn-sm btn-primary">Voir / Modifier</a>
-                                                <a href="#" class="btn btn-sm btn-outline-primary">gérer les tailles</a>
-
-                                            </td>
-                                        </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
-              </ul>
-              <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
-              </div>
+                </ul>
+                {{$batiments->links()}}
+                    </div>
+                </div>
+            </div>
+
         </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card card-stats">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="info-icon text-center icon-warning">
+                                <i class="tim-icons icon-chat-33"></i>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="numbers">
+                                <p class="card-category">Prestataire</p>
+                                <h3 class="card-title">15</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card card-stats">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="info-icon text-center icon-primary">
+                                <i class="tim-icons icon-shape-star"></i>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="numbers">
+                                <p class="card-category">intervention</p>
+                                <h3 class="card-title">45</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card card-stats">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="info-icon text-center icon-success">
+                                <i class="tim-icons icon-single-02"></i>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="numbers">
+                                <p class="card-category">Due</p>
+                                <h3 class="card-title">150</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card card-stats">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="info-icon text-center icon-danger">
+                                <i class="tim-icons icon-molecule-40"></i>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="numbers">
+                                <p class="card-category"> Année </p>
+                                <h3 class="card-title">12</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection

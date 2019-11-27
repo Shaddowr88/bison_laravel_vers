@@ -5,6 +5,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,14 +13,14 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Dashboard</title>
+  <title>Dashbison-Admin </title>
 
   <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
 
 </head>
 
@@ -73,7 +74,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                       <h6 class="collapse-header">Gestion des batiments :</h6>
                       <a class="collapse-item" href="{{route('backend_add')}}">Ajouter</a>
-                      <a class="collapse-item" href="cards.html">Edité</a>
+                      <a class="collapse-item" href="#">Edité</a>
                     </div>
                   </div>
                 </li>
@@ -91,8 +92,8 @@
                   <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                       <h6 class="collapse-header">Gestion des echanges:</h6>
-                      <a class="collapse-item" href="utilities-animation.html">Message</a>
-                      <a class="collapse-item" href="utilities-color.html">Demandes</a>
+                      <a class="collapse-item" href=href="{{route('messages_ask')}}">Message</a>
+                      <a class="collapse-item" href="{{route('messages_ask')}}">Demandes</a>
                       <a class="collapse-item" href="utilities-border.html">Annonces</a>
                     </div>
                   </div>
@@ -108,9 +109,10 @@
                   <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                       <h6 class="collapse-header">Gestion des contacts</h6>
-                      <a class="collapse-item" href="login.html">Sav</a>
-                      <a class="collapse-item" href="register.html">Syndic</a>
-                      <a class="collapse-item" href="forgot-password.html">Proprietaire</a>
+                      <a class="collapse-item" href="{{route('Books_index')}}">Utilisateurs</a>
+                      <a class="collapse-item" href="{{route('Books_syndic')}}">Syndic</a>
+                      <a class="collapse-item" href="{{route('Books_prestataire')}}">Prestataire</a>
+                      <a class="collapse-item" href="{{route('Books_other')}}">Numeros utiles</a>
 
                   </div>
                 </li>

@@ -55,7 +55,7 @@
       <div class="col_2 card-body">
         <h4 class=" "><small class="text-muted"></small>{{$appartement->batiment_id}}</h4>
         <ul class="list-unstyled mt-3 mb-4">
-         <li>prompietaire</li>
+         <li>propietaire</li>
          <li>Etage {{$appartement->etage}}</li>
           <li>{{$appartement->description}}</li>
         </ul>

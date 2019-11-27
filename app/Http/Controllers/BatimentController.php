@@ -9,10 +9,13 @@ class BatimentController extends Controller
 {
     //
     public function index(){
-    $batiments=Batiment::all();
-    dd($batiments);
-return view('batiments.batiment');
+//    $batiments=Batiment::all();
+////    dd($batiments);
+    return view('batiments.batiment');
     }
 
+    public function comun__parts(){
+   return $this->belongsToMany('App\comun__parts')->withTimestamps();
+    }
 
 }

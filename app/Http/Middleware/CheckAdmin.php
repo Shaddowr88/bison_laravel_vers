@@ -17,7 +17,7 @@ class CheckAdmin
     {
 
         if(!$request->user()||!$request->user()-> hasRole('Administrateur')){
-            return redirect()->route('homepage');
+            return redirect()->route('backend_homepage');
         }
         return $next($request);
     }
