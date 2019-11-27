@@ -45,9 +45,9 @@ class MainController extends Controller
 //      $batiment->comun__part = $request->comun__part;
 
         $batiment->save();
-       if($request->comun__parts) {
-            foreach ($request->comun__parts as $id) {
-                $batiment->comun__parts()->attach($id);
+       if($request->comun_parts) {
+            foreach ($request->comun_parts as $id) {
+                $batiment->comun_parts()->attach($id);
             }
     } return redirect()->route('backend_add')
             ->with('notice', 'le Batiment <strong>'.$batiment->nom.'</strong> a bien été ajouté');
@@ -71,7 +71,7 @@ class MainController extends Controller
         ->with('notice',' Batiment  <strong>'.$batiment->nom. "</strong> a bien été modifié");
     }
 
-
+//fonction delete
     public function delete(Request $request){
         $batiment = Batiment::find($request->id);
         $batiment->delete ();

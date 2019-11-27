@@ -49,7 +49,7 @@
                             <h1 class="h2">P. Communes</h1>
                         </div>
                         <div class="form-group col-md-12">
-                            <select multiple class="form-control form-control-lg" id="categorie_id" name="categorie_id">
+                            <select multiple class="form-control form-control-lg" id="comun_part_id" name="comun_parts[]">
                                 @foreach($comun_parts as $comun_part)
                                     <option value="{{$comun_part->id}}">{{$comun_part->nom}}</option>
                                 @endforeach
