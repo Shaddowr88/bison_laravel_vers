@@ -3,7 +3,7 @@
 use App\Comun_Part;
 use Illuminate\Database\Seeder;
 
-class comun_partsTableSeeder extends Seeder
+class partiesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

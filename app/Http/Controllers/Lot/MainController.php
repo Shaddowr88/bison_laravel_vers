@@ -32,6 +32,7 @@ class MainController extends Controller
 
 //    sauvegarde BD nouveaux batiments
     public function store(Request $request){
+        $bat_partie = Batiment::find($request->id);
         $request->validate([
                 'nom' => 'required|max:25',
                 'numero','etage','adresse',
@@ -41,15 +42,21 @@ class MainController extends Controller
         $batiment->nom = $request->nom;
         $batiment->numero = $request->numero;
         $batiment->adresse = $request->adresse;
+        $bat_partie->partie_id=$partie->id;
+        $bat_partie->batiment_id=$batiment->id;
+
 
 //      $batiment->comun__part = $request->comun__part;
 
         $batiment->save();
-       if($request->comun_parts) {
-            foreach ($request->comun_parts as $id) {
-                $batiment->comun_parts()->attach($id);
-            }
-    } return redirect()->route('backend_add')
+//       if($request->comun_parts) {
+//            foreach ($request->comun_parts as $id) {
+//                $batiment->comun_parts()->attach($id);
+//            }
+//    }
+
+        dd($batiment);
+return redirect()->route('backend_add')
             ->with('notice', 'le Batiment <strong>'.$batiment->nom.'</strong> a bien été ajouté');
     }
 
@@ -59,7 +66,7 @@ class MainController extends Controller
         return view('backend.ilot.edit', ['batiment' => $batiment]);
     }
 
-
+//update
     public function update (Request $request){
         $request->validate(['nom','numero','adresse']);
         $batiment = Batiment::find($request->id);
