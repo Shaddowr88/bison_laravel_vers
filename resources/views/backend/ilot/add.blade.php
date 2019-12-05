@@ -1,6 +1,10 @@
 @extends('layouts/dashAdmin')
 @section('dash')
-
+    @if (session('notice'))
+        <div class="alert alert-success">
+            {{ session('notice') }}
+        </div>
+    @endif
  <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
 
@@ -50,8 +54,8 @@
                         </div>
                         <div class="form-group col-md-12">
                             <select multiple class="form-control form-control-lg" id="comun_part_id" name="comun_parts[]">
-                                @foreach($comun_parts as $comun_part)
-                                    <option value="{{$comun_part->id}}">{{$comun_part->nom}}</option>
+                                @foreach($parties as $partie)
+                                    <option value="{{$partie->id}}">{{$partie->nom}}</option>
                                 @endforeach
                             </select>
                         </div>

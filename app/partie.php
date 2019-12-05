@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class partie extends Model
 {
     //
-    public function batiment(){
+    public function batiments(){
         return $this->belongsToMany('App\Batiment');
     }
 

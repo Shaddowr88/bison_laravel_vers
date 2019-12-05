@@ -10,7 +10,7 @@ class Batiment extends Model
     // use SoftDeletes;
 
 //Les parties commune qui appartiennent au batiments.
-    public function partie(){
+    public function parties(){
         return $this->belongsToMany('App\partie');
     }
 

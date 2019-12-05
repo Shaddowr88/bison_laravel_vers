@@ -13,7 +13,7 @@ class CreateBatCommunparttTable extends Migration
      */
     public function up()
     {
-        Schema::create('bat_partie', function (Blueprint $table) {
+        Schema::create('batiment_partie', function (Blueprint $table) {
 
                 $table->unsignedBigInteger('partie_id');
                 $table->foreign('partie_id')->references('id')->on('parties')->onDelete('cascade');
@@ -36,6 +36,6 @@ class CreateBatCommunparttTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bat_communpartt');
+        Schema::dropIfExists('batiment_partie');
     }
 }
