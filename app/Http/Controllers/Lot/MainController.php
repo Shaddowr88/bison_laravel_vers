@@ -44,8 +44,7 @@ class MainController extends Controller
         $batiments->adresse = $request->adresse;
 
         $batiments->save();
-
-//                $batiments->parties()->attach($partie_id);
+        $batiments->parties()->attach($partie_id);
 
 //        dd($partie_id);
 return redirect()->route('backend_add')
