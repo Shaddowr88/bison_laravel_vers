@@ -52,8 +52,20 @@
                         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 col-md-12">
                             <h1 class="h2">P. Communes</h1>
                         </div>
+
+{{--                        <div class="form-group col-md-6">--}}
+{{--                            <label for="tags">Tags</label>--}}
+{{--                            <select multiple class="form-control" id="tags" name="tags[]">--}}
+{{--                                @foreach($tags as $tag)--}}
+{{--                                    <option value="{{$tag->id}}">{{$tag->nom}}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+
+
                         <div class="form-group col-md-12">
-                            <select multiple class="form-control form-control-lg" id="comun_part_id" name="comun_parts[]">
+                            <label for="parties">Parties</label>
+                            <select multiple class="form-control form-control-lg" id="parties" name="parties[]">
                                 @foreach($parties as $partie)
                                     <option value="{{$partie->id}}">{{$partie->nom}}</option>
                                 @endforeach

@@ -37,23 +37,23 @@ class MainController extends Controller
                 'nom' => 'required|max:25',
                 'numero','etage','adresse',
                 'description','batiment_id',]);
-//        $partie_id = partie::all()->id;
+
         $batiments = new Batiment();
         $batiments->nom = $request->nom;
         $batiments->numero = $request->numero;
         $batiments->adresse = $request->adresse;
-
         $batiments->save();
-        $batiments->parties()->attach($partie_id);
 
-//        dd($partie_id);
-return redirect()->route('backend_add')
-            ->with('notice', 'le Batiment a bien été ajouté');
+        if($request->parties) {
+            foreach ($request->parties as $id) {
+                $batiments->parties()->attach($id);
+            }
+        }
+
+return redirect()->route('backend_add')->with('notice', 'le Batiment'.$batiments->nom.'a bien été ajouté');
+
     }
 
-//$post = \App\Models\Post::whereTitle('Post 1')->first();
-//$category_id = \App\Models\Category::whereTitle('Category 1')->first()->id;
-//$post->categories()->attach($category_id);
 
     public function edit (Request $request){
       $batiments = Batiment::find($request->id);
