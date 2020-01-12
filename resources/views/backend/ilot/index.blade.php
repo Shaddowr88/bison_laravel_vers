@@ -1,9 +1,38 @@
 @extends('layouts/dashAdmin')
 @section('dash')
     @if (session('notice'))
-        <div class="alert alert-success">
+
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="alert-heading">Well done!</h4>
             {{ session('notice') }}
+
+            <hr>
+            <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
         </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     @endif
     <div class="col-xl-12 col-md-6 mb-4">
     <div class="row">
@@ -66,12 +95,13 @@
                         <tbody>
                         @foreach($batiments as $batiment)
                             <tr>
-                                <td>{{$batiment->nom}}</td>
+                                <td>
+                                    <a href="{{route('backend_view',['id'=>$batiment->id]) }}">{{$batiment->nom}}</a></td>
                                 <td>06</td>
                                 <td>{{$batiment->adresse}}</td>
                                 <td></td>
                                 <td>
-                                    <a href="{{route('backend_edit',['id'=>$batiment->id])}}" class="btn btn-sm btn-primary">Voir / Modifier</a>
+                                    <a href="{{route('backend_edit',['id'=>$batiment->id])}}" class="btn btn-sm btn-primary">Modifier</a>
                                     <a href="#" class="btn btn-sm btn-outline-primary">propriétaires</a>
                                     <a onclick="return(confirm('sans regret ? '))" href="{{route('backend_ilot_delete',['id'=>$batiment->id]) }}" class="btn btn-sm btn-danger">Supprimer</a>
 

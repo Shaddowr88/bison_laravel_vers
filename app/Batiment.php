@@ -16,7 +16,7 @@ class Batiment extends Model
 
 
     public function appartement(){
-        return $this->belongsTo('App\Appartement')->withTimestamps();
+        return $this->belongsTo('App\appartement')->withTimestamps();
     }
 
 }

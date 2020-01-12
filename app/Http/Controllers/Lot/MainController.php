@@ -54,21 +54,34 @@ return redirect()->route('backend_add')->with('notice', 'le Batiment'.$batiments
 
     }
 
-
     public function edit (Request $request){
-      $batiments = Batiment::find($request->id);
+        $batiments = Batiment::all();
         $parties = partie::all();
-        return view('backend.ilot.edit', ['batiment' => $batiments,'partie' => $parties]);
+        $batiment = Batiment::find($request->id);
+        $parties_id=[];
+        foreach ($batiment->parties as $p) {
+            $parties_id[]=$p->id;
+        }
+
+        return view('backend.ilot.edit', [
+            'batiment' => $batiment,
+            'batiments' => $batiments,
+            'parties' => $parties,
+            'parties_id' => $parties_id,
+
+            ]);
     }
 
 //update
     public function update (Request $request){
         $request->validate(['nom','numero','adresse']);
-        $batiment = Batiment::find($request->id);
-        $batiment->nom = $request->nom;
-        $batiment->numero = $request->numero;
-        $batiment->adresse = $request->adresse;
-        $batiment->save();
+        $batiments = Batiment::find($request->id);
+        $batiments->nom = $request->nom;
+        $batiments->numero = $request->numero;
+        $batiments->adresse = $request->adresse;
+        $batiments->parties()->sync($request->parties);
+        $batiments->save();
+
         return redirect()->route('backend_homepage')
         ->with('notice','Batiment a bien été modifié');
     }
@@ -82,6 +95,21 @@ return redirect()->route('backend_add')->with('notice', 'le Batiment'.$batiments
             ->with('notice','le batiment a été supprimé');
     }
 
+    public function view (Request $request){
+        $batiments = Batiment::all();
+        $parties = partie::all();
+        $batiment = Batiment::find($request->id);
+
+        $parties_id=[];
+        foreach ($batiment->parties as $p) {
+            $parties_id[]=$p->id;
+        }
+
+        return view('backend.ilot.view', ['batiments' => $batiments,
+            'batiment' => $batiment,
+            'parties_id' => $parties_id,
+            'parties' => $parties]);
+    }
 
 
 
