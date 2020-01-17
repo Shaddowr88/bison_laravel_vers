@@ -27,7 +27,7 @@
 
                 <div class="form-group col-md-6">
                     <label for="nom"></label>
-                    <input placeholder="Nom du batiment"  type="text" class="form-control" value="{{$batiment->nom}}" id="batiment" name="batiment">
+                    <input placeholder="Nom du batiment"  type="text" class="form-control" value="{{$batiment->nom}}" id="nom" name="nom">
                 </div>
 
                 <div class="form-group col-md-2">

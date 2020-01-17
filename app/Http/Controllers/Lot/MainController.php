@@ -80,8 +80,9 @@ return redirect()->route('backend_add')
         $batiments->nom = $request->nom;
         $batiments->numero = $request->numero;
         $batiments->adresse = $request->adresse;
-        $batiments->parties()->sync($request->parties);
         $batiments->save();
+        $batiments->parties()->sync($request->parties);
+
 
         return redirect()->route('backend_homepage')
         ->with('notice','Batiment a bien été modifié');
