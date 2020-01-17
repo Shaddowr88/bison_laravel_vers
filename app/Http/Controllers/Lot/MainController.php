@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Lot;
 
 use App\Appartement;
 use App\Batiment;
-use App\Comun_Part;
 use App\equipement;
 use App\etage;
 use App\Http\Controllers\Controller;
