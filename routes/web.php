@@ -48,7 +48,7 @@ Route::get('/message02','Dash\MainController@declaration')->name ('Users_message
         // messagerie par chatKit
         Route::get('/my_signal', 'ChatkitController@index')->name("signal");
         Route::post('/', 'ChatkitController@join');
-        Route::get('chat', 'ChatkitController@chat')->name('chat');
+        Route::get('/chat', 'ChatkitController@chat')->name('chat');
         Route::post('logout', 'ChatkitController@logout')->name('logout');
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ChatkitController extends Controller
 {
@@ -41,7 +42,7 @@ class ChatkitController extends Controller
      */
     public function join(Request $request)
     {
-        $chatkit_id = strtolower(str_random(1));
+        $chatkit_id = strtolower(Str::random(1));
 
         // Create User account on Chatkit
         $this->chatkit->createUser([
@@ -94,7 +95,7 @@ class ChatkitController extends Controller
             ];
         });
 
-        return view('chat')->with(compact('messages', 'roomId', 'userId'));
+        return view('backend.Users.letchat')->with(compact('messages', 'roomId', 'userId'));
     }
 
     /**
