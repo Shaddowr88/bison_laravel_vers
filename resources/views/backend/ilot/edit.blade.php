@@ -27,7 +27,7 @@
 
                 <div class="form-group col-md-6">
                     <label for="nom"></label>
-                    <input placeholder="Nom du batiment"  type="text" class="form-control" value="{{$batiment->nom}}" id="nom" name="nom">
+                    <input placeholder="Nom du batiment"  type="text" class="form-control" value="{{$batiment->nom}}" id="batiment" name="batiment">
                 </div>
 
                 <div class="form-group col-md-2">
@@ -47,18 +47,19 @@
                                         <h1 class="h2">P. Communes</h1>
                                     </div>
                                     <div class="form-group col-md-12">
-{{--                                        <select multiple class="form-control form-control-lg" id="categorie_id" name="categorie_id">--}}
+                                       <select multiple class="form-control form-control-lg" id="parties" name="parties[]">
 
-{{--                                                @foreach($parties as $partie)--}}
-{{--                                                    @if(in_array($partie->id,$parties_id))--}}
-{{--                                                        <option selected value="{{$partie->id}}">{{$partie->nom}}</option>--}}
-{{--                                                    @else--}}
-{{--                                                        <option value="{{$partie->id}}">{{$partie->nom}}</option>--}}
-{{--                                                    @endif--}}
-{{--                                                @endforeach--}}
-{{--                                        </select>--}}
+                                               @foreach($parties as $partie)
+                                                   @if(in_array($partie->id,$parties_id))
+                                                       <option selected value="{{$partie->id}}">{{$partie->nom}}</option>
+                                                   @else
+                                                       <option value="{{$partie->id}}">{{$partie->nom}}</option>
+                                                   @endif
+                                               @endforeach
+                                       </select>
                                     </div>
                                 </div>
+
 
             </div>
             <button type="submit" class="btn btn-primary">Valider</button>

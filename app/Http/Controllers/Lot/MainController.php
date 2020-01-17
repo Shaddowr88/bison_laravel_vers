@@ -50,7 +50,8 @@ class MainController extends Controller
             }
         }
 
-return redirect()->route('backend_add')->with('notice', 'le Batiment'.$batiments->nom.'a bien été ajouté');
+return redirect()->route('backend_add')
+    ->with('notice', 'le Batiment'.$batiments->nom.'a bien été ajouté');
 
     }
 
@@ -59,10 +60,10 @@ return redirect()->route('backend_add')->with('notice', 'le Batiment'.$batiments
         $parties = partie::all();
         $batiment = Batiment::find($request->id);
         $parties_id=[];
+
         foreach ($batiment->parties as $p) {
             $parties_id[]=$p->id;
         }
-
         return view('backend.ilot.edit', [
             'batiment' => $batiment,
             'batiments' => $batiments,
@@ -74,7 +75,7 @@ return redirect()->route('backend_add')->with('notice', 'le Batiment'.$batiments
 
 //update
     public function update (Request $request){
-        $request->validate(['nom','numero','adresse']);
+        $request->validate(['nom','numero','adresse','batiment_id']);
         $batiments = Batiment::find($request->id);
         $batiments->nom = $request->nom;
         $batiments->numero = $request->numero;
