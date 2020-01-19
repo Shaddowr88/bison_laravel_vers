@@ -30,16 +30,19 @@
                             <option value="">Choisir</option>
                             <option>4</option>
                         </select>
-                        <div class="invalid-feedback">
-                            Sélectionner un étage.
-                        </div>
                     </div>
+                        <div class="col-5 mb-3">
+                            <label for="country">lol</label>
+                            <select class="custom-select d-block w-100" id="country" required="">
+                                @foreach($parties as $partie)
+                                    <option value="{{$partie->nom}}">{{$partie->nom}}</option>
+                                @endforeach
+                            </select>
+                            <div class="invalid-feedback">
+                    </div>
+                   </div>
                 </div>
                 <hr class="mb-4">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="same-address">
-                    <label class="custom-control-label" for="same-address">Urgence</label>
-                </div>
                 <hr class="mb-4">
                 <div class="row">
                 <hr class="mb-4">

@@ -6,6 +6,7 @@ use App\appartement;
 use App\Batiment;
 use App\Http\Controllers\Controller;
 use App\Intervenant;
+use App\partie;
 use App\User;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
@@ -71,7 +72,12 @@ class MainController extends Controller
     }
 
     public function signal(){
-        return view('backend.mine.signal');
+        $batiments = Batiment::all();
+        $parties = partie::all();
+        return view('backend.mine.signal',['batiments' => $batiments,
+            'parties' => $parties,
+
+        ]);
     }
 
 
