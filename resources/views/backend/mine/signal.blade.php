@@ -33,7 +33,7 @@
                     </div>
                         <div class="col-5 mb-3">
                             <label for="country">lol</label>
-                            <select class="custom-select d-block w-100" id="country" required="">
+                            <select class="custom-select d-block w-100" id="country" required="#">
                                 @foreach($parties as $partie)
                                     <option value="{{$partie->nom}}">{{$partie->nom}}</option>
                                 @endforeach
