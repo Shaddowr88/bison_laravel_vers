@@ -43,13 +43,13 @@ Route::get('/message02','Dash\MainController@declaration')->name ('Users_message
 
     //menus signalement
     Route::get('/my_index', "Dash\MainController@Mine")->name("my_index");
-    //Route::get('/my_signal', "Dash\MainController@signal")->name("signal");
+    Route::get('/my_signal', "Dash\MainController@signal")->name("signal");
 
         // messagerie par chatKit
-        Route::get('/my_signal', 'ChatkitController@index')->name("signal");
-        Route::post('/', 'ChatkitController@join');
-        Route::get('/chat', 'ChatkitController@chat')->name('chat');
-        Route::post('logout', 'ChatkitController@logout')->name('logout');
+        //Route::get('/my_signal', 'ChatkitController@index')->name("signal");
+//        Route::post('/', 'ChatkitController@join');
+//        Route::get('/chat', 'ChatkitController@chat')->name('chat');
+//        Route::post('logout', 'ChatkitController@logout')->name('logout');
 
 
     //menus Documents

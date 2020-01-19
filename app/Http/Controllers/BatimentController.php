@@ -14,8 +14,4 @@ class BatimentController extends Controller
     return view('batiments.batiment');
     }
 
-    public function comun__parts(){
-   return $this->belongsToMany('App\comun__parts')->withTimestamps();
-    }
-
 }

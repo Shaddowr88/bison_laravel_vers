@@ -2,15 +2,13 @@
 @section('dash')
     @if (session('notice'))
 
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success " role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <h4 class="alert-heading">Well done!</h4>
-            {{ session('notice') }}
-
+            <h4 class="alert-heading">{{ session('notice') }}</h4>
             <hr>
-            <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+{{--            <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>--}}
         </div>
 
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -37,12 +35,12 @@
     <div class="col-xl-12 col-md-6 mb-4">
     <div class="row">
         <div class="col-12 mb-2 ">
-            <div class="card card-chart">
+            <div>
                 <div class="card-header">
                     <div class="row">
                         <div class="col-sm-6 text-left">
-                            <h5 class="card-category">Total fond</h5>
-                            <h2 class="card-title">Performance</h2>
+                            <h5 class="card-category"></h5>
+                            <h2 class="card-title">Liste batiment</h2>
                         </div>
                         @if ($errors->any())
                             <div class="alert-danger">
@@ -53,35 +51,22 @@
                         @endif
                         <div class="col-sm-6">
                             <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
-                                {{--                                <label class="btn btn-sm btn-primary btn-simple active" id="0">--}}
-                                {{--                                    <input type="radio" name="options" checked="">--}}
-                                {{--                                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Accounts</span>--}}
-                                {{--                                    <span class="d-block d-sm-none">--}}
-                                {{--                          <i class="tim-icons icon-single-02"></i>--}}
-                                {{--                        </span>--}}
-                                {{--                                </label>--}}
-                                {{--                                <label class="btn btn-sm btn-primary btn-simple" id="1">--}}
-                                {{--                                    <input type="radio" class="d-none d-sm-none" name="options">--}}
-                                {{--                                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Purchases</span>--}}
-                                {{--                                    <span class="d-block d-sm-none">--}}
-                                {{--                          <i class="tim-icons icon-gift-2"></i>--}}
-                                {{--                        </span>--}}
-                                {{--                                </label>--}}
-                                {{--                                <label class="btn btn-sm btn-primary btn-simple" id="2">--}}
-                                {{--                                    <input type="radio" class="d-none" name="options">--}}
-                                {{--                                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Sessions</span>--}}
-                                {{--                                    <span class="d-block d-sm-none">--}}
-                                {{--                          <i class="tim-icons icon-tap-02"></i>--}}
-                                {{--                        </span>--}}
-                                {{--                                </label>--}}
+                                                               <label class="btn btn-sm btn-primary btn-simple active" id="0">
+                                                                   <input type="radio" name="options" checked="">
+                                                                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Accounts</span>
+                                                                    <span class="d-block d-sm-none">
+                                                          <i class="tim-icons icon-single-02"></i>
+                                                        </span>
+                                                                </label>
+
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <table class="table table-striped table-sm ">
+                <div class="card-body m-2">
+                    <table class="table table-striped table-sm text-center ">
                         <thead class="table-dark">
-                        <tr>
+                        <tr class="text-center">
 
 
                             <th>Batiment</th>
@@ -95,15 +80,18 @@
                         <tbody>
                         @foreach($batiments as $batiment)
                             <tr>
-                                <td>
-                                    <a href="{{route('backend_view',['id'=>$batiment->id]) }}">{{$batiment->nom}}</a></td>
-                                <td>06</td>
+                                <td class="">
+                                    <a href="{{route('backend_view',
+                                    ['id'=>$batiment->id]) }}">{{$batiment->nom}}</a></td>
+                                <td>88</td>
                                 <td>{{$batiment->adresse}}</td>
                                 <td></td>
                                 <td>
-                                    <a href="{{route('backend_edit',['id'=>$batiment->id])}}" class="btn btn-sm btn-primary">Modifier</a>
-                                    <a href="#" class="btn btn-sm btn-outline-primary">propriétaires</a>
-                                    <a onclick="return(confirm('sans regret ? '))" href="{{route('backend_ilot_delete',['id'=>$batiment->id]) }}" class="btn btn-sm btn-danger">Supprimer</a>
+                                    <a href="{{route('backend_edit',['id'=>$batiment->id])}}"
+                                       class="btn btn-sm btn-primary">Modifier</a>
+{{--                                    <a href="#" class="btn btn-sm btn-outline-primary">propriétaires</a>--}}
+                                    <a onclick="return(confirm('sans regret ? '))" href="{{route('backend_ilot_delete',
+                                    ['id'=>$batiment->id]) }}" class="btn btn-sm btn-danger">Supprimer</a>
 
                                 </td>
                             </tr>
