@@ -10,26 +10,19 @@
 
         <div class="card mb-3 p-5">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
-                <h1 class="h2">Batiment {{$batiment->nom}} </h1>
+                <h1 class="h2">Batiment {{$copro}} </h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group mr-2">
                         <a class="btn btn-sm btn-outline-secondary" href="{{route('backend_homepage')}}" >Lister les batiments</a>
                     </div>
-                    <a href="{{route('backend_edit',['id'=>$batiment->id])}}" class="btn btn-sm btn-outline-secondary"> Modifier </a>
+                    <a href="{{route('backend_edit',['id'=>$batiment])}}" class="btn btn-sm btn-outline-secondary"> Modifier </a>
                     </a>
                 </div>
                 </div>
             <div class="card-body" id="parties" name="parties[]">
-                <h5 class="card-title">Batiment {{$batiment->nom}}</h5>
-                <p class="card-text">{{$batiment->adresse}}</p>
+                <h5 class="card-title">Batiment {{$batiment}}</h5>
+                <p class="card-text">{{$batiment}}</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                @foreach($parties as $partie)
-                @if(in_array($partie->id,$parties_id))
-                        <span  class="badge badge-pill badge-primary">{{$partie->nom}}</span>
-                @else
-                        <span class="badge badge-pill badge-primary"></span>
-                @endif
-                @endforeach
 {{--@foreach($appartements as $appartement)--}}
 
 {{--                @endforeach--}}

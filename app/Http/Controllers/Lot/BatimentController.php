@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Lot;
 
 use App\Appartement;
 use App\Batiment;
-use App\copros;
 use App\equipement;
 use App\etage;
 use App\Http\Controllers\Controller;
@@ -97,21 +96,22 @@ return redirect()->route('backend_add')
             ->with('notice','le batiment a été supprimé');
     }
 
-    public function viewByBatiment (Request $request){
-        $copros = copros::all();
-        $copro = copros::find($request->id);
+    public function view (Request $request){
         $batiments = Batiment::all();
         $parties = partie::all();
         $batiment = Batiment::find($request->id);
+
+        $parties_id=[];
+        foreach ($batiment->parties as $p) {
+            $parties_id[]=$p->id;
+        }
 
 
 
         return view('backend.ilot.view', ['batiments' => $batiments,
             'batiment' => $batiment,
-            'parties' => $parties,
-            'copro'=> $copro,
-            'copro'=> $copros,
-            ]);
+            'parties_id' => $parties_id,
+            'parties' => $parties]);
     }
 
 

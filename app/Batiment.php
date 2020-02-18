@@ -19,4 +19,10 @@ class Batiment extends Model
         return $this->belongsTo('App\appartement')->withTimestamps();
     }
 
+    public function copros()
+    {
+        return $this->hasMany("App\copro")->withTimestamps();
+    }
+
+
 }

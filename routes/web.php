@@ -64,6 +64,7 @@ Route::middleware('auth.admin')->group(function (){
 
 //acceuille securisé admin
     Route::get('/backend','Lot\MainController@index')->name('backend_homepage');
+    Route::get('/viewByBatiment/{id}','Lot\MainController@viewByBatiment')->name('backend_viewByAppartement');
 
 //    gestion des appartement
     Route::get('/appartement','Lot\AppartementController@index')->name('backend_appartement');
