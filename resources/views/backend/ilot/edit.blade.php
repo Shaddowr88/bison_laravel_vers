@@ -42,18 +42,18 @@
                 </div>
 
 
-                {{--                <div class="form-row">--}}
-                {{--                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 col-md-12">--}}
-                {{--                        <h1 class="h2">P. Communes</h1>--}}
-                {{--                    </div>--}}
-                {{--                    <div class="form-group col-md-12">--}}
-                {{--                        <select multiple class="form-control form-control-lg" id="categorie_id" name="categorie_id">--}}
-                {{--                            @foreach($comun_parts as $comun_part)--}}
-                {{--                                <option value="{{$comun_part->id}}">{{$comun_part->nom}}</option>--}}
-                {{--                            @endforeach--}}
-                {{--                        </select>--}}
-                {{--                    </div>--}}
-                {{--                </div>--}}
+                                <div class="col-md-8">
+                                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 col-md-12">
+                                        <h1 class="h2">P. Communes</h1>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <select multiple class="form-control form-control-lg" id="categorie_id" name="categorie_id">
+{{--                                            @foreach($batiment->partie as $parties)--}}
+{{--                                                <option value="{{$batiment->partie->id}}">{{$partie->nom}}</option>--}}
+{{--                                            @endforeach--}}
+                                        </select>
+                                    </div>
+                                </div>
 
             </div>
             <button type="submit" class="btn btn-primary">Valider</button>

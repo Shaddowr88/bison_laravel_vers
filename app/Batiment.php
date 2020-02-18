@@ -10,14 +10,13 @@ class Batiment extends Model
     // use SoftDeletes;
 
 //Les parties commune qui appartiennent au batiments.
-    public function comun_part(){
-        return $this->belongsToMany('App\Comun__parts', 'bat_communpartt', 'batiments_id',
-            'comun__parts_id');
+    public function parties(){
+        return $this->belongsToMany('App\partie');
     }
 
 
     public function appartement(){
-        return $this->belongsToMany('App\Appartement')->withTimestamps();
+        return $this->belongsTo('App\Appartement')->withTimestamps();
     }
 
 }

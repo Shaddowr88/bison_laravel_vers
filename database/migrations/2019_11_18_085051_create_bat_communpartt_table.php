@@ -13,15 +13,15 @@ class CreateBatCommunparttTable extends Migration
      */
     public function up()
     {
-        Schema::create('bat_communpartt', function (Blueprint $table) {
+        Schema::create('batiment_partie', function (Blueprint $table) {
 
-                $table->unsignedBigInteger('batiments_comune_id');
-                $table->foreign('batiments_comune_id')->references('id')->on('comun__parts')->onDelete('cascade');
+                $table->unsignedBigInteger('partie_id');
+                $table->foreign('partie_id')->references('id')->on('parties')->onDelete('cascade');
 
                 $table->unsignedBigInteger('batiment_id');
                 $table->foreign('batiment_id')->references('id')->on('batiments')->onDelete('cascade');
 
-                $table->primary(['batiments_comune_id', 'batiment_id']);
+                $table->primary(['partie_id', 'batiment_id']);
 
                 Schema::enableForeignKeyConstraints();
 
@@ -36,6 +36,6 @@ class CreateBatCommunparttTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bat_communpartt');
+        Schema::dropIfExists('batiment_partie');
     }
 }
