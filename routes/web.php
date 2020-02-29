@@ -24,7 +24,6 @@ Route::post('/login/bison','Auth\LoginController@loginBison')->name('login_bison
 
 //Login
 
-
 Route::get('/register', function () {return view('auth/register');});
 Route::get('/dash',"Dash\MainController@index")->name("dashbord_index");
 Route::get('/message', function () {return view('backend/message');});
@@ -37,20 +36,26 @@ Route::get('/home', 'HomeController@index')->name('dash');
 Route::get('/message02','Dash\MainController@declaration')->name ('Users_message02');
 
 // fonction utilisateur
-//menus annuaire
-Route::get('/contact_syndic', "Dash\MainController@contact_syndic")->name("contact_syndic");
-Route::get('/contact_utile', "Dash\MainController@contact_prestataire")->name("contact_prestataire");
-Route::get('/contact_prestataire', "Dash\MainController@contact_utility")->name("contact_utility");
+    //menus annuaire
+    Route::get('/contact_syndic', "Dash\MainController@contact_syndic")->name("contact_syndic");
+    Route::get('/contact_utile', "Dash\MainController@contact_prestataire")->name("contact_prestataire");
+    Route::get('/contact_prestataire', "Dash\MainController@contact_utility")->name("contact_utility");
 
-//menus signalement
-Route::get('/my_index', "Dash\MainController@Mine")->name("my_index");
-Route::get('/my_signal', "Dash\MainController@signal")->name("signal");
+    //menus signalement
+    Route::get('/my_index', "Dash\MainController@Mine")->name("my_index");
+    Route::get('/my_signal', "Dash\MainController@signal")->name("signal");
 
-//menus Documents
-Route::get('/document', "Dash\MainController@Documents")->name("Documents");
-Route::get('/doc_dating', "Dash\MainController@dating")->name("dating");
-Route::get('/doc_settlement', "Dash\MainController@settlement")->name("settlement");
+        // messagerie par chatKit
+        //Route::get('/my_signal', 'ChatkitController@index')->name("signal");
+//        Route::post('/', 'ChatkitController@join');
+//        Route::get('/chat', 'ChatkitController@chat')->name('chat');
+//        Route::post('logout', 'ChatkitController@logout')->name('logout');
 
+
+    //menus Documents
+    Route::get('/document', "Dash\MainController@Documents")->name("Documents");
+    Route::get('/doc_dating', "Dash\MainController@dating")->name("dating");
+    Route::get('/doc_settlement', "Dash\MainController@settlement")->name("settlement");
 
 
 
@@ -65,6 +70,7 @@ Route::middleware('auth.admin')->group(function (){
     Route::get('/add','Lot\MainController@add')->name('backend_add');
     Route::post('/backend/ilot/store','lot\MainController@store')->name('backend_ilot_store');
     Route::get('/edit/{id}','Lot\MainController@edit')->name('backend_edit');
+    Route::get('/view/{id}','Lot\MainController@view')->name('backend_view');
     Route::post('/backend/ilot/update','lot\MainController@update')->name('backend_ilot_update');
     Route::get('/backend/ilot/delete','lot\MainController@delete')->name('backend_ilot_delete');
 

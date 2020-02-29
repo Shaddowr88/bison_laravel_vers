@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\appartement;
+use App\Batiment;
 use App\Http\Controllers\Controller;
+use App\partie;
 use App\User;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -58,4 +61,9 @@ class LoginController extends Controller
           return redirect()->route('login')->with('messages','impossible de vous identifier');
       }
   }
+
+
 }
+
+
+

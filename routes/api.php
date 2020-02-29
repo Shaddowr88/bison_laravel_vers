@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// File: routes/api.php
+Route::post('authenticate','ChatkitController@authenticate');
+Route::get('users', 'ChatkitController@getUsers');
+Route::post('message','ChatkitController@sendMessage');

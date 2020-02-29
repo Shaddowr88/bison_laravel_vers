@@ -22,6 +22,7 @@ class CreateAppartementsTable extends Migration
             $table->unsignedBigInteger('batiment_id');
             $table->foreign('batiment_id')->references('id')->on('batiments')->onDelete('cascade');
         });
+
     }
 
     /**

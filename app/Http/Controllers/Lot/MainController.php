@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Lot;
 
 use App\Appartement;
 use App\Batiment;
-use App\Comun_Part;
 use App\equipement;
 use App\etage;
 use App\Http\Controllers\Controller;
@@ -50,25 +49,40 @@ class MainController extends Controller
             }
         }
 
-return redirect()->route('backend_add')->with('notice', 'le Batiment'.$batiments->nom.'a bien été ajouté');
+return redirect()->route('backend_add')
+    ->with('notice', 'le Batiment'.$batiments->nom.'a bien été ajouté');
 
     }
 
-
     public function edit (Request $request){
-      $batiments = Batiment::find($request->id);
+        $batiments = Batiment::all();
         $parties = partie::all();
-        return view('backend.ilot.edit', ['batiment' => $batiments,'partie' => $parties]);
+        $batiment = Batiment::find($request->id);
+        $parties_id=[];
+
+        foreach ($batiment->parties as $p) {
+            $parties_id[]=$p->id;
+        }
+        return view('backend.ilot.edit', [
+            'batiment' => $batiment,
+            'batiments' => $batiments,
+            'parties' => $parties,
+            'parties_id' => $parties_id,
+
+            ]);
     }
 
 //update
     public function update (Request $request){
-        $request->validate(['nom','numero','adresse']);
-        $batiment = Batiment::find($request->id);
-        $batiment->nom = $request->nom;
-        $batiment->numero = $request->numero;
-        $batiment->adresse = $request->adresse;
-        $batiment->save();
+        $request->validate(['nom','numero','adresse','batiment_id']);
+        $batiments = Batiment::find($request->id);
+        $batiments->nom = $request->nom;
+        $batiments->numero = $request->numero;
+        $batiments->adresse = $request->adresse;
+        $batiments->save();
+        $batiments->parties()->sync($request->parties);
+
+
         return redirect()->route('backend_homepage')
         ->with('notice','Batiment a bien été modifié');
     }
@@ -82,6 +96,21 @@ return redirect()->route('backend_add')->with('notice', 'le Batiment'.$batiments
             ->with('notice','le batiment a été supprimé');
     }
 
+    public function view (Request $request){
+        $batiments = Batiment::all();
+        $parties = partie::all();
+        $batiment = Batiment::find($request->id);
+
+        $parties_id=[];
+        foreach ($batiment->parties as $p) {
+            $parties_id[]=$p->id;
+        }
+
+        return view('backend.ilot.view', ['batiments' => $batiments,
+            'batiment' => $batiment,
+            'parties_id' => $parties_id,
+            'parties' => $parties]);
+    }
 
 
 

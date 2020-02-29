@@ -52,7 +52,7 @@ class User extends Authenticatable
 
     public function appartements()
     {
-        return $this->hasMany("App\Appartement")->withTimestamps();
+        return $this->belongsToMany("App\Appartement");
     }
 
 }

@@ -66,9 +66,9 @@
                     </form>
                 </div>
                           </div>
-                          <div><a class="nav-link " href="{{ route('register') }}">{{ __('Register') }}</a>
+{{--                          <div><a class="nav-link " href="{{ route('register') }}">{{ __('Register') }}</a>--}}
                           @if (Route::has('password.request'))
-                          <div class="text-right"><a class="btn btn-link" href="{{ route('password.request') }}">{{ __('Password?') }}</a>
+                          <div class="text-right col-12"><a class="btn btn-link col-12" href="{{ route('password.request') }}">{{ __('Password?') }}</a>
                            @endif </div></div>
                       </div>
     </div>
