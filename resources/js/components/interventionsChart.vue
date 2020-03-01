@@ -1,16 +1,18 @@
 <template>
     <div >
+
+        <h1>test</h1>
         <bar-chart :chart-data="datacollection" :height="300"></bar-chart>
     </div>
 </template>
 
 <script>
 
-    import barChart from './blocChartIntervention'
+    import barInterv from './blocChartIntervention'
 
     export default {
         components: {
-            barChart
+            barInterv
         },
         data(){
             return {
@@ -29,7 +31,7 @@
                     datasets: [
                         {
                             label: 'autres',
-                            backgroundColor: '#FF0066',
+                            backgroundColor: '#0aeeff',
                             data: [ 20, 40, 50, 40, 50]
                         },
                     ]

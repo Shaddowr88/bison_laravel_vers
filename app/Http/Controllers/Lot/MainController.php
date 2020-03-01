@@ -5,21 +5,20 @@ namespace App\Http\Controllers\Lot;
 use App\Appartement;
 use App\Batiment;
 use App\copros;
-use App\equipement;
-use App\etage;
 use App\Http\Controllers\Controller;
 use App\partie;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 //use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MainController extends Controller
 {
-    public function index(){
-        $copro = DB::table('copros')
+    public function index()
+    {
+//        $batiments = Batiment::all();
+        $batiment = DB::table('batiments')
             ->orderBy('created_at','desc')->paginate(8);
-        return view('backend.ilot.index', ['copros'=>$copro]);
+        return view('backend.ilot.index', ['batiments'=>$batiment]);
     }
 
 //    Cree de nouveaux batiments
@@ -43,16 +42,13 @@ class MainController extends Controller
         $batiments->numero = $request->numero;
         $batiments->adresse = $request->adresse;
         $batiments->save();
-
         if($request->parties) {
             foreach ($request->parties as $id) {
                 $batiments->parties()->attach($id);
             }
         }
-
 return redirect()->route('backend_add')
     ->with('notice', 'le Batiment'.$batiments->nom.'a bien été ajouté');
-
     }
 
     public function edit (Request $request){
@@ -60,7 +56,6 @@ return redirect()->route('backend_add')
         $parties = partie::all();
         $batiment = Batiment::find($request->id);
         $parties_id=[];
-
         foreach ($batiment->parties as $p) {
             $parties_id[]=$p->id;
         }
@@ -69,21 +64,18 @@ return redirect()->route('backend_add')
             'batiments' => $batiments,
             'parties' => $parties,
             'parties_id' => $parties_id,
-
             ]);
     }
 
 //update
     public function update (Request $request){
-        $request->validate(['nom','numero','adresse','batiment_id']);
+        $request->validate(['nom','numero','adresse','batiment_id','parties']);
         $batiments = Batiment::find($request->id);
         $batiments->nom = $request->nom;
         $batiments->numero = $request->numero;
         $batiments->adresse = $request->adresse;
         $batiments->save();
         $batiments->parties()->sync($request->parties);
-
-
         return redirect()->route('backend_homepage')
         ->with('notice','Batiment a bien été modifié');
     }
@@ -91,29 +83,25 @@ return redirect()->route('backend_add')
 //fonction delete
     public function delete(Request $request){
         $batiment = Batiment::find($request->id);
-
         $batiment->delete ();
         return redirect()->route('backend_homepage')
             ->with('notice','le batiment a été supprimé');
     }
 
     public function viewByBatiment (Request $request){
-        $copros = copros::all();
-        $copro = copros::find($request->id);
+//        $copros = copros::all();
+//        $copro = copros::find($request->id);
         $batiments = Batiment::all();
         $parties = partie::all();
         $batiment = Batiment::find($request->id);
-
-
-
         return view('backend.ilot.view', ['batiments' => $batiments,
             'batiment' => $batiment,
             'parties' => $parties,
-            'copro'=> $copro,
-            'copro'=> $copros,
+//            'copro'=> $copro,
+//            'copro'=> $copros,
             ]);
     }
 
 
 
-    }
+}

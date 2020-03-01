@@ -32,7 +32,7 @@
 
                 <div class="form-group col-md-2">
                     <label for="numero"></label>
-                    <input placeholder="Numero" type="text" class="form-control" value="{{$batiment->numero}}"id="numero" name="numero">
+                    <input placeholder="Numero" type="text" class="form-control" value="{{$batiment->numero}}" id="numero" name="numero">
                 </div>
             </div>
             <div class="form-row">
