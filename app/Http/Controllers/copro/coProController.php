@@ -22,10 +22,16 @@ class coProController extends Controller
        $copros = copros::all();
        $batiments = Batiment::all();
        $copro = copros::find($request->id);
-        return view('backend.ilot.index', ['copros' => $copros,
+       $batiments_id=[];
+//      foreach ($copro -> $batiments as $b)
+//      {
+//            $batiments_id[]=$b->id;
+//      }
+        return view('backend.ilot.index', [
+            'copros' => $copros,
             'copro' => $copro,
+//            'batiments_id' => $batiments_id,
             'batiments' => $batiments,
-
         ]);
     }
 

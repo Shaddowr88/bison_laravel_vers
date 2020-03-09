@@ -55,15 +55,21 @@
                     <div class="row mt-4">
 
                         @foreach($copros as $copro)
-                            <div class="col-lg-5 col-md-6 ">
+                            <div class="col-lg-4 col-md-6 mb-5 ">
                                 <div class="card card-stats">
                                     <div class="card-body">
                                         <div class="row">
+
                                             <div class="col-5">
                                                 <div class="info-icon text-center icon-warning">
                                                     <i class="tim-icons icon-chat-33"></i>
+                                                   <span class="bg-gradient-primary mb-2"></span>
+                                                   <span class="bg-gradient-danger mb-2"></span>
+                                                   <span class="bg-gradient-yelow mb-2"></span>
+                                                   <span class="bg-gradient-primary mb-2"></span>
                                                 </div>
                                             </div>
+
                                             <div class="col-7">
                                                 <div class="numbers">
                                                     <a href="{{route('backend_viewByCopro',['id'=>$copro->id]) }}">
@@ -72,11 +78,11 @@
                                                     <h4 class="card-title">{{$copro->ville}} <br> {{$copro->cp}}</h4>
                                                     <tr>
                                                         <td>
-                                                            <a href="{{route('backend_edit',['id'=>$copro->id])}}"
-                                                               class="btn btn-sm btn-primary">Modifier</a>
+                                                            <a  href="{{route('backend_edit',['id'=>$copro->id])}}"
+                                                               class="btn btn-sm btn-primary col-12 mb-2">Modifier</a>
                                                             <a onclick="return(confirm('sans regret ? '))"
                                                                href="{{route('backend_ilot_delete',['id'=>$copro->id]) }}"
-                                                               class="btn btn-sm btn-danger">
+                                                               class="btn btn-sm btn-danger col-12">
                                                                 Supprimer
                                                             </a>
                                                         </td>
@@ -89,44 +95,10 @@
                             </div>
                         @endforeach
                     </div>
-{{--                    {{$copros->links()}}--}}
+              {{$copros->links()}}
                 </div>
             </div>
         </div>
     </div>
 
-{{--    <div class="row mt-4">--}}
-{{--        --}}
-{{--        @foreach($copros as $copro)--}}
-
-{{--            <div class="col-lg-5 col-md-6 ">--}}
-{{--                <div class="card card-stats">--}}
-{{--                    <div class="card-body">--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-5">--}}
-{{--                                <div class="info-icon text-center icon-warning">--}}
-{{--                                    <i class="tim-icons icon-chat-33"></i>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-7">--}}
-{{--                                <div class="numbers">--}}
-{{--                                    <h2 href="{{route('backend_viewByCopro',['id'=>$copro->id]) }}">{{$copro->name}}</h2>--}}
-{{--                                    <h4 class="card-title">{{$copro->ville}} {{$copro->cp}}</h4>--}}
-{{--                                    <tr>--}}
-{{--                                        <td>--}}
-{{--                                            <a href="{{route('backend_edit',['id'=>$copro->id])}}"--}}
-{{--                                               class="btn btn-sm btn-primary">Modifier</a>--}}
-{{--                                            <a onclick="return(confirm('sans regret ? '))"--}}
-{{--                                               href="{{route('backend_ilot_delete',['id'=>$copro->id]) }}"--}}
-{{--                                               class="btn btn-sm btn-danger">Supprimer</a>--}}
-{{--                                        </td>--}}
-{{--                                    </tr>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        @endforeach--}}
-{{--    </div>--}}
 @endsection

@@ -60,7 +60,8 @@ class MainController extends Controller
         $parties = partie::all();
         $batiment = Batiment::find($request->id);
         $parties_id=[];
-        foreach ($batiment->parties as $p) {
+        foreach ($batiment->parties as $p)
+        {
             $parties_id[]=$p->id;
         }
         return view('backend.ilot.edit', [

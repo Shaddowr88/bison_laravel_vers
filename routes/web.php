@@ -61,17 +61,13 @@ Route::get('/message02','Dash\MainController@declaration')->name ('Users_message
 
 //Route administrateur
 Route::middleware('auth.admin')->group(function (){
-
-//acceuille securisé admin
-    Route::get('/backend','Lot\MainController@index')->name('backend_homepage');
-    Route::get('/viewByBatiment/{id}','Lot\MainController@viewByBatiment')->name('backend_viewByAppartement');
-
-    Route::get('/copro','copro\coProController@index')->name('copro');
+//acceuille securisé admin liste co-pro
+    Route::get('/backend','copro\coProController@index')->name('backend_homepage');
     Route::get('/viewByCopro/{id}','copro\coProController@viewByCopro')->name('backend_viewByCopro');
-
-//    gestion des appartement
-    Route::get('/appartement','Lot\AppartementController@index')->name('backend_appartement');
+//liste batiments
+    Route::get('/copro','Lot\MainController@index')->name('copro');
     Route::get('/add','Lot\MainController@add')->name('backend_add');
+    Route::get('/viewByBatiment/{id}','Lot\MainController@viewByBatiment')->name('backend_viewByAppartement');
     Route::post('/backend/ilot/store','lot\MainController@store')->name('backend_ilot_store');
     Route::get('/edit/{id}','Lot\MainController@edit')->name('backend_edit');
     Route::get('/view/{id}','Lot\MainController@viewByBatiment')->name('backend_viewByBatiment');
@@ -79,7 +75,8 @@ Route::middleware('auth.admin')->group(function (){
     Route::get('/backend/ilot/delete','lot\MainController@delete')->name('backend_ilot_delete');
 
 
-
+//    gestion des appartement
+    Route::get('/appartement','Lot\AppartementController@index')->name('backend_appartement');
 
 
 //   Gestions des messages
