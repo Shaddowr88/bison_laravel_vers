@@ -66,6 +66,9 @@ Route::middleware('auth.admin')->group(function (){
     Route::get('/backend','Lot\MainController@index')->name('backend_homepage');
     Route::get('/viewByBatiment/{id}','Lot\MainController@viewByBatiment')->name('backend_viewByAppartement');
 
+    Route::get('/copro','copro\coProController@index')->name('copro');
+    Route::get('/viewByCopro/{id}','copro\coProController@viewByCopro')->name('backend_viewByCopro');
+
 //    gestion des appartement
     Route::get('/appartement','Lot\AppartementController@index')->name('backend_appartement');
     Route::get('/add','Lot\MainController@add')->name('backend_add');
@@ -77,8 +80,11 @@ Route::middleware('auth.admin')->group(function (){
 
 
 
+
+
 //   Gestions des messages
     Route::get('/message','Lot\MessagesController@index')->name('messages_ask');
+
 
 //   gestion de l'annuaire
     Route::get('/book','Lot\BooksController@index')->name('Books_index');

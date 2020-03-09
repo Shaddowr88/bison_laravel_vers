@@ -8,12 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Batiment extends Model
 {
     // use SoftDeletes;
-
-//Les parties commune qui appartiennent au batiments.
+   //Les parties commune qui appartiennent au batiments.
     public function parties(){
         return $this->belongsToMany('App\partie');
     }
-
 
     public function appartement(){
         return $this->belongsTo('App\appartement')->withTimestamps();
@@ -21,7 +19,7 @@ class Batiment extends Model
 
     public function copros()
     {
-        return $this->hasMany("App\copro")->withTimestamps();
+        return $this->belongsTo("App\copros")->withDefault();
     }
 
 

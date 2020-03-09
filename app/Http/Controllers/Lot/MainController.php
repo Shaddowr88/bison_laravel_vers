@@ -15,7 +15,6 @@ class MainController extends Controller
 {
     public function index()
     {
-//        $batiments = Batiment::all();
         $batiment = DB::table('batiments')
             ->orderBy('created_at','desc')->paginate(8);
         return view('backend.ilot.index', ['batiments'=>$batiment]);
@@ -26,16 +25,20 @@ class MainController extends Controller
         $batiments = Batiment::all();
         $appartements = Appartement::all();
         $parties = partie::all();
-        return view('backend.ilot.add', ['batiments' => $batiments, 'appartements' => $appartements,
-            'parties' => $parties]);
+        return view('backend.ilot.add', [
+            'batiments' => $batiments,
+            'appartements' => $appartements,
+            'parties' => $parties
+        ]);
     }
 
 //    sauvegarde BD nouveaux batiments
     public function store(Request $request){
         $request->validate([
-                'nom' => 'required|max:25',
-                'numero','etage','adresse',
-                'description','batiment_id',]);
+            'nom' => 'required|max:25',
+            'numero','etage','adresse',
+            'description','batiment_id',
+        ]);
 
         $batiments = new Batiment();
         $batiments->nom = $request->nom;
@@ -47,8 +50,9 @@ class MainController extends Controller
                 $batiments->parties()->attach($id);
             }
         }
-return redirect()->route('backend_add')
-    ->with('notice', 'le Batiment'.$batiments->nom.'a bien été ajouté');
+        return redirect()
+            ->route('backend_add')
+            ->with('notice', 'le Batiment'.$batiments->nom.'a bien été ajouté');
     }
 
     public function edit (Request $request){
@@ -77,7 +81,7 @@ return redirect()->route('backend_add')
         $batiments->save();
         $batiments->parties()->sync($request->parties);
         return redirect()->route('backend_homepage')
-        ->with('notice','Batiment a bien été modifié');
+            ->with('notice','Batiment a bien été modifié');
     }
 
 //fonction delete
@@ -89,19 +93,12 @@ return redirect()->route('backend_add')
     }
 
     public function viewByBatiment (Request $request){
-//        $copros = copros::all();
-//        $copro = copros::find($request->id);
         $batiments = Batiment::all();
         $parties = partie::all();
         $batiment = Batiment::find($request->id);
         return view('backend.ilot.view', ['batiments' => $batiments,
             'batiment' => $batiment,
             'parties' => $parties,
-//            'copro'=> $copro,
-//            'copro'=> $copros,
             ]);
     }
-
-
-
 }
