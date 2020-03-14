@@ -61,6 +61,16 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group col-md-6">
+                            <label for="category_id">Copro</label>
+                            <select class="form-control form-control-lg" id="copro_id" name="copro_id">
+                                @foreach($copros as $copro)
+
+                                    <option value="{{$copro->id}}">{{$copro->name}}</option>
+
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
 
                 </div>

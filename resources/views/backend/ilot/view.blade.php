@@ -10,7 +10,7 @@
                 <h1 class="h2">Batiment {{$batiment->nom}} </h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group mr-2">
-                        <a class="btn btn-sm btn-outline-secondary" href="{{route('backend_homepage')}}" >Lister les batiments</a>
+                        <a class="btn btn-sm btn-outline-secondary" href="{{route('backend_viewByCopro',['id'=>$batiment->copro_id])}}">Lister les batiments</a>
                     </div>
                     <a href="{{route('backend_edit',['id'=>$batiment])}}" class="btn btn-sm btn-outline-secondary"> Modifier </a>
                 </div>
@@ -20,7 +20,11 @@
                 <p class="card-text">{{$batiment->adresse}}</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 @foreach($parties as $partie)
-                    <span value="{{$partie->id}}" class="badge badge-secondary">{{$partie->nom}}</span>
+                    @if(in_array($partie->id,$parties_id))
+                        <span  class="badge badge-pill badge-primary">{{$partie->nom}}</span>
+                    @else
+                        <span class="badge badge-pill badge-primary"></span>
+                    @endif
                 @endforeach
 
 {{--@foreach($appartements as $appartement)--}}
@@ -29,8 +33,8 @@
 
             </div>
 
-        </div>
-<div class="row">
+            </div>
+            <div class="row">
             @if ($errors->any())
                 <div class="alert-danger col-3">
                     @foreach($errors->all() as $error)

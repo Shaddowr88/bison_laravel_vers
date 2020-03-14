@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\copro;
-use App\copros;
 use App\Batiment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -14,27 +13,14 @@ class coProController extends Controller
         $copro = DB::table('copros')
            ->orderBy('created_at','desc')->paginate(8);
       return view('backend.ilot.copro', ['copros'=>$copro]);
-      ddd($copro);
-
     }
 
     public function viewByCopro (Request $request){
-       $copros = copros::all();
-       $batiments = Batiment::all();
-       $copro = copros::find($request->id);
-       $batiments_id=[];
-//      foreach ($copro -> $batiments as $b)
-//      {
-//            $batiments_id[]=$b->id;
-//      }
-        return view('backend.ilot.index', [
-            'copros' => $copros,
-            'copro' => $copro,
-//            'batiments_id' => $batiments_id,
-            'batiments' => $batiments,
-        ]);
+        // Récupérer tous les bâtiments d'une même copropriété,
+
+        //SELECT * FROM `batiments` WHERE copro_id = [id]
+        $batiments = Batiment::where('copro_id',$request->id)->get();
+        return view('backend.ilot.index', compact('batiments'));
     }
-
 }
-
 

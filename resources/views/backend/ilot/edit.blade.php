@@ -6,7 +6,7 @@
             <h1 class="h2">Modifier le Batiment </h1>
             <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="btn-group mr-2">
-                    <a class="btn btn-sm btn-outline-secondary" href="{{route('backend_homepage')}}" >Lister les batiments</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="{{route('backend_viewByCopro',['id'=>$batiment->copro_id])}}" >Lister les batiments</a>
                 </div>
                 <a class="btn btn-sm btn-outline-secondary" href="{{route('backend_add')}}">
                     <span data-feather="calendar"></span>

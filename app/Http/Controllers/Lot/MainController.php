@@ -24,11 +24,13 @@ class MainController extends Controller
     public function add() {
         $batiments = Batiment::all();
         $appartements = Appartement::all();
+        $copros = copros::all();
         $parties = partie::all();
         return view('backend.ilot.add', [
             'batiments' => $batiments,
             'appartements' => $appartements,
-            'parties' => $parties
+            'parties' => $parties,
+            'copros' => $copros,
         ]);
     }
 
@@ -38,12 +40,13 @@ class MainController extends Controller
             'nom' => 'required|max:25',
             'numero','etage','adresse',
             'description','batiment_id',
+            'copro_id',
         ]);
-
         $batiments = new Batiment();
         $batiments->nom = $request->nom;
         $batiments->numero = $request->numero;
         $batiments->adresse = $request->adresse;
+        $batiments->copro_id = $request->copro_id;
         $batiments->save();
         if($request->parties) {
             foreach ($request->parties as $id) {
@@ -60,8 +63,7 @@ class MainController extends Controller
         $parties = partie::all();
         $batiment = Batiment::find($request->id);
         $parties_id=[];
-        foreach ($batiment->parties as $p)
-        {
+        foreach ($batiment->parties as $p) {
             $parties_id[]=$p->id;
         }
         return view('backend.ilot.edit', [
@@ -69,7 +71,7 @@ class MainController extends Controller
             'batiments' => $batiments,
             'parties' => $parties,
             'parties_id' => $parties_id,
-            ]);
+        ]);
     }
 
 //update
@@ -80,9 +82,14 @@ class MainController extends Controller
         $batiments->numero = $request->numero;
         $batiments->adresse = $request->adresse;
         $batiments->save();
+
         $batiments->parties()->sync($request->parties);
-        return redirect()->route('backend_homepage')
+
+
+//        dd($batiments->copro_id);
+        return redirect()->route('backend_viewByCopro',['id'=>$batiments->copro_id])
             ->with('notice','Batiment a bien été modifié');
+
     }
 
 //fonction delete
@@ -97,8 +104,13 @@ class MainController extends Controller
         $batiments = Batiment::all();
         $parties = partie::all();
         $batiment = Batiment::find($request->id);
+        $parties_id=[];
+        foreach ($batiment->parties as $p) {
+            $parties_id[]=$p->id;
+        }
         return view('backend.ilot.view', ['batiments' => $batiments,
             'batiment' => $batiment,
+            'parties_id' => $parties_id,
             'parties' => $parties,
             ]);
     }
