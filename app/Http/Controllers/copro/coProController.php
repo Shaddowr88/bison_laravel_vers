@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\copro;
 use App\Batiment;
+use App\copros;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

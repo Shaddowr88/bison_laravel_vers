@@ -40,7 +40,7 @@
                     <div class="row">
                         <div class="col-sm-6 text-left">
                             <h5 class="card-category"></h5>
-                            <h2 class="card-title">Liste batiment</h2>
+                            <h2 class="card-title">Liste batiment </h2>
                         </div>
                         @if ($errors->any())
                             <div class="alert-danger">

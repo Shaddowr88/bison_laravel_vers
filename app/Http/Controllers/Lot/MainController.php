@@ -54,7 +54,7 @@ class MainController extends Controller
             }
         }
         return redirect()
-            ->route('backend_add')
+            ->route('backend_viewByCopro',['id'=>$batiments->copro_id])
             ->with('notice', 'le Batiment'.$batiments->nom.'a bien été ajouté');
     }
 
@@ -96,7 +96,7 @@ class MainController extends Controller
     public function delete(Request $request){
         $batiment = Batiment::find($request->id);
         $batiment->delete ();
-        return redirect()->route('backend_homepage')
+        return redirect()->route('backend_viewByCopro',['id'=>$batiment->copro_id])
             ->with('notice','le batiment a été supprimé');
     }
 
