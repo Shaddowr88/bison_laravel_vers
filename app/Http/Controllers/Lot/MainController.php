@@ -82,11 +82,7 @@ class MainController extends Controller
         $batiments->numero = $request->numero;
         $batiments->adresse = $request->adresse;
         $batiments->save();
-
         $batiments->parties()->sync($request->parties);
-
-
-//        dd($batiments->copro_id);
         return redirect()->route('backend_viewByCopro',['id'=>$batiments->copro_id])
             ->with('notice','Batiment a bien été modifié');
 
@@ -112,6 +108,6 @@ class MainController extends Controller
             'batiment' => $batiment,
             'parties_id' => $parties_id,
             'parties' => $parties,
-            ]);
+        ]);
     }
 }

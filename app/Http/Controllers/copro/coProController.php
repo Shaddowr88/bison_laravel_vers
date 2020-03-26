@@ -18,8 +18,6 @@ class coProController extends Controller
 
     public function viewByCopro (Request $request){
         // Récupérer tous les bâtiments d'une même copropriété,
-
-        //SELECT * FROM `batiments` WHERE copro_id = [id]
         $batiments = Batiment::where('copro_id',$request->id)->get();
         return view('backend.ilot.index', compact('batiments'));
     }

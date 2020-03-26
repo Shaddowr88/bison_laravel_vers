@@ -1,7 +1,6 @@
 @extends('layouts/dashAdmin')
 @section('dash')
     @if (session('notice'))
-
         <div class="alert alert-success " role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -10,7 +9,6 @@
             <hr>
 {{--            <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>--}}
         </div>
-
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -30,10 +28,9 @@
                 </div>
             </div>
         </div>
-
     @endif
-    <div class="col-xl-12 col-md-6 mb-4">
-    <div class="row">
+     <div class="col-xl-12 col-md-6 mb-4">
+     <div class="row">
         <div class="col-12 mb-2 ">
             <div>
                 <div class="card-header">
@@ -51,14 +48,13 @@
                         @endif
                         <div class="col-sm-6">
                             <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
-                                                               <label class="btn btn-sm btn-primary btn-simple active" id="0">
-                                                                   <input type="radio" name="options" checked="">
-                                                                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Accounts</span>
-                                                                    <span class="d-block d-sm-none">
-                                                          <i class="tim-icons icon-single-02"></i>
-                                                        </span>
-                                                                </label>
-
+                                <label class="btn btn-sm btn-primary btn-simple active" id="0">
+                                    <input type="radio" name="options" checked="">
+                                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Accounts</span>
+                                    <span class="d-block d-sm-none">
+                                        <i class="tim-icons icon-single-02"></i>
+                                    </span>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -67,14 +63,11 @@
                     <table class="table table-striped table-sm text-center ">
                         <thead class="table-dark">
                         <tr class="text-center">
-
-
                             <th>Batiment</th>
                             <th>Etage</th>
                             <th>Adresse</th>
                             <th></th>
                             <th>Actions</th>
-
                         </tr>
                         </thead>
                         <tbody>
@@ -92,19 +85,16 @@
 {{--                                    <a href="#" class="btn btn-sm btn-outline-primary">propriétaires</a>--}}
                                     <a onclick="return(confirm('sans regret ? '))" href="{{route('backend_ilot_delete',
                                     ['id'=>$batiment->id]) }}" class="btn btn-sm btn-danger">Supprimer</a>
-
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
                 </div>
-                </ul>
                 {{$batiments->links()}}
-                    </div>
-                </div>
             </div>
-
+        </div>
+    </div>
         </div>
         <div class="col-lg-3 col-md-6 mb-3">
             <div class="card card-stats">
@@ -184,6 +174,4 @@
                 </div>
             </div>
         </div>
-    </div>
-
 @endsection
