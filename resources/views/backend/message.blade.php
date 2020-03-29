@@ -1,4 +1,4 @@
-@extends('layouts/dash')
+@extends('layouts/user')
 @section('dash')
 <div class="row">
 

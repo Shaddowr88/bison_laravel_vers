@@ -54,7 +54,6 @@ class LoginController extends Controller
 
               return redirect()->route('backend_homepage');
           } else {
-
               return redirect()->route('dashbord_index');
           }
       }else{

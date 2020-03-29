@@ -9,8 +9,6 @@ class BatimentController extends Controller
 {
     //
     public function index(){
-//    $batiments=Batiment::all();
-////    dd($batiments);
     return view('batiments.batiment');
     }
 

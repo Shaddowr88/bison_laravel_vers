@@ -29,7 +29,7 @@
                     datasets: [
                         {
                             label: 'autres',
-                            backgroundColor: '#FF0066',
+                            backgroundColor: '#FF0068',
                             data: [ 20, 40, 50, 40, 50]
                         },
                     ]
