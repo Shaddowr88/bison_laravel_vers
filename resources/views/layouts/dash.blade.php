@@ -3,20 +3,26 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
-
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
-
     <!-- Styles -->
-
+    <script src={{asset("https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")}}></script>
+    <script src={{asset("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js")}}></script>
+    <script src={{asset("https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js")}}></script>
+    <script src={{asset("https://cdn.zingchart.com/zingchart.min.js")}}></script>
+    <title>Dashbison-Admin </title>
+    <!-- Custom fonts for this template-->
+    <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i')}}"
+          rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
 </head>
 <body>
 <div id="app">
@@ -151,15 +157,13 @@
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
-                        </a></a>
-
+                        </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
-                                                                       document.getElementById('logout-form').submit();">
+                               document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
@@ -189,87 +193,7 @@
             </li>
         </ul>
     </nav>
-    <div class="container-fluid">
-        <div class="col-sm">
-
-            <div class="row align-items-center">
-                <div class="col-md-4 mb-4"><h1 class="h3 mb-0 text-gray-800">Bienvenue <br> {{ Auth::user()->name }}  </h1></div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="row no-gutters rounded overflow-hidden flex-md-row mb-4 h-md-250 position-relative">
-                        <h1 class=""><span class="badge badge-secondary">{{ Auth::user()->appartement_id }}</span></h1>
-                        <div class="col pl-3 d-flex flex-column position-static">
-                            <a class="text-uppercase ">Adresse rue user </a>
-                            <a class="text-uppercase ">Adresse rue user </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row h-50 ">
-                <div class="col-md-4 mb-5 ">
-                    <div class="accordion col-11" id="accordion">
-                        <div class="card mb-2">
-                            <div class="card-header" id="headingTwo">
-                                <h2 class="mb-0">
-                                    <button class="btn collapsed" type="button" data-toggle="collapse"
-                                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        <a class="alert">Ma Co-pro</a>
-                                    </button>
-                                </h2>
-                            </div>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                <div class="card-body">
-                                    <ul class="nav-item">
-                                        <li> <a class="collapse-item" href="{{route('my_index')}}">Evenement</a></li>
-                                        <li> <a class="collapse-item" href="{{route('signal')}}">Signalé</a></li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card mb-2">
-                            <div class="card-header " id="headingThree">
-                                <h2 class="mb-0">
-                                    <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
-                                            aria-expanded="false" aria-controls="collapseThree"><a class="alert">Contacts</a></button>
-                                </h2>
-                            </div>
-                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                                <div class="card-body">
-                                    <ul class="nav-item">
-                                        <li><a class="collapse-item" href="{{route('contact_syndic')}}">Syndic</a></li>
-                                        <li><a class="collapse-item" href="{{route('contact_prestataire')}}">prestataire</a></li>
-                                        <li><a class="collapse-item" href="{{route('contact_utility')}}">numero utiles</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card ">
-                            <div class="card-header " id="headingFour">
-                                <h2 class="mb-0">
-                                    <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseFour"
-                                            aria-expanded="false" aria-controls="collapseFour"><a class="alert">Documents</a></button>
-                                </h2>
-                            </div>
-                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                                <div class="card-body">
-                                    <ul class="nav-item">
-                                        <li><a class="collapse-item" href="{{route('Documents')}}">Relevés de charges</a></li>
-                                        <li><a class="collapse-item" href="{{route('dating')}}">Assemblée générale</a></li>
-                                        <li><a class="collapse-item" href="{{route('settlement')}}">Règlementations</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    <dix class="col-md-8" height="100%">
-        @yield('dash')
-    </dix>
-</div>
+        @yield('dashMain')
+    </div>
 </body>
 </html>

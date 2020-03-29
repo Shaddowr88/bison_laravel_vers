@@ -1940,8 +1940,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -1961,7 +1959,7 @@ __webpack_require__.r(__webpack_exports__);
         labels: ['', '', '', '', ''],
         datasets: [{
           label: 'autres',
-          backgroundColor: '#0aeeff',
+          backgroundColor: '#0aeefJ',
           data: [20, 40, 50, 40, 50]
         }]
       };
@@ -72225,8 +72223,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("h1", [_vm._v("test")]),
-      _vm._v(" "),
       _c("bar-chart", {
         attrs: { "chart-data": _vm.datacollection, height: 300 }
       })
@@ -84424,7 +84420,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.component('grafica-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
+Vue.component('grafi-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('blockChard', __webpack_require__(/*! ./components/ChatBoxComponent.vue */ "./resources/js/components/ChatBoxComponent.vue")["default"]);
 Vue.component('interv-component', __webpack_require__(/*! ./components/interventionsChart.vue */ "./resources/js/components/interventionsChart.vue")["default"]);
 /**

@@ -32,8 +32,8 @@
     <div class="col-xl-12 col-md-6 mb-4">
         <div class="row">
             <div class="col-12 mb-2 ">
-                <div>
-                    <div class="card-header">
+                <div class="card">
+                    <div class="card-header bg-gradient-primary text-white">
                         <div class="row">
                             <div class="col-sm-6 text-left">
                                 <h5 class="card-category"></h5>
@@ -48,119 +48,118 @@
                             @endif
                         </div>
                     </div>
-                    <div class="card-body m-2">
-                        <table class="table table-striped table-sm text-center ">
-                            <thead class="table-dark">
-                            <tr class="text-center">
-                                <th>Batiment</th>
-                                <th>Etage</th>
-                                <th>Adresse</th>
-                                <th></th>
-                                <th>Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($batiments as $batiment)
-                                <tr>
-                                    <td class="">
-                                        <a href="{{route('backend_viewByBatiment',
+                    <table class="table table-striped table-sm text-center ">
+                        <thead class="table-primary">
+                        <tr class="text-center">
+                            <th>Batiment</th>
+                            <th>Etage</th>
+                            <th>Adresse</th>
+                            <th></th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($batiments as $batiment)
+                            <tr>
+                                <td class="">
+                                    <a href="{{route('backend_viewByBatiment',
                                     ['id'=>$batiment->id]) }}">{{$batiment->nom}}</a>
-                                    </td>
-                                    <td>88</td>
-                                    <td>{{$batiment->adresse}}</td>
-                                    <td></td>
-                                    <td>
-                                        <a href="{{route('backend_edit',['id'=>$batiment->id])}}"
-                                           class="btn btn-sm btn-primary">Modifier</a>
-                                        <a onclick="return(confirm('sans regret ? '))" href="{{route('backend_ilot_delete',
+                                </td>
+                                <td>88</td>
+                                <td>{{$batiment->adresse}}</td>
+                                <td></td>
+                                <td>
+                                    <a href="{{route('backend_edit',['id'=>$batiment->id])}}"
+                                       class="btn btn-sm btn-primary">Modifier</a>
+                                    <a onclick="return(confirm('sans regret ? '))" href="{{route('backend_ilot_delete',
                                         ['id'=>$batiment->id]) }}" class="btn btn-sm btn-danger">Supprimer</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row p-5" >
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card card-stats">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="info-icon text-center icon-warning">
+                                <i class="tim-icons icon-chat-33"></i>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="numbers">
+                                <p class="card-category">Prestataire</p>
+                                <h3 class="card-title">15</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card card-stats">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="info-icon text-center icon-primary">
+                                <i class="tim-icons icon-shape-star"></i>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="numbers">
+                                <p class="card-category">intervention</p>
+                                <h3 class="card-title">45</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    </ul>
-                </div>
             </div>
         </div>
-    </div>
-    <div class="col-lg-3 col-md-6 mb-3">
-        <div class="card card-stats">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-5">
-                        <div class="info-icon text-center icon-warning">
-                            <i class="tim-icons icon-chat-33"></i>
+        <div class="col-lg-3 col-md-6">
+            <div class="card card-stats">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="info-icon text-center icon-success">
+                                <i class="tim-icons icon-single-02"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-7">
-                        <div class="numbers">
-                            <p class="card-category">Prestataire</p>
-                            <h3 class="card-title">15</h3>
+                        <div class="col-7">
+                            <div class="numbers">
+                                <p class="card-category">Due</p>
+                                <h3 class="card-title">150</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card card-stats">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-5">
-                        <div class="info-icon text-center icon-primary">
-                            <i class="tim-icons icon-shape-star"></i>
+        <div class="col-lg-3 col-md-6">
+            <div class="card card-stats">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="info-icon text-center icon-danger">
+                                <i class="tim-icons icon-molecule-40"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-7">
-                        <div class="numbers">
-                            <p class="card-category">intervention</p>
-                            <h3 class="card-title">45</h3>
+                        <div class="col-7">
+                            <div class="numbers">
+                                <p class="card-category"> Année </p>
+                                <h3 class="card-title">12</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card card-stats">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-5">
-                        <div class="info-icon text-center icon-success">
-                            <i class="tim-icons icon-single-02"></i>
-                        </div>
-                    </div>
-                    <div class="col-7">
-                        <div class="numbers">
-                            <p class="card-category">Due</p>
-                            <h3 class="card-title">150</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card card-stats">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-5">
-                        <div class="info-icon text-center icon-danger">
-                            <i class="tim-icons icon-molecule-40"></i>
-                        </div>
-                    </div>
-                    <div class="col-7">
-                        <div class="numbers">
-                            <p class="card-category"> Année </p>
-                            <h3 class="card-title">12</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection

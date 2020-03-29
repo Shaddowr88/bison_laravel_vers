@@ -1,7 +1,5 @@
 <template>
     <div >
-
-        <h1>test</h1>
         <bar-chart :chart-data="datacollection" :height="300"></bar-chart>
     </div>
 </template>
@@ -31,7 +29,7 @@
                     datasets: [
                         {
                             label: 'autres',
-                            backgroundColor: '#0aeeff',
+                            backgroundColor: '#0aeefJ',
                             data: [ 20, 40, 50, 40, 50]
                         },
                     ]

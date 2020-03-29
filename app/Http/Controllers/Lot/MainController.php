@@ -85,7 +85,6 @@ class MainController extends Controller
         $batiments->parties()->sync($request->parties);
         return redirect()->route('backend_viewByCopro',['id'=>$batiments->copro_id])
             ->with('notice','Batiment a bien été modifié');
-
     }
 
 //fonction delete

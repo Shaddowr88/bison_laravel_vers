@@ -1,20 +1,20 @@
-@extends('layouts/dash')
+@extends('layouts/user')
 @section('dash')
 
-    <div >
+    <div class="pr-5">
         <div class="row ">
-            <div class="col-12">
-                 <grafica-component></grafica-component>
+            <div class="col-11">
+                 <grafi-component/>
             </div>
         </div>
-        <div class="row ">
-            <div class="card col-3 m-2">
+        <div class="row d-flex p-2 bd-highlight">
+            <div class="card m-4 col-3 d-flex p-2 bd-highlight">
                 <block-chard></block-chard>
             </div>
-            <div class="card col-3 m-2">
-                <interv-chard-component></interv-chard-component>
+            <div class="card m-4 col-3 d-flex p-2 bd-highlight">
+                <interv-component/>
             </div>
-            <div class="card col-3 m-2">
+            <div class="card m-4 col-3 d-flex p-2 bd-highlight">
                 <block-chard></block-chard>
             </div>
         </div>
@@ -37,5 +37,11 @@
     import BlocChartIntervention from "../../js/components/blocChartIntervention";
     export default {
         components: {BlocChartIntervention}
+    }
+</script>
+<script>
+    import InterventionsChart from "../../js/components/interventionsChart";
+    export default {
+        components: {InterventionsChart}
     }
 </script>
