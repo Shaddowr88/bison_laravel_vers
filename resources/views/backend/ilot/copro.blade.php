@@ -1,7 +1,6 @@
 @extends('layouts/dashAdmin')
 @section('dash')
     @if (session('notice'))
-
         <div class="alert alert-success " role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -10,7 +9,6 @@
             <hr>
             {{--            <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>--}}
         </div>
-
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -59,7 +57,6 @@
                                 <div class="card card-stats">
                                     <div class="card-body">
                                         <div class="row">
-
                                             <div class="col-5">
                                                 <div class="info-icon text-center icon-warning">
                                                     <i class="tim-icons icon-chat-33"></i>
@@ -69,7 +66,6 @@
                                                    <span class="bg-gradient-primary mb-2"></span>
                                                 </div>
                                             </div>
-
                                             <div class="col-7">
                                                 <div class="numbers">
                                                     <a href="{{route('backend_viewByCopro',['id'=>$copro->id]) }}">
@@ -100,5 +96,4 @@
             </div>
         </div>
     </div>
-
 @endsection
