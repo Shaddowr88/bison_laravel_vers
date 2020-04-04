@@ -54,6 +54,12 @@
                          @endforeach
                      </select>
                  </div>
+                 <div class="form-row">
+                     <div class="form-group">
+                         <label for="photo_principale">Photo du produit</label>
+                         <input type="file" class="form-control-file" id="photo_principale" name="photo_principale">
+                     </div>
+                 </div>
                  <div class="form-group col-md-6">
                      <label for="category_id">Copro</label>
                      <label for="copro_id"></label>

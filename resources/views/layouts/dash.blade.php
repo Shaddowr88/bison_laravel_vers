@@ -23,11 +23,12 @@
           rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
+
 </head>
 <body>
-<div id="app">
-    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-        <ul class="navbar-nav ml-auto">
+
+    <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
+        <ul class=" navbar-nav ml-auto">
             <!-- Messages -->
             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                 <form class="form-inline mr-auto w-100 navbar-search">
@@ -193,7 +194,8 @@
             </li>
         </ul>
     </nav>
-        @yield('dashMain')
-    </div>
+    @yield('dashMain')
+
+{{--@yield('dashMain')--}}
 </body>
 </html>

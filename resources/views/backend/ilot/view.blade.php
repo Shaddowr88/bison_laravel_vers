@@ -2,20 +2,32 @@
 @section('dash')
 <div class="row">
    </div>
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <main role="main" class="col-md-9 col-lg-12 px-4">
+        <div class="row mt-5">
+            <a href="{{route('backend_viewByBatiment',
+                 ['id'=>$batiment->id]) }}">
+                    <img class="rounded"
+                         src="{{asset('storage/uploads/'.$batiment->photo_principale)}}"
+                         alt="{{$batiment->nom}}">
+            </a>
+            <div class="col-7">
         <div class="card mb-3 p-5">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
                 <h1 class="h2">Batiment {{$batiment->nom}} </h1>
-                <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-toolbar mb-md-0">
                     <div class="btn-group mr-2">
-                        <a class="btn btn-sm btn-outline-secondary" href="{{route('backend_viewByCopro',['id'=>$batiment->copro_id])}}">Lister les batiments</a>
+                        <a class="btn btn-sm btn-outline-secondary"
+                           href="{{route('backend_viewByCopro',
+                           ['id'=>$batiment->copro_id])}}">
+                            Lister les batiments</a>
                     </div>
-                    <a href="{{route('backend_edit',['id'=>$batiment])}}" class="btn btn-sm btn-outline-secondary"> Modifier </a>
+                    <a href="{{route('backend_edit',['id'=>$batiment])}}"
+                       class="btn btn-sm btn-outline-secondary"> Modifier </a>
                 </div>
             </div>
             <div class="card-body" id="parties" name="parties[]">
                 <h5 class="card-title">Batiment {{$batiment->adresse}}</h5>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+{{--                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>--}}
                 @foreach($parties as $partie)
                     @if(in_array($partie->id,$parties_id))
                         <span  class="badge badge-pill badge-primary">{{$partie->nom}}</span>
@@ -23,6 +35,8 @@
                         <span class="badge badge-pill badge-primary"></span>
                     @endif
                 @endforeach
+            </div>
+        </div>
             </div>
         </div>
             <div class="row">

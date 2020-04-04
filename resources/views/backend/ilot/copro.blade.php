@@ -31,10 +31,11 @@
 
     @endif
     <div class="col-xl-12 col-xs-6 col-md-6 ">
+
         <div class="row">
             <div class="col-12 mb-2 ">
                 <div class="col-xl-10">
-                    <div class="card-header">
+                    <div>
                         <div class="row">
                             <div class="col-xl-12  col-sm-7 text-left">
                                 <h5 class="card-category"></h5>
@@ -50,8 +51,8 @@
                             @endif
                         </div>
                     </div>
+                    <a class="btn btn-dark" href="{{route('coPro_add')}}">Ajouter</a>
                     <div class="row mt-4">
-
                         @foreach($copros as $copro)
                             <div class="col-lg-4 col-md-6 mb-5 ">
                                 <div class="card card-stats">
@@ -60,10 +61,13 @@
                                             <div class="col-5">
                                                 <div class="info-icon text-center icon-warning">
                                                     <i class="tim-icons icon-chat-33"></i>
-                                                   <span class="bg-gradient-primary mb-2"></span>
-                                                   <span class="bg-gradient-danger mb-2"></span>
-                                                   <span class="bg-gradient-yelow mb-2"></span>
-                                                   <span class="bg-gradient-primary mb-2"></span>
+                                                    <div class="info-icon text-center icon-warning">
+                                                        <a>
+                                                            <img style="height: 10rem;" class="card-img h-rounded"
+                                                                 src="{{asset('storage/uploads/'.$copro->photo_principale)}}"
+                                                                 alt="{{$copro->name}}">
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-7">
@@ -74,10 +78,10 @@
                                                     <h4 class="card-title">{{$copro->ville}} <br> {{$copro->cp}}</h4>
                                                     <tr>
                                                         <td>
-                                                            <a  href="{{route('backend_edit',['id'=>$copro->id])}}"
+                                                            <a  href="{{route('backendCoProEdit',['id'=>$copro->id])}}"
                                                                class="btn btn-sm btn-primary col-12 mb-2">Modifier</a>
                                                             <a onclick="return(confirm('sans regret ? '))"
-                                                               href="{{route('backend_ilot_delete',['id'=>$copro->id]) }}"
+                                                               href="{{route('coProDelete',['id'=>$copro->id]) }}"
                                                                class="btn btn-sm btn-danger col-12">
                                                                 Supprimer
                                                             </a>

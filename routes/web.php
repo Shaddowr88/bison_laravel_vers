@@ -39,8 +39,17 @@ Route::get('/doc_settlement', "Dash\MainController@settlement")->name("settlemen
 
     //Route administrateur
 Route::middleware('auth.admin')->group(function (){
+
     //acceuille securisé admin liste co-pro
     Route::get('/backend','copro\coProController@index')->name('backend_homepage');
+// CRUD CoPropriete
+
+    Route::get('coPro/add','copro\coProController@add')->name('coPro_add');
+    Route::post('/backend/coPro/store','copro\coProController@store')->name('backend_coPro_store');
+    Route::get('/backend/coPro/edit/{id}','copro\coProController@edit')->name('backendCoProEdit');
+    Route::post('/backend/coPro/update','copro\coProController@update')->name('backendCoProUpdate');
+    Route::get('coPro/delete','copro\coProController@delete')->name('coProDelete');
+
     Route::get('/viewByCopro/{id}','copro\coProController@viewByCopro')->name('backend_viewByCopro');
     //liste batiments
     Route::get('/copro','Lot\MainController@index')->name('copro');

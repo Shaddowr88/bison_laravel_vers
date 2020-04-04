@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\partie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\ImageManagerStatic as Image;
 //use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MainController extends Controller
@@ -31,6 +32,7 @@ class MainController extends Controller
             'appartements' => $appartements,
             'parties' => $parties,
             'copros' => $copros,
+
         ]);
     }
 
@@ -40,13 +42,24 @@ class MainController extends Controller
             'nom' => 'required|max:25',
             'numero','etage','adresse',
             'description','batiment_id',
-            'copro_id',
+            'copro_id', 'photo_principale'=>'required|image|max:1999'
         ]);
+
+        if ($request->hasFile('photo_principale')) {
+            $fileName = $request->file('photo_principale')->getClientOriginalName();
+            $request->file('photo_principale')->storeAs('public/uploads', $fileName);
+            $img = Image::make($request->file('photo_principale')->getRealPath());
+            $img->insert(public_path('img/favicon.png'), 'bottom-right', 10, 10);
+//            dd($fileName);
+            $img->save('storage/uploads/'. $fileName);
+        }
+
         $batiments = new Batiment();
         $batiments->nom = $request->nom;
         $batiments->numero = $request->numero;
         $batiments->adresse = $request->adresse;
         $batiments->copro_id = $request->copro_id;
+        $batiments->photo_principale = $fileName;
         $batiments->save();
         if($request->parties) {
             foreach ($request->parties as $id) {
@@ -71,13 +84,30 @@ class MainController extends Controller
             'batiments' => $batiments,
             'parties' => $parties,
             'parties_id' => $parties_id,
+            'photo_principale'=>'required|image|max:1999',
         ]);
     }
-
 //update
     public function update (Request $request){
-        $request->validate(['nom','numero','adresse','batiment_id','parties']);
         $batiments = Batiment::find($request->id);
+        $request->validate(['nom',
+            'numero',
+            'adresse',
+            'batiment_id',
+            'parties',
+            'copro_id',
+            'etage',
+            ]);
+        if ($request->hasFile('photo_principale')) {
+            $fileName = $request->file('photo_principale')->getClientOriginalName();
+            $request->file('photo_principale')->storeAs('public/uploads', $fileName);
+            $img = Image::make($request->file('photo_principale')->getRealPath());
+            $img->insert(public_path('img/favicon.png'), 'bottom-right', 10, 10);
+//            dd($fileName);
+            $img->save('storage/uploads/'. $fileName);
+            $batiments->photo_principale = $fileName;
+        }
+        $batiments->etage = $request->etage;
         $batiments->nom = $request->nom;
         $batiments->numero = $request->numero;
         $batiments->adresse = $request->adresse;
@@ -86,7 +116,6 @@ class MainController extends Controller
         return redirect()->route('backend_viewByCopro',['id'=>$batiments->copro_id])
             ->with('notice','Batiment a bien été modifié');
     }
-
 //fonction delete
     public function delete(Request $request){
         $batiment = Batiment::find($request->id);

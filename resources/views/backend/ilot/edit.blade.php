@@ -2,12 +2,15 @@
     @section('dash')
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
-                <h1 class="h2">Modifier le Batiment </h1>
+                <h1 class="h2">Actuelment vous Modifier le Batiment {{$batiment->nom}}</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group mr-2">
-                        <a class="btn btn-sm btn-outline-secondary" href="{{route('backend_viewByCopro',['id'=>$batiment->copro_id])}}" >Lister les batiments</a>
+                        <a class="btn btn-sm btn-outline-secondary"
+                           href="{{route('backend_viewByCopro',
+                           ['id'=>$batiment->copro_id])}}"
+                        >Lister les batiments</a>
                     </div>
-                    <a class="btn btn-sm btn-outline-secondary" href="{{route('backend_add')}}">
+                    <a class="btn btn-sm btn-outline-secondary"  href="{{route('backend_add')}}">
                         <span data-feather="calendar"></span>
                         Nouveau
                     </a>
@@ -23,26 +26,66 @@
                         </div>
                     @endif
                 <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="nom"></label>
-                        <input placeholder="Nom du batiment"  type="text" class="form-control" value="{{$batiment->nom}}" id="nom" name="nom">
+                    <div class="col-md-4">
+                        {{--                    Affichage de la mignature de l'image--}}
+                        <img width="300" class="img-thumbnail rounded-circle shadow-lg" style="border:3px solid #5b64f1"
+                             src="{{asset('storage/uploads/'.$batiment->photo_principale)}}" alt="">
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-4">
+                        <label for="photo_principale">Photo du batiment</label>
+                        <input type="file" class="form-control-file " id="photo_principale" name="photo_principale">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6 border-bottom-dark" >
+                        <label for="nom"></label>
+                        <input placeholder="Nom du batiment"
+                               type="text"
+                               class="form-control border-0"
+                               value="{{$batiment->nom}}"
+                               id="nom"
+                               name="nom"
+                        >
+                    </div>
+                    <div class="form-group col-md-1 border-bottom-dark ml-3">
                         <label for="numero"></label>
-                        <input placeholder="Numero" type="text" class="form-control" value="{{$batiment->numero}}" id="numero" name="numero">
+                        <input placeholder="Numero"
+                               type="text"
+                               class="form-control border-0"
+                               value="{{$batiment->numero}}"
+                               id="numero"
+                               name="numero"
+                        >
+                    </div>
+                    <div class="form-group col-md-1 border-bottom-dark ml-3">
+                        <label for="etage"></label>
+                        <input placeholder="Etage"
+                               type="text"
+                               class="form-control border-0"
+                               value="{{$batiment->etage}}"
+                               id="etage"
+                               name="etage"
+                        >
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-8">
+                    <div class="form-group col-md-8 border-bottom-dark ml-3">
                         <label for="adresse">Adresse</label>
-                        <textarea type="text" class="form-control" name="adresse" id="adresse">{{$batiment->adresse}}</textarea>
+                        <textarea type="text"
+                                  class="form-control border-0"
+                                  name="adresse"
+                                  id="adresse"
+                        >
+                            {{$batiment->adresse}}
+                        </textarea>
                     </div>
                     <div class="col-md-8">
                         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 col-md-12">
                             <h1 class="h2">P. Communes</h1>
                         </div>
                         <div class="form-group col-md-12">
-                            <select multiple class="form-control form-control-lg" id="parties" name="parties[]">
+                            <select multiple class="form-control form-control-lg border-0" id="parties" name="parties[]">
                                 @foreach($parties as $partie)
                                     @if(in_array($partie->id,$parties_id))
                                         <option selected value="{{$partie->id}}">{{$partie->nom}}</option>

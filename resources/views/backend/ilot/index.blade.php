@@ -2,14 +2,24 @@
 @section('dash')
     @if (session('notice'))
 
-        <div class="alert alert-success " role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+{{--        Auto dismiss message script--}}
+<script>
+    $("document").ready(function(){
+        setTimeout(function(){
+            // $("div.alert").animate({left: '250px'});
+            $("div.alert").remove();
+        }, 2000 ); // 2 secs
+    });
+</script>
+        <div class=" modal fade alert alert-success col-6 mt-5" role="alert">
+{{--            <button type="button" class="close" data-dismiss="alert" aria-label="Close">--}}
+{{--                <span aria-hidden="true">&times;</span>--}}
+{{--            </button>--}}
             <h4 class="alert-heading">{{ session('notice') }}</h4>
             <hr>
         </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -32,8 +42,7 @@
     <div class="col-xl-12 col-md-6 mb-4">
         <div class="row">
             <div class="col-12 mb-2 ">
-                <div class="card">
-                    <div class="card-header bg-gradient-primary text-white">
+                <div>
                         <div class="row">
                             <div class="col-sm-6 text-left">
                                 <h5 class="card-category"></h5>
@@ -47,32 +56,38 @@
                                 </div>
                             @endif
                         </div>
-                    </div>
-                    <table class="table table-striped table-sm text-center ">
+                    <table class="table-sm table-striped table-sm text-center ">
                         <thead class="table-primary">
                         <tr class="text-center">
+                            <th class="w-25 p-3"></th>
                             <th>Batiment</th>
                             <th>Etage</th>
                             <th>Adresse</th>
-                            <th></th>
                             <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($batiments as $batiment)
                             <tr>
-                                <td class="">
+                                <td>
+                                    <a href="{{route('backend_viewByBatiment',
+                                           ['id'=>$batiment->id]) }}">
+                                        <img class="w-50 p-6 rounded"
+                                             src="{{asset('storage/uploads/'.$batiment->photo_principale)}}"
+                                             alt="{{$batiment->nom}}">
+                                    </a>
+                                </td>
+                                <td>
                                     <a href="{{route('backend_viewByBatiment',
                                     ['id'=>$batiment->id]) }}">{{$batiment->nom}}</a>
                                 </td>
-                                <td>88</td>
+                                <td>{{$batiment->etage}}</td>
                                 <td>{{$batiment->adresse}}</td>
-                                <td></td>
                                 <td>
                                     <a href="{{route('backend_edit',['id'=>$batiment->id])}}"
-                                       class="btn btn-sm btn-primary">Modifier</a>
+                                       class="btn btn-primary align-middle mt-1 ">Modifier</a>
                                     <a onclick="return(confirm('sans regret ? '))" href="{{route('backend_ilot_delete',
-                                        ['id'=>$batiment->id]) }}" class="btn btn-sm btn-danger">Supprimer</a>
+                                        ['id'=>$batiment->id]) }}" class="btn btn-danger mt-1 ">Supprimer</a>
                                 </td>
                             </tr>
                         @endforeach
