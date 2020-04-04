@@ -1,22 +1,27 @@
 @extends('layouts/dashAdmin')
 @section('dash')
     @if (session('notice'))
+        <script>
+            $("document").ready(function(){
+                setTimeout(function(){
+                    // $("div.alert").animate({left: '250px'});
+                    $("div.alert").remove();
+                }, 2000 ); // 2 secs
+            });
+        </script>
+
         <div class="alert alert-success " role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
             </button>
             <h4 class="alert-heading">{{ session('notice') }}</h4>
-            <hr>
-{{--            <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>--}}
+
+            {{--            <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>--}}
         </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
                     </div>
                     <div class="modal-body">
                         ...
@@ -72,10 +77,10 @@
                         </thead>
                         <tbody>
                         @foreach($batiments as $batiment)
-                            <tr>
+                            <tr style=" text-transform: capitalize ">
                                 <td class="">
                                     <a href="{{route('backend_view',
-                                    ['id'=>$batiment->id]) }}">{{$batiment->nom}}</a></td>
+                                    ['id'=>$batiment->id]) }}" style=" text-transform: capitalize ">{{$batiment->nom}}</a></td>
                                 <td>88</td>
                                 <td>{{$batiment->adresse}}</td>
                                 <td></td>

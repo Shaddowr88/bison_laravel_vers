@@ -24,9 +24,6 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
                     </div>
                     <div class="modal-body">
                         ...
@@ -58,7 +55,7 @@
                         </div>
                     <table class="table-sm table-striped table-sm text-center ">
                         <thead class="table-primary">
-                        <tr class="text-center">
+                        <tr class="text-center" style="text-transform: capitalize">
                             <th class="w-25 p-3"></th>
                             <th>Batiment</th>
                             <th>Etage</th>

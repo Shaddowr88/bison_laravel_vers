@@ -12,6 +12,7 @@
   <script src={{asset("https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js")}}></script>
   <script src={{asset("https://cdn.zingchart.com/zingchart.min.js")}}></script>
   <script src={{asset("https://cdn.jsdelivr.net/npm/vue/dist/vue.js")}}></script>
+  <link rel="icon" sizes="32x32" href={{asset("./img/favicon.png")}} />
 </head>
 
 <body class="masthead">

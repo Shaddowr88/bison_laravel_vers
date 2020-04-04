@@ -1,11 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\copro;
-use App\appartement;
 use App\Batiment;
 use App\copros;
 use App\Http\Controllers\Controller;
-use App\partie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -19,7 +17,7 @@ class coProController extends Controller
       return view('backend.ilot.copro', ['copros'=>$copro]);
     }
 
-    public function viewByCopro (Request $request){
+    public function viewByCopro(Request $request){
         // Récupérer tous les bâtiments d'une même copropriété,
         $batiments = Batiment::where('copro_id',$request->id)->get();
         return view('backend.ilot.index', compact('batiments'));
@@ -30,7 +28,6 @@ class coProController extends Controller
         return view('backend.ilot.copro.coproAdd', [
             'copros' => $copros,
         ]);
-        dd($copros);
     }
 
 
@@ -66,20 +63,17 @@ class coProController extends Controller
         $request->validate([
             'name' => 'required|max:25',
             'ville'=> 'required|max:25','cp',
-            'photo_principale'=>'required|image|max:1999'
         ]);
         if ($request->hasFile('photo_principale')) {
             $fileName = $request->file('photo_principale')->getClientOriginalName();
             $request->file('photo_principale')->storeAs('public/uploads', $fileName);
             $img = Image::make($request->file('photo_principale')->getRealPath());
-            $img->insert(public_path('img/favicon.png'), 'bottom-right', 10, 10);
             $img->save('storage/uploads/'. $fileName);
             $copros->photo_principale = $fileName;
         }
         $copros->name = $request->name;
         $copros->ville = $request->ville;
         $copros->cp = $request->cp;
-        $copros->photo_principale = $fileName;
         $copros->save();
         return redirect()->route('backend_homepage')
             ->with('notice','Batiment a bien été modifié');

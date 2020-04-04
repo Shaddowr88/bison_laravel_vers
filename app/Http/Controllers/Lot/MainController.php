@@ -102,7 +102,7 @@ class MainController extends Controller
             $fileName = $request->file('photo_principale')->getClientOriginalName();
             $request->file('photo_principale')->storeAs('public/uploads', $fileName);
             $img = Image::make($request->file('photo_principale')->getRealPath());
-            $img->insert(public_path('img/favicon.png'), 'bottom-right', 10, 10);
+//            $img->insert(public_path('img/favicon.png'), 'bottom-right', 10, 10);
 //            dd($fileName);
             $img->save('storage/uploads/'. $fileName);
             $batiments->photo_principale = $fileName;

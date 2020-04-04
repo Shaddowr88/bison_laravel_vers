@@ -42,15 +42,15 @@ Route::middleware('auth.admin')->group(function (){
 
     //acceuille securisé admin liste co-pro
     Route::get('/backend','copro\coProController@index')->name('backend_homepage');
-// CRUD CoPropriete
 
+    // CRUD CoPropriete
     Route::get('coPro/add','copro\coProController@add')->name('coPro_add');
     Route::post('/backend/coPro/store','copro\coProController@store')->name('backend_coPro_store');
     Route::get('/backend/coPro/edit/{id}','copro\coProController@edit')->name('backendCoProEdit');
-    Route::post('/backend/coPro/update','copro\coProController@update')->name('backendCoProUpdate');
+    Route::post('/backend/coPro/update/{id}','copro\coProController@update')->name('backendCoProUpdate');
     Route::get('coPro/delete','copro\coProController@delete')->name('coProDelete');
-
     Route::get('/viewByCopro/{id}','copro\coProController@viewByCopro')->name('backend_viewByCopro');
+
     //liste batiments
     Route::get('/copro','Lot\MainController@index')->name('copro');
     Route::get('/add','Lot\MainController@add')->name('backend_add');
@@ -60,10 +60,13 @@ Route::middleware('auth.admin')->group(function (){
     Route::get('/view/{id}','Lot\MainController@viewByBatiment')->name('backend_viewByBatiment');
     Route::post('/backend/ilot/update','lot\MainController@update')->name('backend_ilot_update');
     Route::get('/backend/ilot/delete','lot\MainController@delete')->name('backend_ilot_delete');
+
     //gestion des appartement
     Route::get('/appartement','Lot\AppartementController@index')->name('backend_appartement');
+
     //Gestions des messages
     Route::get('/message','Lot\MessagesController@index')->name('messages_ask');
+
     //gestion de l'annuaire
     Route::get('/book','Lot\BooksController@index')->name('Books_index');
     Route::get('/book_syndic','Lot\BooksController@syndic')->name('Books_syndic');
