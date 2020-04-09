@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Bizon') }}</title>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="{{asset('https://fonts.googleapis.com/css?family=Nunito')}}" rel="stylesheet">
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
     <!-- Styles -->
     <script src={{asset("https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")}}></script>
@@ -18,7 +18,7 @@
     <script src={{asset("https://cdn.zingchart.com/zingchart.min.js")}}></script>
     <title>Dashbison-Admin </title>
     <!-- Custom fonts for this template-->
-    <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+
     <link href="{{asset('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i')}}"
           rel="stylesheet">
     <!-- Custom styles for this template-->
@@ -156,11 +156,8 @@
             <li class="nav-item dropdown no-arrow">
                 <ul>
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
+                        <div>
+                            <a class="mt-2 btn" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
@@ -195,7 +192,14 @@
         </ul>
     </nav>
     @yield('dashMain')
+    <script>
+        import InterventionsChart from "../../js/components/interventionsChart";
+        import BlocChartIntervention from "../../js/components/blocChartIntervention";
 
-{{--@yield('dashMain')--}}
+        export default {
+            components: {BlocChartIntervention, InterventionsChart}
+        }
+    </script>
 </body>
 </html>
+

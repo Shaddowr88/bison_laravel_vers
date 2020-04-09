@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dash;
 
 use App\appartement;
 use App\Batiment;
+use App\budget;
 use App\Http\Controllers\Controller;
 use App\Intervenant;
 use App\partie;
@@ -13,11 +14,26 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    //
+    // réccuperer les date de création des datas
+    function getAllMonths(){
+        $mounth_array = array();
+        $budgetDates= batiment::orderBy('created_at','ASC')->pluck('created_at');
+        $budgetDates=json_decode($budgetDates);
 
-    public function index(){
-//        $batiments = Batiment::all();
-        return view('backend/index');
+        if (! empty($budgetDates)){
+            foreach ($budgetDates as $unformattedDate){
+                $date = new \DateTime($unformattedDate);
+       //reccupere les mois par numeros
+                $monthNo = $date->format('m');
+       //reccupere les mois par nom
+                $monthName = $date->format('M');
+                $monthArray[$monthNo] = $monthName;
+            }
+        }
+        // retourne le mois de décembre
+        //return $this->getMonthBudget(12);
+      // return view('backend/index');
+        return $monthArray;
 
 //        {
 //
@@ -35,10 +51,48 @@ class MainController extends Controller
 //                'parties_id' => $parties_id,
 //
 //            ]);
-
-
-
     }
+
+// trier les données par mois
+    function getMonthBudget( $month){
+        $MouthBudgetCount = Batiment::whereMonth('created_at', $month)->get()->count();
+       // retourne toute les donné en fonction d'un mois ( décembre )
+        return $MouthBudgetCount;
+    }
+
+// réccuperé les données par mois
+    function getMonthBudgetData(){
+        $monthBudgetCountArray = array();
+        $monthArray = $this->getAllMonths();
+        $monthNameArray = array();
+        if (! empty($monthArray)){
+// crée un tableau
+            foreach ($monthArray as $monthNo => $monthName){
+                $monthBudgetCount = $this->getMonthBudget($monthNo);
+                array_push( $monthBudgetCountArray, $monthBudgetCount);
+                array_push($monthNameArray, $monthName );
+            }
+        }
+
+        //$monthArray = $this->getAllMonths();
+        $maxNo = max( $monthBudgetCountArray);
+        $max = round(($maxNo + 10/2) /10 )*10;
+        $monthBudgetDataArray = array(
+            'months' => $monthArray,
+            'budgetCountData' => $monthBudgetCountArray,
+            'max'=> $maxNo,
+        );
+
+        //return $monthBudgetDataArray;
+         return view('backend/index', [
+             'month' => $monthArray,
+             'budgetCountData' =>$monthBudgetCountArray,
+             ]);
+    }
+
+
+
+
 
     public function declaration()
     {

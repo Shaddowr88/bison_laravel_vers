@@ -7,7 +7,6 @@
 <script>
 
     import barInterv from './blocChartIntervention'
-
     export default {
         components: {
             barInterv

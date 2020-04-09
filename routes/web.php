@@ -12,7 +12,7 @@ Route::post('/login/bison','Auth\LoginController@loginBison')->name('login_bison
 //Route::post('/login', function () {return view('auth/login'));
     //Login
 Route::get('/register', function () {return view('auth/register');});
-Route::get('/dash',"Dash\MainController@index")->name("dashbord_index");
+Route::get('/dash',"Dash\MainController@getMonthBudgetData")->name("dashbord_index");
 Route::get('/message', function () {return view('backend/message');});
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('dash');
