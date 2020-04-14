@@ -4,11 +4,20 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+        <div id="navbarDropdown" class="nav-link dropdown-toggle"
+             href="#" role="button" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}
         </div>
-        <div id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} </div>
       </a>
+      <div>
+        <a class="mt-2 btn" href="{{ route('logout') }}"
+           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+          {{ __('Logout') }}
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          @csrf
+        </form>
+      </div>
       <!--Nav Item - Dashboard -->
       <li class="nav-item active">
         <a class="nav-link" href="#">
@@ -17,13 +26,12 @@
       </li>
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+        <p class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
            aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
           <!-- menus de navigation -->
-          <span>Batiment</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+         Batiment
+        </p>
+        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header"></h6>
             <a class="collapse-item" href="{{route('backend_add')}}">Ajouter</a>
@@ -33,12 +41,18 @@
       </li>
       <!-- Nav Item - Utilities Collapse Menu Messages -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-           aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed"
+           href="#" data-toggle="collapse"
+           data-target="#collapseUtilities"
+           aria-expanded="true"
+           aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
-          <span>Message</span>
+          Message
         </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div id="collapseUtilities"
+             class="collapse"
+             aria-labelledby="headingUtilities"
+             data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header"></h6>
             <a class="collapse-item" href=href="{{route('messages_ask')}}">Message</a>
@@ -52,7 +66,7 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
            aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
-          <span>Annuaire</span>
+          Annuaire
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -69,7 +83,7 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsedoc"
            aria-expanded="true" aria-controls="collapsedoc">
           <i class="fas fa-fw fa-folder"></i>
-          <span>Documents</span>
+          Documents
         </a>
         <div id="collapsedoc" class="collapse" aria-labelledby="headingDoc" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -81,8 +95,9 @@
         </div>
       </li>
     </ul>
-    <div class="col-sm">
+    <div class="col-sm p-5" style="background: whitesmoke;">
       @yield('dash')
     </div>
   </div>
+  <script>$('#myCollapsible').collapse('hide')</script>
 @endsection

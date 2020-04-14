@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Lot;
 use App\Appartement;
 use App\Batiment;
 use App\copros;
+use App\depense;
 use App\Http\Controllers\Controller;
+use App\LabelBudget;
 use App\partie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,6 +20,8 @@ class MainController extends Controller
     {
         $batiment = DB::table('batiments')
             ->orderBy('created_at','desc')->paginate(8);
+
+        dd($batiment);
         return view('backend.ilot.index', ['batiments'=>$batiment]);
     }
 
@@ -138,4 +142,20 @@ class MainController extends Controller
             'parties' => $parties,
         ]);
     }
+
+    public function viewBySpend (Request $request){
+        $speds = Depense::all();
+        $labels = LabelBudget::all();
+        $sped = Depense::find($request->id);
+        $labels_id=[];
+        foreach ($sped->Labels as $p) {
+            $labels_id[]=$p->id;
+        }
+        return view('backend.ilot.view', ['speds' => $speds,
+            'sped' => $sped,
+            'labels_id' => $labels_id,
+            ' labels' =>  $labels,
+        ]);
+    }
+
 }

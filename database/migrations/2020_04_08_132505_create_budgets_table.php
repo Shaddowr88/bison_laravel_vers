@@ -15,9 +15,8 @@ class CreateBudgetsTable extends Migration
     {
         Schema::create('budgets', function (Blueprint $table) {
 
-                $table->bigIncrements('id');
-                $table->float('montent');
-                $table->string('type');
+                $table->bigIncrements('id');;
+                $table->float('budget');
                 $table->unsignedBigInteger('copro_id');
                 $table->foreign('copro_id')->references('id')->on('copros')->onDelete('cascade');
                 $table->timestamps();

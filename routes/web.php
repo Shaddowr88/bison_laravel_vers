@@ -6,21 +6,21 @@
 |--------------------------------------------------------------------------
 */
 Route::get('/acceuil', function () {return view('bison');});
-Route::get('/', 'HomeController@index')->name('homepage');
+Route::get('/', "Dash\MainController@indexProprio")->name('homepage');
 //Route::get('/login','Auth\LoginController@loginBison')->name('login_bison');
 Route::post('/login/bison','Auth\LoginController@loginBison')->name('login_bison');
 //Route::post('/login', function () {return view('auth/login'));
     //Login
 Route::get('/register', function () {return view('auth/register');});
-Route::get('/dash',"Dash\MainController@getMonthBudgetData")->name("dashbord_index");
+//Route::get('/dash',"Dash\MainController@getMonthBudgetData")->name("dashbord_index");
+Route::get('/dash',"Dash\MainController@indexProprio")->name("dashbord_index");
 Route::get('/message', function () {return view('backend/message');});
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('dash');
     //Message
 Route::get('/message02','Dash\MainController@declaration')->name ('Users_message02');
-
 // fonction utilisateur
-    //menus annuaire
+//menus annuaire
 Route::get('/contact_syndic', "Dash\MainController@contact_syndic")->name("contact_syndic");
 Route::get('/contact_utile', "Dash\MainController@contact_prestataire")->name("contact_prestataire");
 Route::get('/contact_prestataire', "Dash\MainController@contact_utility")->name("contact_utility");
@@ -50,6 +50,10 @@ Route::middleware('auth.admin')->group(function (){
     Route::post('/backend/coPro/update/{id}','copro\coProController@update')->name('backendCoProUpdate');
     Route::get('coPro/delete','copro\coProController@delete')->name('coProDelete');
     Route::get('/viewByCopro/{id}','copro\coProController@viewByCopro')->name('backend_viewByCopro');
+
+
+    // CRUD Buget et dépence
+    Route::get('/viewBudget/{id}','copro\coProController@viewBySpend')->name('backend_viewBySpend');
 
     //liste batiments
     Route::get('/copro','Lot\MainController@index')->name('copro');

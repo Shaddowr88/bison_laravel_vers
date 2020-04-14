@@ -1,36 +1,38 @@
 @extends('layouts/dashAdmin')
 @section('dash')
     @if (session('notice'))
-
 {{--        Auto dismiss message script--}}
-<script>
-    $("document").ready(function(){
-        setTimeout(function(){
-            // $("div.alert").animate({left: '250px'});
-            $("div.alert").remove();
-        }, 2000 ); // 2 secs
-    });
-</script>
-        <div class=" modal fade alert alert-success col-6 mt-5" role="alert">
-{{--            <button type="button" class="close" data-dismiss="alert" aria-label="Close">--}}
-{{--                <span aria-hidden="true">&times;</span>--}}
-{{--            </button>--}}
+
+
+        <div class=" modal fade alert alert-success col-6 mt-5"
+             role="alert">
             <h4 class="alert-heading">{{ session('notice') }}</h4>
             <hr>
         </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-             aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+        <div class="modal fade"
+             id="exampleModal"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog"
+                 role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title"
+                            id="exampleModalLabel">Modal title</h5>
                     </div>
                     <div class="modal-body">
                         ...
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button"
+                                class="btn btn-secondary"
+                                data-dismiss="modal">Close
+                        </button>
+                        <button type="button"
+                                class="btn btn-primary">Save changes
+                        </button>
                     </div>
                 </div>
             </div>
@@ -54,37 +56,54 @@
                             @endif
                         </div>
                     <table class="table-sm table-striped table-sm text-center ">
-                        <thead class="table-primary">
-                        <tr class="text-center" style="text-transform: capitalize">
-                            <th class="w-25 p-3"></th>
+                        <thead class="#" >
+                        <tr class="text-center"
+                            style="text-transform: capitalize">
+                            <th class="w-25 p-1"></th>
                             <th>Batiment</th>
                             <th>Etage</th>
                             <th>Adresse</th>
-                            <th>Actions</th>
+                            <th></th>
                         </tr>
                         </thead>
+
                         <tbody>
                         @foreach($batiments as $batiment)
                             <tr>
-                                <td>
-                                    <a href="{{route('backend_viewByBatiment',
-                                           ['id'=>$batiment->id]) }}">
-                                        <img class="w-50 p-6 rounded"
+                                <td style="background: whitesmoke">
+                                    <a href="{{route('backend_viewByBatiment',['id'=>$batiment->id]) }}">
+                                        <img class="w-50 rounded"
                                              src="{{asset('storage/uploads/'.$batiment->photo_principale)}}"
                                              alt="{{$batiment->nom}}">
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{route('backend_viewByBatiment',
-                                    ['id'=>$batiment->id]) }}">{{$batiment->nom}}</a>
+                                    <a style="
+                                        text-transform: capitalize;
+                                        text-decoration: none;
+                                        text-align-last: left;"
+                                       href="{{route('backend_viewByBatiment',['id'=>$batiment->id]) }}">
+                                        {{$batiment->nom}}
+                                    </a>
                                 </td>
                                 <td>{{$batiment->etage}}</td>
                                 <td>{{$batiment->adresse}}</td>
-                                <td>
+                                <td style="background: whitesmoke; margin-left: 4em;" >
+{{--                                    <button type="button" class="btn btn-secondary"--}}
+{{--                                            data-container="body" data-toggle="popover"--}}
+{{--                                            data-placement="left"--}}
+{{--                                            data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">--}}
+{{--                                        Popover on left--}}
+{{--                                    </button>--}}
+                                    <div class="row">
                                     <a href="{{route('backend_edit',['id'=>$batiment->id])}}"
-                                       class="btn btn-primary align-middle mt-1 ">Modifier</a>
-                                    <a onclick="return(confirm('sans regret ? '))" href="{{route('backend_ilot_delete',
-                                        ['id'=>$batiment->id]) }}" class="btn btn-danger mt-1 ">Supprimer</a>
+                                       class="btn align-middle">Modifier</a>
+                                    </div>
+                                    <div class="row">
+                                    <a onclick="return(confirm('sans regret ? '))"
+                                       href="{{route('backend_ilot_delete',['id'=>$batiment->id]) }}"
+                                       class="btn align-middle">Supprimer</a>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -114,26 +133,51 @@
                 </div>
             </div>
         </div>
+        @foreach($budgets as $budget)
         <div class="col-lg-3 col-md-6">
             <div class="card card-stats">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-5">
-                            <div class="info-icon text-center icon-primary">
-                                <i class="tim-icons icon-shape-star"></i>
+                        <div class="col-4">
+                            <div class="info-icon text-center icon-success">
+                                <i class="tim-icons icon-single-02"></i>
                             </div>
                         </div>
-                        <div class="col-7">
+                        <div   class=" col-8  btn" data-toggle="modal" data-target="#exampleModal">
                             <div class="numbers">
-                                <p class="card-category">intervention</p>
-                                <h3 class="card-title">45</h3>
+                                <p class="card-category">Budget</p>
+                                <h3 class="card-title"> {{$budget->budget}} €</h3>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                         role="dialog" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
 
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
+        @endforeach
+{{--@foreach($budgets as $budget)--}}
         <div class="col-lg-3 col-md-6">
             <div class="card card-stats">
                 <div class="card-body">
@@ -143,34 +187,60 @@
                                 <i class="tim-icons icon-single-02"></i>
                             </div>
                         </div>
-                        <div class="col-7">
+                        <div   class=" col-7  btn" data-toggle="modal" data-target="#exampleModal">
                             <div class="numbers">
-                                <p class="card-category">Due</p>
-                                <h3 class="card-title">150</h3>
+                                <p class="card-category">Intervention</p>
+
+                                <h3 class="card-title">3</h3>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="card card-stats">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-5">
-                            <div class="info-icon text-center icon-danger">
-                                <i class="tim-icons icon-molecule-40"></i>
-                            </div>
-                        </div>
-                        <div class="col-7">
-                            <div class="numbers">
-                                <p class="card-category"> Année </p>
-                                <h3 class="card-title">12</h3>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                         role="dialog" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+{{--                                    {{$budgets}}--}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
+{{--    @endforeach--}}
     </div>
+
+
+    <script>
+        $("document").ready(function(){
+            setTimeout(function(){
+                // $("div.alert").animate({left: '250px'});
+                $("div.alert").remove();
+            }, 2000 ); // 2 secs
+        });
+
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        });
+
+        $(function () {
+            $('.example-popover').popover({
+                container: 'body'
+            })
+        })
+    </script>
 @endsection

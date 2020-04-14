@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\copro;
 use App\Batiment;
+use App\budget;
 use App\copros;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -18,9 +19,13 @@ class coProController extends Controller
     }
 
     public function viewByCopro(Request $request){
-        // Récupérer tous les bâtiments d'une même copropriété,
+    // Récupérer tous les bâtiments d'une même copropriété,
         $batiments = Batiment::where('copro_id',$request->id)->get();
-        return view('backend.ilot.index', compact('batiments'));
+        $budgets= Budget::where('copro_id',$request->id)->get();
+        return view('backend.ilot.index', [
+            'budgets' => $budgets,
+            'batiments' => $batiments
+        ]);
     }
 
     public function add() {
@@ -29,8 +34,6 @@ class coProController extends Controller
             'copros' => $copros,
         ]);
     }
-
-
 
     public function store(Request $request){
         $request->validate([
@@ -57,9 +60,8 @@ class coProController extends Controller
             ->with('notice', 'le programme'.$copros->name.'a été crée');
     }
 
-
     public function update (Request $request){
-        $copros = copros::find($request->id);
+        $copros = copros::find( );
         $request->validate([
             'name' => 'required|max:25',
             'ville'=> 'required|max:25','cp',
@@ -79,7 +81,6 @@ class coProController extends Controller
             ->with('notice','Batiment a bien été modifié');
     }
 
-
     public function delete(Request $request){
         $copros = copros::find($request->id);
         $copros->delete ();
@@ -98,9 +99,6 @@ class coProController extends Controller
             'photo_principale'=>'required|image|max:1999',
         ]);
     }
-
-
-
 
 }
 

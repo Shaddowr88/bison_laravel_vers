@@ -10,8 +10,8 @@
                          src="{{asset('storage/uploads/'.$batiment->photo_principale)}}"
                          alt="{{$batiment->nom}}">
             </a>
-            <div class="col-7">
-        <div class="card mb-3 p-5">
+            <div class="col-7"style="display: block; position: absolute; margin-top: 3em">
+        <div class="card mb-3 p-5 ">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
                 <h1 class="h2">Batiment {{$batiment->nom}} </h1>
                 <div class="btn-toolbar mb-md-0">
