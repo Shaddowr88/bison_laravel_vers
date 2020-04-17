@@ -31,7 +31,7 @@
                         @foreach($copros as $copro)
 
 
-                            <div class="card m-3 shadow-sm" style="max-width: 35vh;">
+                            <div class="card m-2 shadow-sm" style="max-width: 35vh;">
                                 <div class="row no-gutters align-content-center" href="{{route('backend_viewByCopro',['id'=>$copro->id]) }}">
                                     <div class="col-md-6">
                                         <img src="{{asset('storage/uploads/'.$copro->photo_principale)}}" href="{{route('backend_viewByCopro',['id'=>$copro->id]) }}" class="card-img h-100 " alt="{{$copro->name}}">

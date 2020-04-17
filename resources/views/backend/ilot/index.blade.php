@@ -11,13 +11,14 @@
                 <div>
                         <div class="row">
                             <div class="col-sm-6 text-left">
+                                <h2 style="color: #2e59d9; text-transform: uppercase;"><strong>{{$copro->name}}</strong></h2>
                                 <h5 class="card-category"></h5>
                                 @if (count($batiments) === 1)
-                                    <h2 class="card-title">Bâtiment</h2>
+                                    <h3 class="card-title">Bâtiment</h3>
                                 @elseif (count($batiments) > 1)
-                                    <h2 class="card-title">Bâtiments</h2>
+                                    <h3 class="card-title">Bâtiments</h3>
                                 @else
-                                    <h2 class="card-title">Aucun bâtiment disponible ! </h2>
+                                    <h3 class="card-title">Aucun bâtiment disponible ! </h3>
                                     <a>Cliquez</a> <a href="{{route('backend_add')}}"> <strong>ici</strong></a> <a>pour en ajouter.</a>
                                 @endif
                             </div>
