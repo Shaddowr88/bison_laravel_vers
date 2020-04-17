@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\copro;
 use App\Batiment;
 use App\budget;
+use App\Charts\budgetChart;
 use App\copros;
+use App\Depense;
 use App\Http\Controllers\Controller;
+use App\watter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -21,10 +24,22 @@ class coProController extends Controller
     public function viewByCopro(Request $request){
     // Récupérer tous les bâtiments d'une même copropriété,
         $batiments = Batiment::where('copro_id',$request->id)->get();
+
+        $copro = copros::find($request->id);
+
+        //$copros = copros::where('id',$request->id)->get();
         $budgets= Budget::where('copro_id',$request->id)->get();
+        $spent = depense::all()->pluck('created_at','tarif');
+        $spentWatter = watter::all()->pluck('created_at','tarif');
+        $chart = new budgetChart();
+        $chart->labels($spent->values());
+        $chart->dataset('eau', 'line',$spentWatter->keys())->backgroundColor('rgba(33,231,249,20)');
+        $chart->dataset('Intervention', 'line',$spent->keys())->backgroundColor('rgba(0,119,255,20)');
         return view('backend.ilot.index', [
             'budgets' => $budgets,
-            'batiments' => $batiments
+            'batiments' => $batiments,
+            'chart' => $chart,
+            'copro'=>$copro,
         ]);
     }
 
@@ -61,7 +76,7 @@ class coProController extends Controller
     }
 
     public function update (Request $request){
-        $copros = copros::find( );
+        $copros = copros::find($request->id );
         $request->validate([
             'name' => 'required|max:25',
             'ville'=> 'required|max:25','cp',

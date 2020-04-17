@@ -47,18 +47,13 @@
                     <label for="cp"></label>
                     <input placeholder="code Postal" type="text" class="form-control" id="cp" name="cp">
                 </div>
-
             </div>
-
             <div class="form-row">
 
                 <div class="form-group col-md-8">
                     <label for="ville">Ville</label>
                     <textarea type="text" class="form-control" name="ville" id="ville"></textarea>
                 </div>
-
-
-
             </div>
             <button type="submit" class="btn btn-primary">Valider</button>
             <div class="form-row">
@@ -67,5 +62,13 @@
                 </div>
             </div>
         </form>
+        <script>
+            $("document").ready(function(){
+                setTimeout(function(){
+                    // $("div.alert").animate({left: '250px'});
+                    $("div.alert").remove();
+                }, 2000 ); // 2 secs
+            });
+        </script>
     </main>
 @endsection

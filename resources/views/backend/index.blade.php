@@ -16,6 +16,7 @@
             <div class="card m-4 col-3 d-flex p-2 bd-highlight">
             </div>
         </div>
+        </div>
 {{--    </div>{!! $chWatter ->script() !!}--}}
 @endsection
 

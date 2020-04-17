@@ -44,8 +44,8 @@ class MainController extends Controller
     public function store(Request $request){
         $request->validate([
             'nom' => 'required|max:25',
-            'numero','etage','adresse',
-            'description','batiment_id',
+            'numero'=> 'required|max:3','etage'=> 'required|max:20','adresse'=> 'required|max:25',
+            'description'=> 'required|max:255','batiment_id'=> 'required|max:25',
             'copro_id', 'photo_principale'=>'required|image|max:1999'
         ]);
 
@@ -129,6 +129,7 @@ class MainController extends Controller
     }
 
     public function viewByBatiment (Request $request){
+
         $batiments = Batiment::all();
         $parties = partie::all();
         $batiment = Batiment::find($request->id);

@@ -1,5 +1,5 @@
 @extends('errors::minimal')
 
-@section('title', __('Page Expired'))
+@section('title', __('Séssion a expiré'))
 @section('code', '419')
-@section('message', __('Reviens me voir'))
+@section('message', __('Veuillez cliquer sur le bouton pour vous connecter '))

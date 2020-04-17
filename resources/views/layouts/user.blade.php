@@ -36,7 +36,7 @@
                         <div class="card-body">
                             <ul class="nav-item" style="list-style: none;">
                                 <li> <a class="collapse-item" href="{{route('my_index')}}">Evenement</a></li>
-                                <li> <a class="collapse-item" href="{{route('signal')}}" >Signalé</a></li>
+                                <li> <a class="collapse-item" href="{{route('signal')}}" >Signaler</a></li>
                             </ul>
                         </div>
                     </div>
@@ -53,8 +53,8 @@
                         <div class="card-body">
                             <ul class="nav-item" style="list-style: none;">
                                 <li><a class="collapse-item" href="{{route('contact_syndic')}}" >Syndic</a></li>
-                                <li><a class="collapse-item" href="{{route('contact_prestataire')}}" >prestataire</a></li>
-                                <li><a class="collapse-item" href="{{route('contact_utility')}}" >numero utiles</a></li>
+                                <li><a class="collapse-item" href="{{route('contact_prestataire')}}" >Prestataires</a></li>
+                                <li><a class="collapse-item" href="{{route('contact_utility')}}" >N° utiles</a></li>
                             </ul>
                         </div>
                     </div>

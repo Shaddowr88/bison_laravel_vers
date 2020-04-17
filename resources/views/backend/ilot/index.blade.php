@@ -1,41 +1,8 @@
 @extends('layouts/dashAdmin')
 @section('dash')
     @if (session('notice'))
-{{--        Auto dismiss message script--}}
-
-
-        <div class=" modal fade alert alert-success col-6 mt-5"
-             role="alert">
-            <h4 class="alert-heading">{{ session('notice') }}</h4>
-            <hr>
-        </div>
-        <div class="modal fade"
-             id="exampleModal"
-             tabindex="-1"
-             role="dialog"
-             aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog"
-                 role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title"
-                            id="exampleModalLabel">Modal title</h5>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button"
-                                class="btn btn-secondary"
-                                data-dismiss="modal">Close
-                        </button>
-                        <button type="button"
-                                class="btn btn-primary">Save changes
-                        </button>
-                    </div>
-                </div>
-            </div>
+        <div class="alert alert-success float w-25">
+            {{ session('notice') }}
         </div>
     @endif
     <div class="col-xl-12 col-md-6 mb-4">
@@ -45,7 +12,14 @@
                         <div class="row">
                             <div class="col-sm-6 text-left">
                                 <h5 class="card-category"></h5>
-                                <h2 class="card-title">batiments</h2>
+                                @if (count($batiments) === 1)
+                                    <h2 class="card-title">Bâtiment</h2>
+                                @elseif (count($batiments) > 1)
+                                    <h2 class="card-title">Bâtiments</h2>
+                                @else
+                                    <h2 class="card-title">Aucun bâtiment disponible ! </h2>
+                                    <a>Cliquez</a> <a href="{{route('backend_add')}}"> <strong>ici</strong></a> <a>pour en ajouter.</a>
+                                @endif
                             </div>
                             @if ($errors->any())
                                 <div class="alert-danger">
@@ -55,22 +29,25 @@
                                 </div>
                             @endif
                         </div>
+                    <div class="popover" role="popover"><div class="popover-arrow"></div><div class="popover-inner"></div></div>
+
+{{--                    Liste de batiment s'il en à au moins 1--}}
+                    @if (count($batiments) > 0)
                     <table class="table-sm table-striped table-sm text-center ">
                         <thead class="#" >
                         <tr class="text-center"
                             style="text-transform: capitalize">
-                            <th class="w-25 p-1"></th>
-                            <th>Batiment</th>
-                            <th>Etage</th>
+                            <th class="w-25 h-50 p-1"></th>
+                            <th>Bâtiment</th>
+                            <th>Étage</th>
                             <th>Adresse</th>
                             <th></th>
                         </tr>
                         </thead>
-
                         <tbody>
                         @foreach($batiments as $batiment)
                             <tr>
-                                <td style="background: whitesmoke">
+                                <td style="background: white">
                                     <a href="{{route('backend_viewByBatiment',['id'=>$batiment->id]) }}">
                                         <img class="w-50 rounded"
                                              src="{{asset('storage/uploads/'.$batiment->photo_principale)}}"
@@ -88,18 +65,18 @@
                                 </td>
                                 <td>{{$batiment->etage}}</td>
                                 <td>{{$batiment->adresse}}</td>
-                                <td style="background: whitesmoke; margin-left: 4em;" >
+                                <td style="background:white; margin-left: 4em;" >
 {{--                                    <button type="button" class="btn btn-secondary"--}}
 {{--                                            data-container="body" data-toggle="popover"--}}
 {{--                                            data-placement="left"--}}
 {{--                                            data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">--}}
 {{--                                        Popover on left--}}
 {{--                                    </button>--}}
-                                    <div class="row">
+                                    <div class="row overflow-auto pl-4">
                                     <a href="{{route('backend_edit',['id'=>$batiment->id])}}"
                                        class="btn align-middle">Modifier</a>
                                     </div>
-                                    <div class="row">
+                                    <div class="row overflow-auto pl-4">
                                     <a onclick="return(confirm('sans regret ? '))"
                                        href="{{route('backend_ilot_delete',['id'=>$batiment->id]) }}"
                                        class="btn align-middle">Supprimer</a>
@@ -113,106 +90,121 @@
             </div>
         </div>
     </div>
-    <div class="row p-5" >
-        <div class="col-lg-3 col-md-6 mb-3">
-            <div class="card card-stats">
+    <div class="row p-5 overflow-auto " >
+        <div class="col-lg-4 col-md-6">
+            <div class="card card-stats" id="mycard">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-5">
-                            <div class="info-icon text-center icon-warning">
-                                <i class="tim-icons icon-chat-33"></i>
-                            </div>
-                        </div>
-                        <div class="col-7">
+                        <div   class=" btn" data-toggle="modal" data-target="#intervenantModal">
                             <div class="numbers">
-                                <p class="card-category">Prestataire</p>
-                                <h3 class="card-title">15</h3>
+                                <p class="card-category" id="mytextW">Prestataires</p>
+                                <h5 class="card-title" id="mytextW">5</h5>
                             </div>
                         </div>
                     </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="intervenantModal" tabindex="-1"
+                         role="dialog" aria-labelledby="intervenantModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="intervenantModalLabel">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    {{--                                    {{$budgets}}--}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                    <button type="button" class="btn btn-primary">Ok</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
         @foreach($budgets as $budget)
-        <div class="col-lg-3 col-md-6">
-            <div class="card card-stats">
+        <div class="col-lg-4 col-md-6">
+            <div class="card card-stats" id="mycard">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-4">
-                            <div class="info-icon text-center icon-success">
-                                <i class="tim-icons icon-single-02"></i>
-                            </div>
-                        </div>
-                        <div   class=" col-8  btn" data-toggle="modal" data-target="#exampleModal">
+                        <div   class=" btn" data-toggle="modal" data-target="#exampleModal">
                             <div class="numbers">
-                                <p class="card-category">Budget</p>
-                                <h3 class="card-title"> {{$budget->budget}} €</h3>
+                                <p class="card-category"id="mytextW">Budget</p>
+                                <h5 class="card-title" id="mytextW"> {{$budget->budget}} €</h5>
                             </div>
                         </div>
                     </div>
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1"
                          role="dialog" aria-labelledby="exampleModalLabel"
-                         aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
+                         aria-hidden="true" >
+                        <div class="modal-dialog" style="max-width:70em; " role="document">
+                            <div class="modal-content" style="background-color:rgba(225, 226, 238, 0.9);">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel" style="font-size: 30px;
+                                    background: -webkit-linear-gradient(90deg, rgba(33,188,249,0.8925945378151261) 0%, rgba(0,153,255,1) 95%);
+                                    -webkit-background-clip: text;
+                                    -webkit-text-fill-color: transparent;"> <strong>{{$copro->name}} </strong><br> Budget {{$budget->budget}} €</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-
+                                    <div class="row ">
+                                        <a href="#"></a>
+                                        <div  class="col-11 pb-4 " style="max-height: 30em;  ">
+                                            test
+                                            {!! $chart->container() !!}
+                                            {!! $chart ->script() !!}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                <div class="p-2">
+{{--                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>--}}
+                                    <button type="button" class="btn btn-primary">Modifier</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
         @endforeach
-{{--@foreach($budgets as $budget)--}}
-        <div class="col-lg-3 col-md-6">
-            <div class="card card-stats">
+        <div class="col-lg-4 col-md-6" >
+            <div class="card card-stats" id="mycard">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-5">
-                            <div class="info-icon text-center icon-success">
-                                <i class="tim-icons icon-single-02"></i>
-                            </div>
-                        </div>
-                        <div   class=" col-7  btn" data-toggle="modal" data-target="#exampleModal">
+                        <div   class=" btn" data-toggle="modal" data-target="#intervenantModal">
                             <div class="numbers">
-                                <p class="card-category">Intervention</p>
-
-                                <h3 class="card-title">3</h3>
+                                <p class="card-category" id="mytextW">Interventions</p>
+                                <h5 class="card-title" id="mytextW">5</h5>
                             </div>
                         </div>
                     </div>
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1"
-                         role="dialog" aria-labelledby="exampleModalLabel"
+                    <div class="modal fade" id="intervenantModal" tabindex="-1"
+                         role="dialog" aria-labelledby="intervenantModalLabel"
                          aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <h5 class="modal-title" id="intervenantModalLabel">Modal title</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-{{--                                    {{$budgets}}--}}
+                                    {{--                                    {{$budgets}}--}}
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                    <button type="button" class="btn btn-primary">Ok</button>
                                 </div>
                             </div>
                         </div>
@@ -221,9 +213,16 @@
                 </div>
             </div>
         </div>
-{{--    @endforeach--}}
-    </div>
 
+    </div>
+    @endif
+
+    <style>
+        #mycard{box-shadow: 5px 10px 30px rgb(33,188,249);}
+
+        /*#mytextW{color:white}*/
+
+    </style>
 
     <script>
         $("document").ready(function(){
@@ -234,13 +233,18 @@
         });
 
         $(function () {
-            $('[data-toggle="popover"]').popover()
+            $('[data-toggle="popover"]').popover();
+            $('.example-popover').popover({container: 'body'});
+            //$('[data-toggle="popover"]').popover();
+            $('.popover-dismiss').popover({trigger: 'focus'});
+            $("document").ready(function(){
+                setTimeout(function(){
+                    // $("div.alert").animate({left: '250px'});
+                    $("div.alert").remove();
+                }, 2000 ); // 2 secs
+            });
         });
 
-        $(function () {
-            $('.example-popover').popover({
-                container: 'body'
-            })
-        })
+
     </script>
 @endsection
