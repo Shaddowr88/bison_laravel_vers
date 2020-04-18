@@ -36,8 +36,6 @@
                             <input type="file" class="form-control-file" id="photo_principale" name="photo_principale">
                         </div>
                     </div>
-
-
                 <div class="form-group col-md-6">
                     <label for="name"></label>
                     <input placeholder="Nom de la co-propriété" type="text" class="form-control" id="name" name="name">
