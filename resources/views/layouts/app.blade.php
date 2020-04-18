@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Login</title>
+  <title>Bizon votre gestionnaire de co-propriété</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href={{asset("./css/reset.css")}}>
@@ -12,6 +12,13 @@
   <script src={{asset("https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js")}}></script>
   <script src={{asset("https://cdn.zingchart.com/zingchart.min.js")}}></script>
   <script src={{asset("https://cdn.jsdelivr.net/npm/vue/dist/vue.js")}}></script>
+  <link rel="icon"  href={{asset("./img/favicon.png")}} />
+  <meta charset="utf-8">
+  ...
+  {{-- ChartScript --}}
+{{--  @if($usersChart)--}}
+{{--    {!! $usersChart->script() !!}--}}
+{{--  @endif--}}
 </head>
 
 <body class="masthead">

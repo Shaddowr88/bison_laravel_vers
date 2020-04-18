@@ -1,21 +1,39 @@
 @extends('layouts/dashAdmin')
 @section('dash')
-<div class="row">
+<div class="row rounded-circle" style="display: block; position: absolute; margin-top: 3em;">
+    <a href="{{route('backend_viewByBatiment',
+                 ['id'=>$batiment->id]) }}">
+        <img class="rounded" style="max-height:85vh; "
+             src="{{asset('storage/uploads/'.$batiment->photo_principale)}}"
+             alt="{{$batiment->nom}}">
+    </a>
    </div>
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <div class="card mb-3 p-5">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
-                <h1 class="h2">Batiment {{$batiment->nom}} </h1>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <div class="btn-group mr-2">
-                        <a class="btn btn-sm btn-outline-secondary" href="{{route('backend_viewByCopro',['id'=>$batiment->copro_id])}}">Lister les batiments</a>
+    <main role="main" class="col-md-9 col-lg-12 px-4">
+        <div class="row mt-5 h-50 shadow">
+
+            <div class="col-7" style="display: block; position: absolute; margin-top: 3em; ">
+            <div class="card mb-3 p-5 ">
+            <div class="d-flex overflow-auto justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 ml-5 h-50">
+                <h1 class="h2">Batiment <br> {{$batiment->nom}} </h1>
+                <div class="mt-2 ml-3 align-content-center p-2">
+                    <div class="btn-group m-1">
+                        <a class="btn btn-sm btn-outline-secondary"
+                           href="{{route('backend_viewByCopro',
+                           ['id'=>$batiment->copro_id])}}">
+                            Lister les batiments</a>
                     </div>
-                    <a href="{{route('backend_edit',['id'=>$batiment])}}" class="btn btn-sm btn-outline-secondary"> Modifier </a>
+
+                    <div class="btn-group m-1 ">
+                        <a href="{{route('backend_edit',['id'=>$batiment])}}"
+                           class="btn btn-sm btn-outline-secondary"> Modifier </a>
+                    </div>
+
+
                 </div>
             </div>
             <div class="card-body" id="parties" name="parties[]">
                 <h5 class="card-title">Batiment {{$batiment->adresse}}</h5>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+{{--                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>--}}
                 @foreach($parties as $partie)
                     @if(in_array($partie->id,$parties_id))
                         <span  class="badge badge-pill badge-primary">{{$partie->nom}}</span>
@@ -23,6 +41,8 @@
                         <span class="badge badge-pill badge-primary"></span>
                     @endif
                 @endforeach
+            </div>
+        </div>
             </div>
         </div>
             <div class="row">

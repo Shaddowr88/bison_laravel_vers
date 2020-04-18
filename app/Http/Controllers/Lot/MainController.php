@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Lot;
 use App\Appartement;
 use App\Batiment;
 use App\copros;
+use App\depense;
 use App\Http\Controllers\Controller;
+use App\LabelBudget;
 use App\partie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\ImageManagerStatic as Image;
 //use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MainController extends Controller
@@ -17,6 +20,8 @@ class MainController extends Controller
     {
         $batiment = DB::table('batiments')
             ->orderBy('created_at','desc')->paginate(8);
+
+        dd($batiment);
         return view('backend.ilot.index', ['batiments'=>$batiment]);
     }
 
@@ -31,6 +36,7 @@ class MainController extends Controller
             'appartements' => $appartements,
             'parties' => $parties,
             'copros' => $copros,
+
         ]);
     }
 
@@ -38,15 +44,25 @@ class MainController extends Controller
     public function store(Request $request){
         $request->validate([
             'nom' => 'required|max:25',
-            'numero','etage','adresse',
-            'description','batiment_id',
-            'copro_id',
+            'numero'=> 'required|max:3','adresse'=> 'required|max:25',
+            'batiment_id','copro_id', 'photo_principale'=>'required|image|max:1999'
         ]);
+
+        if ($request->hasFile('photo_principale')) {
+            $fileName = $request->file('photo_principale')->getClientOriginalName();
+            $request->file('photo_principale')->storeAs('public/uploads', $fileName);
+            $img = Image::make($request->file('photo_principale')->getRealPath());
+            $img->insert(public_path('img/favicon.png'), 'bottom-right', 10, 10);
+//            dd($fileName);
+            $img->save('storage/uploads/'. $fileName);
+        }
+
         $batiments = new Batiment();
         $batiments->nom = $request->nom;
         $batiments->numero = $request->numero;
         $batiments->adresse = $request->adresse;
         $batiments->copro_id = $request->copro_id;
+        $batiments->photo_principale = $fileName;
         $batiments->save();
         if($request->parties) {
             foreach ($request->parties as $id) {
@@ -55,7 +71,7 @@ class MainController extends Controller
         }
         return redirect()
             ->route('backend_viewByCopro',['id'=>$batiments->copro_id])
-            ->with('notice', 'le Batiment'.$batiments->nom.'a bien été ajouté');
+            ->with('notice', 'le Batiment' .$batiments->nom. 'a bien été ajouté');
     }
 
     public function edit (Request $request){
@@ -71,22 +87,38 @@ class MainController extends Controller
             'batiments' => $batiments,
             'parties' => $parties,
             'parties_id' => $parties_id,
+            'photo_principale'=>'required|image|max:1999',
         ]);
     }
-
 //update
     public function update (Request $request){
-        $request->validate(['nom','numero','adresse','batiment_id','parties']);
         $batiments = Batiment::find($request->id);
+        $request->validate(['nom',
+            'numero',
+            'adresse',
+            'batiment_id',
+            'parties',
+            'copro_id',
+            'etage',
+            ]);
+        if ($request->hasFile('photo_principale')) {
+            $fileName = $request->file('photo_principale')->getClientOriginalName();
+            $request->file('photo_principale')->storeAs('public/uploads', $fileName);
+            $img = Image::make($request->file('photo_principale')->getRealPath());
+//            $img->insert(public_path('img/favicon.png'), 'bottom-right', 10, 10);
+//            dd($fileName);
+            $img->save('storage/uploads/'. $fileName);
+            $batiments->photo_principale = $fileName;
+        }
+        $batiments->etage = $request->etage;
         $batiments->nom = $request->nom;
         $batiments->numero = $request->numero;
         $batiments->adresse = $request->adresse;
         $batiments->save();
         $batiments->parties()->sync($request->parties);
         return redirect()->route('backend_viewByCopro',['id'=>$batiments->copro_id])
-            ->with('notice','Batiment a bien été modifié');
+            ->with('notice','Batiment ' .$batiments->nom. ' a bien été modifié');
     }
-
 //fonction delete
     public function delete(Request $request){
         $batiment = Batiment::find($request->id);
@@ -96,6 +128,7 @@ class MainController extends Controller
     }
 
     public function viewByBatiment (Request $request){
+
         $batiments = Batiment::all();
         $parties = partie::all();
         $batiment = Batiment::find($request->id);
@@ -109,4 +142,20 @@ class MainController extends Controller
             'parties' => $parties,
         ]);
     }
+
+    public function viewBySpend (Request $request){
+        $speds = Depense::all();
+        $labels = LabelBudget::all();
+        $sped = Depense::find($request->id);
+        $labels_id=[];
+        foreach ($sped->Labels as $p) {
+            $labels_id[]=$p->id;
+        }
+        return view('backend.ilot.view', ['speds' => $speds,
+            'sped' => $sped,
+            'labels_id' => $labels_id,
+            ' labels' =>  $labels,
+        ]);
+    }
+
 }

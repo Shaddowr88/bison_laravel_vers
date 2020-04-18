@@ -41,7 +41,7 @@
         </div>
 
         <div class="card-body">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <ul class="nav nav-tabs" id="myTab" role="tablist"></ul>
 
         </div>
 <div class="col-xl-12 text-align-center">

@@ -26,12 +26,12 @@
             fillData ()
             {
                 this.datacollection = {
-                    labels: ['Janvier','Fevrier','Mars','Avril','Mais', 'Juin' , 'Juillet'],
+                    labels: ['month'],
                     datasets: [
                         {
                             label: 'Charge',
                             backgroundColor: 'rgba(10,7,255,0.55)',
-                            data: [ 2000, 4000, 2500, 2000, 4500, 4000, 2000]
+                            data: [ 'budgetCountData']
                         },
 
                         {

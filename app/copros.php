@@ -10,4 +10,10 @@ class copros extends Model
     {
         return $this->hasMany('App\Batiment','copro_id','id');
     }
+
+    public function budget()
+    {
+        return $this->hasMany('App\budget','copro_id','id');
+    }
+
 }
