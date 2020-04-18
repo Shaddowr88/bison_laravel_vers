@@ -71,7 +71,7 @@ class MainController extends Controller
         }
         return redirect()
             ->route('backend_viewByCopro',['id'=>$batiments->copro_id])
-            ->with('notice', 'le Batiment'.$batiments->nom.'a bien été ajouté');
+            ->with('notice', 'le Batiment' .$batiments->nom. 'a bien été ajouté');
     }
 
     public function edit (Request $request){
@@ -117,7 +117,7 @@ class MainController extends Controller
         $batiments->save();
         $batiments->parties()->sync($request->parties);
         return redirect()->route('backend_viewByCopro',['id'=>$batiments->copro_id])
-            ->with('notice','Batiment a bien été modifié');
+            ->with('notice','Batiment ' .$batiments->nom. ' a bien été modifié');
     }
 //fonction delete
     public function delete(Request $request){

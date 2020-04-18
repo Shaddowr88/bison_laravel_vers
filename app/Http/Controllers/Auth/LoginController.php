@@ -2,12 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\appartement;
-use App\Batiment;
 use App\Http\Controllers\Controller;
-use App\partie;
-use App\User;
-
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,7 +46,6 @@ class LoginController extends Controller
           $user = Auth::user();
 
           if($user->hasRole('Administrateur')) {
-
               return redirect()->route('backend_homepage');
           } else {
               return redirect()->route('dashbord_index');

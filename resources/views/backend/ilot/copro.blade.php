@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     @if (session('notice'))
-                        <div class="alert alert-success">
+                        <div class="alert alert-success position-relative popover" >
                             {{ session('notice') }}
                         </div>
                     @endif

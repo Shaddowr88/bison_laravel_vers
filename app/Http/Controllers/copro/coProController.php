@@ -24,10 +24,7 @@ class coProController extends Controller
     public function viewByCopro(Request $request){
     // Récupérer tous les bâtiments d'une même copropriété,
         $batiments = Batiment::where('copro_id',$request->id)->get();
-
         $copro = copros::find($request->id);
-
-        //$copros = copros::where('id',$request->id)->get();
         $budgets= Budget::where('copro_id',$request->id)->get();
         $spent = depense::all()->pluck('created_at','tarif');
         $spentWatter = watter::all()->pluck('created_at','tarif');
@@ -72,7 +69,7 @@ class coProController extends Controller
 //        dd($request);
         $copros->save();
         return redirect() ->route('backend_homepage')
-            ->with('notice', 'le programme'.$copros->name.'a été crée');
+            ->with('notice', 'le programme' .$copros->name. 'a été crée');
     }
 
     public function update (Request $request){
@@ -93,7 +90,7 @@ class coProController extends Controller
         $copros->cp = $request->cp;
         $copros->save();
         return redirect()->route('backend_homepage')
-            ->with('notice','Batiment a bien été modifié');
+            ->with('notice','La copropriété' .$copros->name. 'a bien été modifié');
     }
 
     public function delete(Request $request){

@@ -1,11 +1,12 @@
 @extends('layouts/dashAdmin')
 @section('dash')
-    @if (session('notice'))
-        <div class="alert alert-success float w-25">
-            {{ session('notice') }}
-        </div>
-    @endif
+
     <div class="col-xl-12 col-md-6 mb-4">
+        @if (session('notice'))
+            <div class="alert alert-success w-25" style="float: bottom; ">
+                {{ session('notice') }}
+            </div>
+        @endif
         <div class="row">
             <div class="col-12 mb-2 ">
                 <div>
