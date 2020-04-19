@@ -19,7 +19,7 @@ class MainController extends Controller
     public function index()
     {
         $batiment = DB::table('batiments')
-            ->orderBy('created_at','desc')->paginate(8);
+            ->orderBy('created_at','desc')->paginate(4);
 
         dd($batiment);
         return view('backend.ilot.index', ['batiments'=>$batiment]);

@@ -8,6 +8,7 @@
     <title>{{ config('app.name', 'Bizon') }}</title>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('https://unpkg.com/ionicons@5.0.0/dist/ionicons.js')}}"></script>
     <!-- Fonts -->
     <link href="{{asset('https://fonts.googleapis.com/css?family=Nunito')}}" rel="stylesheet">
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">

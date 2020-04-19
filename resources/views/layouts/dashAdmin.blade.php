@@ -1,75 +1,61 @@
 @extends ('layouts/dash')
 @section('dashMain')
   <div id="wrapper" >
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion align-items-center" style="list-style: none;"
         id="accordionSidebar">
       <!-- Sidebar - Brand -->
-      <div  class=" mt-5 btn dropdown-toggle"
-          id="dropdownMenuButton"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false" href="#" style="color:white" >
-        <div ><a style="font-max-size: 70px">{{ Auth::user()->name }}</a>
+
+      <div class="mt-5 btn-group dropright">
+        <button type="button" style="color:white" class="btn  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a style="font-max-size: 70px">{{ Auth::user()->name }}</a>
+        </button>
+        <div class="dropdown-menu justify-content-center">
+          <a class=" btn ml-3" href="{{ route('logout') }}"
+             onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="text-align: center">
+            {{ __('Logout') }}
+          </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
         </div>
-      </div>
-      <div class="dropdown-menu align-content-start overflow-auto blockquote" aria-labelledby="dropdownMenuButton" style="text-align: center;float-displace: auto">
-        <a class=" btn " href="{{ route('logout') }}"
-           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-          {{ __('Logout') }}
-        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-          @csrf
-        </form>
       </div>
       <!--Nav Item - Dashboard -->
       <li class="nav-item active" style="list-style: none;">
         <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span></span></a>
+          </a>
       </li>
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <p class="nav-link collapsed" href="#"
-           data-toggle="collapse"
-           data-target="#collapseTwo"
-           aria-expanded="true"
-           aria-controls="collapseTwo">
+        <a class="btn-light btn-circle mb-2 float-right p-2"  href="{{route('backend_homepage')}}">
           <!-- menus de navigation -->
-         Bâtiment
-        </p>
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class=" py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{route('backend_add')}}">Ajouter</a>
-            <a class="collapse-item" href="#">Éditer</a>
-          </div>
-        </div>
-      </li>
+          <ion-icon name="list-circle-sharp" size="large" data-toggle="tooltip" data-placement="left" title="Liste de copropriété" ></ion-icon>
+        </a>
+      <hr>
       <!-- Nav Item - Utilities Collapse Menu Messages -->
       <li class="nav-item">
-        <a class="nav-link collapsed"
-           href="#" data-toggle="collapse"
-           data-target="#collapseUtilities"
-           aria-expanded="true"
-           aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
+        <a class="nav-link collapsed position-relative" href="#" data-toggle="collapse" data-target="#message"
+           aria-expanded="true" aria-controls="message">
+          <i class="fas fa-fw fa-folder position-relative float-lg-right">
+            <!-- menus de navigation -->
+{{--            <ion-icon name="paper-plane" size="large" data-toggle="tooltip" data-placement="left" title="Ajouter un nouveau bâtiment" ></ion-icon>--}}
+          </i>
           Message
         </a>
-        <div id="collapseUtilities"
-             class="collapse"
-             aria-labelledby="headingUtilities"
-             data-parent="#accordionSidebar">
+        <div id="message" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header"></h6>
-            <a class="collapse-item" href="{{route('messages_ask')}}">Demande</a>
-            <a class="collapse-item" href="utilities-border.html">Annonce</a>
+            <a class="collapse-item" href="{{route('Books_index')}}">Utilisateur</a>
+            <a class="collapse-item" href="{{route('Books_syndic')}}">Syndic</a>
           </div>
         </div>
       </li>
       <!-- Nav Item - Pages Collapse Menu Evenements-->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+        <a class="nav-link collapsed position-relative" href="#" data-toggle="collapse" data-target="#collapsePages"
            aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
+          <i class="fas fa-fw fa-folder position-relative float-lg-right">
+              <!-- menus de navigation -->
+{{--              <ion-icon name="book" size="large" data-toggle="tooltip" data-placement="left" title="Ajouter un nouveau bâtiment" ></ion-icon>--}}
+            </i>
           Annuaire
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -86,7 +72,10 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsedoc"
            aria-expanded="true" aria-controls="collapsedoc">
-          <i class="fas fa-fw fa-folder"></i>
+          <i class="fas fa-fw fa-folder position-relative float-lg-right">
+            <!-- menus de navigation -->
+{{--            <ion-icon name="documents" size="large" data-toggle="tooltip" data-placement="left" title="Ajouter un nouveau bâtiment" ></ion-icon>--}}
+          </i>
           Documents
         </a>
         <div id="collapsedoc" class="collapse" aria-labelledby="headingDoc" data-parent="#accordionSidebar">
@@ -99,15 +88,13 @@
         </div>
       </li>
     </ul>
-    <div class="col-sm p-5" style="background: white;">
+    <div style="background: white;">
       @yield('dash')
     </div>
   </div>
   <script>
-    // $('#myCollapsible').collapse('hide');
-    $('#myCollapsible').collapse({
-      toggle: false
-    });
+    $('#myCollapsible').collapse('hide');
+    //$('#myCollapsible').collapse({ toggle: false });
     $('.dropdown-toggle').dropdown()
   </script>
 @endsection

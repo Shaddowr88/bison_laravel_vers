@@ -17,13 +17,13 @@ class coProController extends Controller
     public function index()
     {
         $copro = DB::table('copros')
-           ->orderBy('created_at','desc')->paginate(8);
+           ->orderBy('created_at','desc')->paginate(6);
       return view('backend.ilot.copro', ['copros'=>$copro]);
     }
 
     public function viewByCopro(Request $request){
     // Récupérer tous les bâtiments d'une même copropriété,
-        $batiments = Batiment::where('copro_id',$request->id)->get();
+        $batiments = Batiment::where('copro_id',$request->id)->paginate(4);
         $copro = copros::find($request->id);
         $budgets= Budget::where('copro_id',$request->id)->get();
         $spent = depense::all()->pluck('created_at','tarif');

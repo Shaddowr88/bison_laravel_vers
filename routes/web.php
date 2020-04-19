@@ -40,7 +40,7 @@
 //acceuille securisé admin liste co-pro
     Route::get('/backend','copro\coProController@index')->name('backend_homepage');
 // CRUD CoPropriete
-    Route::get('coPro/add','copro\coProController@add')->name('coPro_add');
+    Route::get('coPro/onemore','copro\coProController@add')->name('coProMmore');
     Route::post('/backend/coPro/store','copro\coProController@store')->name('backend_coPro_store');
     Route::get('/backend/coPro/edit/{id}','copro\coProController@edit')->name('backendCoProEdit');
     Route::post('/backend/coPro/update/{id}','copro\coProController@update')->name('backendCoProUpdate');
