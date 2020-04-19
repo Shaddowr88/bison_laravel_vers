@@ -47,7 +47,6 @@ class MainController extends Controller
             'numero'=> 'required|max:3','adresse'=> 'required|max:25',
             'batiment_id','copro_id', 'photo_principale'=>'required|image|max:1999'
         ]);
-
         if ($request->hasFile('photo_principale')) {
             $fileName = $request->file('photo_principale')->getClientOriginalName();
             $request->file('photo_principale')->storeAs('public/uploads', $fileName);
@@ -56,7 +55,6 @@ class MainController extends Controller
 //            dd($fileName);
             $img->save('storage/uploads/'. $fileName);
         }
-
         $batiments = new Batiment();
         $batiments->nom = $request->nom;
         $batiments->numero = $request->numero;

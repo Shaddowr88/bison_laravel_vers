@@ -1,5 +1,7 @@
 @extends('layouts/dashAdmin')
 @section('dash')
+
+
     <div class="col-xl-12 p-lg-4">
         <div>
             <div class="row mt-5">
@@ -32,24 +34,34 @@
         </div>
         <div class="row mt-1 ml-lg-5">
             @foreach($copros as $copro)
-                <div class="card m-2 shadow-sm" style="max-width: 35vh;">
+                <div class="card m-3 shadow-sm" style="max-width: 35vh;min-height: 15vh">
                     <div class="row no-gutters align-content-center" href="{{route('backend_viewByCopro',['id'=>$copro->id]) }}">
                         <div class="col-md-6">
-                            <img src="{{asset('storage/uploads/'.$copro->photo_principale)}}" href="{{route('backend_viewByCopro',['id'=>$copro->id]) }}" class="card-img h-100 " alt="{{$copro->name}}">
+                            <img src="{{asset('storage/uploads/'.$copro->photo_principale)}}"
+                                 href="{{route('backend_viewByCopro',['id'=>$copro->id]) }}"
+                                 style="min-height: 24vh"
+                                 class="card-img "
+                                 alt="{{$copro->name}}">
                         </div>
                         <div class="col-md-6">
                             <div class="card-body">
                                 <h5 class="card-title" href="{{route('backend_viewByCopro',['id'=>$copro->id]) }}">
-                                    <a href="{{route('backend_viewByCopro',['id'=>$copro->id]) }}">{{$copro->name}}</a> </h5>
-                                <p class="card-text">{{$copro->ville}}</p>
+                                    <a href="{{route('backend_viewByCopro',['id'=>$copro->id])  }}" style="
+                                        text-transform: capitalize;
+                                        text-decoration: none;
+                                        text-align-last: left;">{{$copro->name}}</a> </h5>
+                                <p class="card-text" style="
+                                        text-transform: capitalize;
+                                        text-decoration: none;
+                                        text-align-last: left;">{{$copro->ville}}</p>
                                 <tr>
-                                    <td>
-                                        <a  href="{{route('backendCoProEdit',['id'=>$copro->id])}}"
-                                            class="btn btn-sm btn-primary col-12 mb-2">Modifier</a>
-                                        <a onclick="return(confirm('sans regret ? '))"
+                                    <td style="align-self: center;align-content: center;">
+                                        <a style="align-self: center;align-content: center;" href="{{route('backendCoProEdit',['id'=>$copro->id])}}"
+                                            class="btn btn-sm mt-4 col-lg-4 "><ion-icon size="small" name="create-outline"></ion-icon></a>
+                                        <a style="align-self: center;align-content: center;" onclick="return(confirm('sans regret ? '))"
                                            href="{{route('coProDelete',['id'=>$copro->id]) }}"
-                                           class="btn btn-sm btn-danger col-12">
-                                            Supprimer
+                                           class="btn btn-sm mt-4 col-lg-4">
+                                            <ion-icon size="small" name="trash-outline"></ion-icon>
                                         </a>
                                     </td>
                                 </tr>
@@ -60,7 +72,7 @@
             @endforeach
         </div>
     </div>
-    <div class="fixed-bottom  position-relative ml-lg-3 " >
+    <div class="fixed-bottom  position-relative ml-lg-5 " >
         {{$copros->links()}}
     </div>
     <script>

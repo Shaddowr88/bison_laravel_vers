@@ -1,16 +1,11 @@
 @extends('layouts/dashAdmin')
 @section('dash')
-<div class="row rounded-circle" style="display: block; position: absolute; margin-top: 3em;">
-    <a href="{{route('backend_viewByBatiment',
-                 ['id'=>$batiment->id]) }}">
-        <img class="rounded" style="max-height:85vh; "
-             src="{{asset('storage/uploads/'.$batiment->photo_principale)}}"
-             alt="{{$batiment->nom}}">
+<div class="row ml-lg-3 rounded-circle" style="display: block; position: absolute; margin-top: 3em;">
+    <a href="{{route('backend_viewByBatiment',['id'=>$batiment->id]) }}">
+        <img class="rounded" style="max-height:85vh; " src="{{asset('storage/uploads/'.$batiment->photo_principale)}}" alt="{{$batiment->nom}}">
     </a>
    </div>
-    <main role="main" class="col-md-9 col-lg-12 px-4">
-        <div class="row mt-5 h-50 shadow">
-
+        <div class="row mt-5 ml-lg-1 h-50 shadow">
             <div class="col-7" style="display: block; position: absolute; margin-top: 3em; ">
             <div class="card mb-3 p-5 ">
             <div class="d-flex overflow-auto justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 ml-5 h-50">
@@ -20,15 +15,14 @@
                         <a class="btn btn-sm btn-outline-secondary"
                            href="{{route('backend_viewByCopro',
                            ['id'=>$batiment->copro_id])}}">
-                            Lister les batiments</a>
+                            Lister les batiments
+                        </a>
                     </div>
-
                     <div class="btn-group m-1 ">
                         <a href="{{route('backend_edit',['id'=>$batiment])}}"
-                           class="btn btn-sm btn-outline-secondary"> Modifier </a>
+                           class="btn btn-sm btn-outline-secondary"> Modifier
+                        </a>
                     </div>
-
-
                 </div>
             </div>
             <div class="card-body" id="parties" name="parties[]">
@@ -62,5 +56,4 @@
 {{--                        <a href="#" class="card-link">Another link</a>--}}
 {{--                    </div>--}}
         </div>
-    </main>
 @endsection

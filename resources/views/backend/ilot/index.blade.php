@@ -62,7 +62,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a style="
+                                    <a  style="
                                         text-transform: capitalize;
                                         text-decoration: none;
                                         text-align-last: left;"
